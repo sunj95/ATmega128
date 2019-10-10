@@ -1,0 +1,363 @@
+
+USART_LCD.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000058  00800100  00000206  0000027a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000206  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  000002d2  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000304  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000060  00000000  00000000  00000340  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000d07  00000000  00000000  000003a0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000008e5  00000000  00000000  000010a7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000437  00000000  00000000  0000198c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000000f8  00000000  00000000  00001dc4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000004c2  00000000  00000000  00001ebc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000368  00000000  00000000  0000237e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000050  00000000  00000000  000026e6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	45 c0       	rjmp	.+138    	; 0x8c <__ctors_end>
+   2:	00 00       	nop
+   4:	58 c0       	rjmp	.+176    	; 0xb6 <__bad_interrupt>
+   6:	00 00       	nop
+   8:	56 c0       	rjmp	.+172    	; 0xb6 <__bad_interrupt>
+   a:	00 00       	nop
+   c:	54 c0       	rjmp	.+168    	; 0xb6 <__bad_interrupt>
+   e:	00 00       	nop
+  10:	52 c0       	rjmp	.+164    	; 0xb6 <__bad_interrupt>
+  12:	00 00       	nop
+  14:	50 c0       	rjmp	.+160    	; 0xb6 <__bad_interrupt>
+  16:	00 00       	nop
+  18:	4e c0       	rjmp	.+156    	; 0xb6 <__bad_interrupt>
+  1a:	00 00       	nop
+  1c:	4c c0       	rjmp	.+152    	; 0xb6 <__bad_interrupt>
+  1e:	00 00       	nop
+  20:	4a c0       	rjmp	.+148    	; 0xb6 <__bad_interrupt>
+  22:	00 00       	nop
+  24:	48 c0       	rjmp	.+144    	; 0xb6 <__bad_interrupt>
+  26:	00 00       	nop
+  28:	46 c0       	rjmp	.+140    	; 0xb6 <__bad_interrupt>
+  2a:	00 00       	nop
+  2c:	44 c0       	rjmp	.+136    	; 0xb6 <__bad_interrupt>
+  2e:	00 00       	nop
+  30:	42 c0       	rjmp	.+132    	; 0xb6 <__bad_interrupt>
+  32:	00 00       	nop
+  34:	40 c0       	rjmp	.+128    	; 0xb6 <__bad_interrupt>
+  36:	00 00       	nop
+  38:	3e c0       	rjmp	.+124    	; 0xb6 <__bad_interrupt>
+  3a:	00 00       	nop
+  3c:	3c c0       	rjmp	.+120    	; 0xb6 <__bad_interrupt>
+  3e:	00 00       	nop
+  40:	3a c0       	rjmp	.+116    	; 0xb6 <__bad_interrupt>
+  42:	00 00       	nop
+  44:	38 c0       	rjmp	.+112    	; 0xb6 <__bad_interrupt>
+  46:	00 00       	nop
+  48:	36 c0       	rjmp	.+108    	; 0xb6 <__bad_interrupt>
+  4a:	00 00       	nop
+  4c:	34 c0       	rjmp	.+104    	; 0xb6 <__bad_interrupt>
+  4e:	00 00       	nop
+  50:	32 c0       	rjmp	.+100    	; 0xb6 <__bad_interrupt>
+  52:	00 00       	nop
+  54:	30 c0       	rjmp	.+96     	; 0xb6 <__bad_interrupt>
+  56:	00 00       	nop
+  58:	2e c0       	rjmp	.+92     	; 0xb6 <__bad_interrupt>
+  5a:	00 00       	nop
+  5c:	2c c0       	rjmp	.+88     	; 0xb6 <__bad_interrupt>
+  5e:	00 00       	nop
+  60:	2a c0       	rjmp	.+84     	; 0xb6 <__bad_interrupt>
+  62:	00 00       	nop
+  64:	28 c0       	rjmp	.+80     	; 0xb6 <__bad_interrupt>
+  66:	00 00       	nop
+  68:	26 c0       	rjmp	.+76     	; 0xb6 <__bad_interrupt>
+  6a:	00 00       	nop
+  6c:	24 c0       	rjmp	.+72     	; 0xb6 <__bad_interrupt>
+  6e:	00 00       	nop
+  70:	22 c0       	rjmp	.+68     	; 0xb6 <__bad_interrupt>
+  72:	00 00       	nop
+  74:	20 c0       	rjmp	.+64     	; 0xb6 <__bad_interrupt>
+  76:	00 00       	nop
+  78:	1e c0       	rjmp	.+60     	; 0xb6 <__bad_interrupt>
+  7a:	00 00       	nop
+  7c:	1c c0       	rjmp	.+56     	; 0xb6 <__bad_interrupt>
+  7e:	00 00       	nop
+  80:	1a c0       	rjmp	.+52     	; 0xb6 <__bad_interrupt>
+  82:	00 00       	nop
+  84:	18 c0       	rjmp	.+48     	; 0xb6 <__bad_interrupt>
+  86:	00 00       	nop
+  88:	16 c0       	rjmp	.+44     	; 0xb6 <__bad_interrupt>
+	...
+
+0000008c <__ctors_end>:
+  8c:	11 24       	eor	r1, r1
+  8e:	1f be       	out	0x3f, r1	; 63
+  90:	cf ef       	ldi	r28, 0xFF	; 255
+  92:	d0 e1       	ldi	r29, 0x10	; 16
+  94:	de bf       	out	0x3e, r29	; 62
+  96:	cd bf       	out	0x3d, r28	; 61
+
+00000098 <__do_copy_data>:
+  98:	11 e0       	ldi	r17, 0x01	; 1
+  9a:	a0 e0       	ldi	r26, 0x00	; 0
+  9c:	b1 e0       	ldi	r27, 0x01	; 1
+  9e:	e6 e0       	ldi	r30, 0x06	; 6
+  a0:	f2 e0       	ldi	r31, 0x02	; 2
+  a2:	00 e0       	ldi	r16, 0x00	; 0
+  a4:	0b bf       	out	0x3b, r16	; 59
+  a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
+  a8:	07 90       	elpm	r0, Z+
+  aa:	0d 92       	st	X+, r0
+  ac:	a8 35       	cpi	r26, 0x58	; 88
+  ae:	b1 07       	cpc	r27, r17
+  b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
+  b2:	82 d0       	rcall	.+260    	; 0x1b8 <main>
+  b4:	a6 c0       	rjmp	.+332    	; 0x202 <_exit>
+
+000000b6 <__bad_interrupt>:
+  b6:	a4 cf       	rjmp	.-184    	; 0x0 <__vectors>
+
+000000b8 <USART_Init>:
+	USART_Transmit((char)y+48);
+	USART_Transmit('\r');
+	USART_Transmit_String("$T,");
+	USART_Transmit(data);
+	USART_Transmit('\r');
+}
+  b8:	90 93 90 00 	sts	0x0090, r25	; 0x800090 <__TEXT_REGION_LENGTH__+0x7e0090>
+  bc:	89 b9       	out	0x09, r24	; 9
+  be:	88 e1       	ldi	r24, 0x18	; 24
+  c0:	8a b9       	out	0x0a, r24	; 10
+  c2:	86 e0       	ldi	r24, 0x06	; 6
+  c4:	80 93 95 00 	sts	0x0095, r24	; 0x800095 <__TEXT_REGION_LENGTH__+0x7e0095>
+  c8:	08 95       	ret
+
+000000ca <USART_Transmit>:
+  ca:	5d 9b       	sbis	0x0b, 5	; 11
+  cc:	fe cf       	rjmp	.-4      	; 0xca <USART_Transmit>
+  ce:	8c b9       	out	0x0c, r24	; 12
+  d0:	08 95       	ret
+
+000000d2 <USART_Transmit_String>:
+  d2:	cf 93       	push	r28
+  d4:	df 93       	push	r29
+  d6:	ec 01       	movw	r28, r24
+  d8:	88 81       	ld	r24, Y
+  da:	88 23       	and	r24, r24
+  dc:	29 f0       	breq	.+10     	; 0xe8 <USART_Transmit_String+0x16>
+  de:	21 96       	adiw	r28, 0x01	; 1
+  e0:	f4 df       	rcall	.-24     	; 0xca <USART_Transmit>
+  e2:	89 91       	ld	r24, Y+
+  e4:	81 11       	cpse	r24, r1
+  e6:	fc cf       	rjmp	.-8      	; 0xe0 <USART_Transmit_String+0xe>
+  e8:	df 91       	pop	r29
+  ea:	cf 91       	pop	r28
+  ec:	08 95       	ret
+
+000000ee <LCD_Init>:
+  ee:	80 e0       	ldi	r24, 0x00	; 0
+  f0:	91 e0       	ldi	r25, 0x01	; 1
+  f2:	ef df       	rcall	.-34     	; 0xd2 <USART_Transmit_String>
+  f4:	84 e0       	ldi	r24, 0x04	; 4
+  f6:	91 e0       	ldi	r25, 0x01	; 1
+  f8:	ec df       	rcall	.-40     	; 0xd2 <USART_Transmit_String>
+  fa:	88 e0       	ldi	r24, 0x08	; 8
+  fc:	91 e0       	ldi	r25, 0x01	; 1
+  fe:	e9 df       	rcall	.-46     	; 0xd2 <USART_Transmit_String>
+ 100:	8e e0       	ldi	r24, 0x0E	; 14
+ 102:	91 e0       	ldi	r25, 0x01	; 1
+ 104:	e6 df       	rcall	.-52     	; 0xd2 <USART_Transmit_String>
+ 106:	84 e1       	ldi	r24, 0x14	; 20
+ 108:	91 e0       	ldi	r25, 0x01	; 1
+ 10a:	e3 cf       	rjmp	.-58     	; 0xd2 <USART_Transmit_String>
+ 10c:	08 95       	ret
+
+0000010e <LCD_Transmit_String>:
+
+void LCD_Transmit_String(int x, int y, char *string){
+ 10e:	0f 93       	push	r16
+ 110:	1f 93       	push	r17
+ 112:	cf 93       	push	r28
+ 114:	df 93       	push	r29
+ 116:	08 2f       	mov	r16, r24
+ 118:	16 2f       	mov	r17, r22
+ 11a:	ea 01       	movw	r28, r20
+	USART_Transmit_String("$G,");
+ 11c:	8a e1       	ldi	r24, 0x1A	; 26
+ 11e:	91 e0       	ldi	r25, 0x01	; 1
+ 120:	d8 df       	rcall	.-80     	; 0xd2 <USART_Transmit_String>
+	USART_Transmit((char)x+48);
+ 122:	80 e3       	ldi	r24, 0x30	; 48
+ 124:	80 0f       	add	r24, r16
+ 126:	d1 df       	rcall	.-94     	; 0xca <USART_Transmit>
+	USART_Transmit(',');
+ 128:	8c e2       	ldi	r24, 0x2C	; 44
+ 12a:	cf df       	rcall	.-98     	; 0xca <USART_Transmit>
+	USART_Transmit((char)y+48);
+ 12c:	80 e3       	ldi	r24, 0x30	; 48
+ 12e:	81 0f       	add	r24, r17
+ 130:	cc df       	rcall	.-104    	; 0xca <USART_Transmit>
+	USART_Transmit('\r');
+ 132:	8d e0       	ldi	r24, 0x0D	; 13
+ 134:	ca df       	rcall	.-108    	; 0xca <USART_Transmit>
+	USART_Transmit_String("$T,");
+ 136:	8e e1       	ldi	r24, 0x1E	; 30
+ 138:	91 e0       	ldi	r25, 0x01	; 1
+ 13a:	cb df       	rcall	.-106    	; 0xd2 <USART_Transmit_String>
+	USART_Transmit_String(string);
+ 13c:	ce 01       	movw	r24, r28
+ 13e:	c9 df       	rcall	.-110    	; 0xd2 <USART_Transmit_String>
+ 140:	8d e0       	ldi	r24, 0x0D	; 13
+	USART_Transmit('\r');
+ 142:	c3 df       	rcall	.-122    	; 0xca <USART_Transmit>
+ 144:	df 91       	pop	r29
+ 146:	cf 91       	pop	r28
+}
+ 148:	1f 91       	pop	r17
+ 14a:	0f 91       	pop	r16
+ 14c:	08 95       	ret
+
+0000014e <LCD_Transmit_String_Flow>:
+ 14e:	0f 93       	push	r16
+ 150:	1f 93       	push	r17
+
+void LCD_Transmit_String_Flow(char *string){
+ 152:	cf 93       	push	r28
+ 154:	df 93       	push	r29
+	int string_L = strlen(string);
+ 156:	fc 01       	movw	r30, r24
+ 158:	01 90       	ld	r0, Z+
+ 15a:	00 20       	and	r0, r0
+ 15c:	e9 f7       	brne	.-6      	; 0x158 <LCD_Transmit_String_Flow+0xa>
+ 15e:	31 97       	sbiw	r30, 0x01	; 1
+ 160:	e8 1b       	sub	r30, r24
+ 162:	f9 0b       	sbc	r31, r25
+	for(int i=0;i<string_L-31;i++){
+ 164:	9f 01       	movw	r18, r30
+ 166:	2f 51       	subi	r18, 0x1F	; 31
+ 168:	31 09       	sbc	r19, r1
+ 16a:	12 16       	cp	r1, r18
+ 16c:	13 06       	cpc	r1, r19
+ 16e:	fc f4       	brge	.+62     	; 0x1ae <LCD_Transmit_String_Flow+0x60>
+ 170:	ec 01       	movw	r28, r24
+ 172:	8c 01       	movw	r16, r24
+ 174:	02 0f       	add	r16, r18
+ 176:	13 1f       	adc	r17, r19
+		LCD_Transmit_String(1,1,string+i);
+ 178:	ae 01       	movw	r20, r28
+ 17a:	61 e0       	ldi	r22, 0x01	; 1
+ 17c:	70 e0       	ldi	r23, 0x00	; 0
+ 17e:	81 e0       	ldi	r24, 0x01	; 1
+ 180:	90 e0       	ldi	r25, 0x00	; 0
+ 182:	c5 df       	rcall	.-118    	; 0x10e <LCD_Transmit_String>
+		LCD_Transmit_String(2,1,string+i+16);
+ 184:	ae 01       	movw	r20, r28
+ 186:	40 5f       	subi	r20, 0xF0	; 240
+ 188:	5f 4f       	sbci	r21, 0xFF	; 255
+ 18a:	61 e0       	ldi	r22, 0x01	; 1
+ 18c:	70 e0       	ldi	r23, 0x00	; 0
+ 18e:	82 e0       	ldi	r24, 0x02	; 2
+ 190:	90 e0       	ldi	r25, 0x00	; 0
+ 192:	bd df       	rcall	.-134    	; 0x10e <LCD_Transmit_String>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 194:	2f ef       	ldi	r18, 0xFF	; 255
+ 196:	81 ee       	ldi	r24, 0xE1	; 225
+ 198:	94 e0       	ldi	r25, 0x04	; 4
+ 19a:	21 50       	subi	r18, 0x01	; 1
+ 19c:	80 40       	sbci	r24, 0x00	; 0
+ 19e:	90 40       	sbci	r25, 0x00	; 0
+ 1a0:	e1 f7       	brne	.-8      	; 0x19a <LCD_Transmit_String_Flow+0x4c>
+ 1a2:	00 c0       	rjmp	.+0      	; 0x1a4 <LCD_Transmit_String_Flow+0x56>
+ 1a4:	00 00       	nop
+ 1a6:	21 96       	adiw	r28, 0x01	; 1
+	USART_Transmit('\r');
+}
+
+void LCD_Transmit_String_Flow(char *string){
+	int string_L = strlen(string);
+	for(int i=0;i<string_L-31;i++){
+ 1a8:	c0 17       	cp	r28, r16
+ 1aa:	d1 07       	cpc	r29, r17
+ 1ac:	29 f7       	brne	.-54     	; 0x178 <LCD_Transmit_String_Flow+0x2a>
+		LCD_Transmit_String(1,1,string+i);
+		LCD_Transmit_String(2,1,string+i+16);
+		_delay_ms(100);
+//		if(string[i+32] == '\0') break;
+	}
+}
+ 1ae:	df 91       	pop	r29
+ 1b0:	cf 91       	pop	r28
+ 1b2:	1f 91       	pop	r17
+ 1b4:	0f 91       	pop	r16
+ 1b6:	08 95       	ret
+
+000001b8 <main>:
+
+int main(void){
+ 1b8:	cf 93       	push	r28
+ 1ba:	df 93       	push	r29
+ 1bc:	cd b7       	in	r28, 0x3d	; 61
+ 1be:	de b7       	in	r29, 0x3e	; 62
+ 1c0:	e6 97       	sbiw	r28, 0x36	; 54
+ 1c2:	0f b6       	in	r0, 0x3f	; 63
+ 1c4:	f8 94       	cli
+ 1c6:	de bf       	out	0x3e, r29	; 62
+ 1c8:	0f be       	out	0x3f, r0	; 63
+ 1ca:	cd bf       	out	0x3d, r28	; 61
+	USART_Init(MYUBRR);
+ 1cc:	87 e6       	ldi	r24, 0x67	; 103
+ 1ce:	90 e0       	ldi	r25, 0x00	; 0
+ 1d0:	73 df       	rcall	.-282    	; 0xb8 <USART_Init>
+	LCD_Init();
+ 1d2:	8d df       	rcall	.-230    	; 0xee <LCD_Init>
+ 1d4:	86 e3       	ldi	r24, 0x36	; 54
+	char str[] = "Hwang Seon Jeong Department of Electronic Engineering";
+ 1d6:	e2 e2       	ldi	r30, 0x22	; 34
+ 1d8:	f1 e0       	ldi	r31, 0x01	; 1
+ 1da:	de 01       	movw	r26, r28
+ 1dc:	11 96       	adiw	r26, 0x01	; 1
+ 1de:	01 90       	ld	r0, Z+
+ 1e0:	0d 92       	st	X+, r0
+ 1e2:	8a 95       	dec	r24
+ 1e4:	e1 f7       	brne	.-8      	; 0x1de <main+0x26>
+	
+	LCD_Init();
+ 1e6:	83 df       	rcall	.-250    	; 0xee <LCD_Init>
+	LCD_Transmit_String_Flow(str);
+ 1e8:	ce 01       	movw	r24, r28
+ 1ea:	01 96       	adiw	r24, 0x01	; 1
+ 1ec:	b0 df       	rcall	.-160    	; 0x14e <LCD_Transmit_String_Flow>
+ 1ee:	2f ef       	ldi	r18, 0xFF	; 255
+ 1f0:	81 ee       	ldi	r24, 0xE1	; 225
+ 1f2:	94 e0       	ldi	r25, 0x04	; 4
+ 1f4:	21 50       	subi	r18, 0x01	; 1
+ 1f6:	80 40       	sbci	r24, 0x00	; 0
+ 1f8:	90 40       	sbci	r25, 0x00	; 0
+ 1fa:	e1 f7       	brne	.-8      	; 0x1f4 <main+0x3c>
+ 1fc:	00 c0       	rjmp	.+0      	; 0x1fe <main+0x46>
+ 1fe:	00 00       	nop
+ 200:	f6 cf       	rjmp	.-20     	; 0x1ee <main+0x36>
+
+00000202 <_exit>:
+ 202:	f8 94       	cli
+
+00000204 <__stop_program>:
+ 204:	ff cf       	rjmp	.-2      	; 0x204 <__stop_program>
