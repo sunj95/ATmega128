@@ -9,116 +9,50 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
-int msec = 0, sec = 0;
 int switch1 = 0;
 
-void USART_Init(unsigned int ubrr)
-{
-	UBRR0H = (unsigned char)(ubrr >> 8);
-	UBRR0L = (unsigned char)(ubrr);
-	UCSR0B = (1 << RXEN0) | (1 << TXEN0);
-	UCSR0C = (3 << UCSZ0);
-}
-
-void USART_Transmit(char data){
-	while(!((UCSR0A)&(1<<UDRE0)));
-	UDR0 = data;
-}
-
-void USART_Transmit_String(char *str){
-	while(*str != '\0') USART_Transmit(*str++);
-}
-
-char USART_Receive(){
-	while(!(UCSR0A & (1<<RXC0)));
-	return UDR0;
-}
-
-void Timer_Init(){
-	TCCR0 = (4<<CS0) | (1 << WGM01);
-	TIMSK = (1<<OCIE0);
-	OCR0 = 249;
-}
-
+// Interrupt Initialize
 void Interrupt_Init(){
-	EIMSK = (1 << INT0) | (1 << INT1);
-	EICRA = (1 << ISC01) | (1 << ISC11);
+	EIMSK = (1 << INT0) | (1 << INT1);   // External Interrupt 1, 0 Enable
+	EICRA = (1 << ISC01) | (1 << ISC11); // INT1, INT0 Falling Edge Interrupt
 }
 
-ISR(TIMER0_COMP_vect){
-	msec++;
-	if(msec == 1000){
-		msec = 0;
-		sec++;
-	}
-	if(sec == 100){
-		sec = 0;
-	}
-}
-/* Assignment 1
+// INT0 Falling Edge Interrupt
 ISR(INT0_vect){
-	TIMSK = 0;
-	PORTA = 0xFF;
-}
-
-ISR(INT1_vect){
-	TIMSK = (1 << OCIE0);
-	PORTA = 0x00;
-}
-Assignment 1 End */
-
-ISR(INT0_vect){
-	if(switch1 == 0) switch1 = 1;
+	if(switch1 == 0) switch1 = 1; // switch1 variable control
 	else switch1 = 0;
 }
 
 int main(void)
 {
-    int a, b;
-	int array[8] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
-	int cnt = 0;
-	int way = 0;
-	DDRA = 0xFF;
-	DDRD = 0x00;
-	
-	USART_Init(103);
-	Timer_Init();
-	Interrupt_Init();
-	
-	USART_Transmit_String("Timer: ");
-	_delay_ms(10);
-	SREG = 0x80;
+	int array[8] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80}; // array for LED
+	int cnt = 0; // count for led
+	int way = 0; // variable for know direction of led
+	DDRA = 0xFF; // Initialize LED
+	DDRD = 0x00; // Initialize Switch
+	Interrupt_Init(); // Initialize Interrupt
+	SREG = 0x80; // Global Interrupt Enable
 	
     while (1) 
     {
-	    if(switch1 == 0)PORTA = PORTA;
-		else if (switch1 == 1){
-			PORTA = array[cnt];
-			if(way == 0) cnt++;
-			else if(way == 1) cnt--;
-			if(cnt == 8){
-				if(way == 0){
-					cnt = 7;
-					way = 1;
+	    if(switch1 == 0)PORTA = PORTA; // if state 0, Stop LED
+		else if (switch1 == 1){		   // if state 1,
+			PORTA = array[cnt];		   // shift LED by array
+			if(way == 0) cnt++;		   // if direction is up, cnt++
+			else if(way == 1) cnt--;   // if direction is down, cnt--
+			if(cnt == 8){			   // if LED goes to upper-end
+				if(way == 0){		   // if direction is up
+					cnt = 7;		   // led down
+					way = 1;		   // change direction
 				}
 			}
-			else if (cnt == -1){
-				if(way == 1){
-					cnt = 0;
-					way = 0;
+			else if (cnt == -1){		// if LED is floor
+				if(way == 1){			// if direction is down
+					cnt = 0;			// led up
+					way = 0;			// change direction
 				}
 			}
-			_delay_ms(1000);
+			_delay_ms(1000);			// Delay for LED display
 		}
-		/* Assignment 1
-		a = sec/10 + 48;
-		b = sec%10 + 48;
-		USART_Transmit_String("Timer : ");
-		USART_Transmit(a);
-		USART_Transmit(b);
-		USART_Transmit('\r');
-		_delay_ms(100);
-		Assignment 1 End */ 
     }
 }
-

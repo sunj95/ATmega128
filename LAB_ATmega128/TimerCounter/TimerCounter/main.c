@@ -93,37 +93,31 @@ int main(void)
     { 
 		PORTF = led_array[sec%8];
 		
-		if((PINC&0x01)==0x01){
-			if(switch_state[0] == 0) switch_state[0] = 1;
-			else if(switch_state[0] == 1) switch_state[0] = 0;
+		if((PINC&0x01)==0x01){									 // check switch 1 pushed
+			if(switch_state[0] == 0) switch_state[0] = 1;		 // if pushed 0 -> 1
+			else if(switch_state[0] == 1) switch_state[0] = 0;	 // if pushed 1 -> 0
 		}
-		if((PINC&0x04)==0x04){
-			if(switch_state[1] == 0) switch_state[1] = 1;
-			else if(switch_state[1] == 1) switch_state[1] = 0;
+		if((PINC&0x04)==0x04){									 // check switch 3 pushed
+			if(switch_state[1] == 0) switch_state[1] = 1;		 // if pushed 0 -> 1
+			else if(switch_state[1] == 1) switch_state[1] = 0;	 // if pushed 1 -> 0
 		}
-		if((PINC&0x02)==0x02){
-			msec = 0;
-			sec = 0;
+		if((PINC&0x02)==0x02){			// if switch 2 pushed
+			msec = 0;					// initialize msec
+			sec = 0;					// initialize sec
 		}
-		_delay_ms(10);
+		_delay_ms(10);					// delay for prevent switch pushed repeatedly
 		
-		if(switch_state[0] == 1) TCCR0 = (0<<CS0);
-		else TCCR0 = (4<<CS0);
+		if(switch_state[0] == 1) TCCR0 = (0<<CS0);	// if switch 1 push pause timer
+		else TCCR0 = (4<<CS0);						// if switch 1 pushed again, resume timer
 		
-		if(switch_state[1] == 1) UCSR0B = (0<<RXEN0) | (0<<TXEN0);
-		else UCSR0B = (1<<RXEN0) | (1<<TXEN0);
+		if(switch_state[1] == 1) UCSR0B = (0<<RXEN0) | (0<<TXEN0);	// if switch 3 pushed turn off USART
+		else UCSR0B = (1<<RXEN0) | (1<<TXEN0);						// if switch 3 pushed again, turn on USART
 		
 		USART_Transmit_String("Timer : ");
 		USART_Transmit(sec/10+48);
 		USART_Transmit(sec%10+48);
-		USART_Transmit('.');
-		USART_Transmit(msec/100+48);
-		USART_Transmit((msec%100)/10+48);
-		USART_Transmit(msec%10+48);
 		USART_Transmit('\r');
 		_delay_ms(100);
-		
-		
 	}
 }
 
