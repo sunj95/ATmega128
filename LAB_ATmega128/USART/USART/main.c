@@ -43,12 +43,15 @@ int main (void){
 	switch_init(); // switch initialize
 	char array[8] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80}; // array to use for loop
 	while(1){
+		/*
 		for(int i=0;i<8;i++){ // check switch for PC0~PC7
 			if( (PINC & array[i]) == array[i]){ // check switch
 				USART_Transmit((char)(i+48)); // transmit switch input to ascii code
 				PORTF = array[i]; // Turn on LED on the corresponding switch
 			}
 		}
+		*/
+		USART_Transmit('2');
 	}
 }
 
