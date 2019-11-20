@@ -7,7 +7,7 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
-
+#define NUM_CARD 24
 /*******************************************************************/
 /*                       Function Prototypes                       */
 /*******************************************************************/
@@ -35,12 +35,19 @@ int main(void)
 	USART1_Init(103);
 	Timer_Init();
 	char rx;
+	char rx_1;
 	char random_value;
 	char p1_card_cnt = 0;
 	char p2_card_cnt = 0;
-	struct card_deck deck[26];
+	char temp = 0;
+	char get_number_1[3];
+	char get_number_2[3];
 	
-	for(int i=0;i<26;i++){				// 카드 덱 초기화
+	struct card_deck deck[NUM_CARD];
+	struct card_deck p1_deck[NUM_CARD/2];
+	struct card_deck p2_deck[NUM_CARD/2];
+	
+	for(int i=0;i<NUM_CARD;i++){				// 카드 덱 초기화
 		if(i%2 == 0){
 			deck[i].color = 0;
 			deck[i].number = i/2;
@@ -51,6 +58,16 @@ int main(void)
 		}
 		deck[i].owner = 0;
 		deck[i].opened = 0;
+	}
+	for(int i=0;i<NUM_CARD/2;i++){
+		p1_deck[1].color = -1;
+		p1_deck[1].number = -1;
+		p1_deck[1].owner = 1;
+		p1_deck[1].opened = 0;
+		p1_deck[1].color = -1;
+		p1_deck[1].number = -1;
+		p1_deck[1].owner = 2;
+		p1_deck[1].opened = 0;
 	}
     while (1) 
     {
@@ -67,33 +84,105 @@ int main(void)
 			if(rx == 'Y') state = 2;
 		} // state 1 end
 		if(state == 2){ // state 2 : give card to players
-			USART0_Transmit_String("State 2\r\n");
 			while(p1_card_cnt < 4){	// give Player 1 Cards
-				random_value = TCNT0%26;
+				random_value = TCNT0%NUM_CARD;
 				if(deck[random_value].owner == 0){
 					deck[random_value].owner = 1;
 					p1_card_cnt++;
-					USART_Transmit_number(0, deck[random_value].color);
-					USART0_Transmit_String("  ");
-					USART_Transmit_number(0, deck[random_value].number);
-					USART0_Transmit_String("  ");
 				}
 			}
-			USART0_Transmit_String("\r\n");
 			while(p2_card_cnt < 4){	// give Player 2 Cards
-				random_value = TCNT0%26;
+				random_value = TCNT0%NUM_CARD;
 				if(deck[random_value].owner == 0){
 					deck[random_value].owner = 2;
 					p2_card_cnt++;
-					USART_Transmit_number(1, deck[random_value].color);
-					USART1_Transmit_String("  ");
-					USART_Transmit_number(1, deck[random_value].number);
-					USART1_Transmit_String("  ");
 				}
 			}
-			USART0_Transmit_String("\r\n");
+			temp = 0;
+			USART0_Transmit_String("P1 Deck : ");
+			for(int i=0; i<NUM_CARD; i++){
+				if(deck[i].owner == 1){
+					p1_deck[temp] = deck[i];
+					temp++;
+					USART_Transmit_number(0, p1_deck[temp].color);
+					USART_Transmit_number(0, p1_deck[temp].number);
+					USART0_Transmit_String("   ");
+					_delay_ms(10);
+				}
+			}
+			temp = 0;
+			USART1_Transmit_String("P2 Deck : ");
+			for(int i=0; i<NUM_CARD; i++){
+				if(deck[i].owner == 2){
+					p2_deck[temp] = deck[i];
+					USART_Transmit_number(1, p2_deck[temp].color);
+					USART_Transmit_number(1, p2_deck[temp].number);
+					USART1_Transmit_String("   ");
+					_delay_ms(10);
+					temp++;
+				}
+			}
+			USART1_Transmit_String("\r\n");
+			USART1_Transmit_String("P2 Deck : ");
+			for(int i=0;i<4;i++){
+				USART_Transmit_number(1, p2_deck[i].color);
+				USART_Transmit_number(1, p2_deck[i].number);
+				USART1_Transmit_String("   ");
+			}
 			state = 3;
 		} // state 2 end
+		
+		if(state == 3){ // state 3
+			USART0_Transmit_String("Choose Card to Open : "); // 몇 번째에 있는 카드 선택인지
+			rx = USART0_Receive();
+			if((rx >= '0')&&(rx <= '9')){
+				get_number_1[0] = rx-48;
+				state = 4;	
+			}
+		} // state 3 end
+		if(state == 4){ // state 4
+			rx = USART0_Receive();
+			if((rx >= '0')&&(rx <= '9')){
+				get_number_1[1] = rx-48;
+				get_number_1[2] = get_number_1[0]*10 + get_number_1[1];
+				USART_Transmit_number(1,get_number_1[2]);
+				_delay_ms(1);
+				state = 5;
+			}			
+		} // state 4 end
+		if(state == 5){ // state 5
+			USART0_Transmit_String("\r\nNumber? : "); // 카드가 무엇인지
+			rx = USART0_Receive();
+			if((rx >= '0')&&(rx <= '9')){
+				get_number_2[0] = rx-48;
+				state = 6;
+			}
+		} // state 5 end
+		if(state == 6){ // state 8
+			rx = USART0_Receive();
+			if((rx >= '0')&&(rx <= '9')){
+				get_number_2[1] = rx-48;
+				get_number_2[2] = get_number_2[0]*10 + get_number_2[1];
+				USART_Transmit_number(1,get_number_2[2]);
+				_delay_ms(1);
+				state = 7;
+			}
+		} // state 8 end
+		if(state == 7){ // state 5
+			USART_Transmit_number(1,p2_deck[(int)get_number_1].number);
+			_delay_ms(1);
+			if(p2_deck[(int)get_number_1].number == get_number_2) USART1_Transmit_String("\r\nCorrect\r\n");
+			else USART1_Transmit_String("\r\nWRong\r\n");		
+			state = 8;
+		}
+		if(state == 8){
+			for(int i=0;i<4;i++){
+				USART_Transmit_number(1,p2_deck[i].number);
+				USART1_Transmit_String("  ");
+			}
+			USART1_Transmit_String("\r\n");
+			state = 9;
+		}
 		
     } // while end
 } // main end

@@ -3,31 +3,31 @@ Game_DaVinci_Code.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000058  00800100  00000536  000005ca  2**0
+  0 .data         0000009e  00800100  0000078a  0000081e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000536  00000000  00000000  00000094  2**1
+  1 .text         0000078a  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000002  00800158  00800158  00000622  2**0
+  2 .bss          00000002  0080019e  0080019e  000008bc  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000622  2**0
+  3 .comment      00000030  00000000  00000000  000008bc  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000654  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000008ec  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000070  00000000  00000000  00000690  2**0
+  5 .debug_aranges 00000070  00000000  00000000  00000928  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000e9e  00000000  00000000  00000700  2**0
+  6 .debug_info   000012ff  00000000  00000000  00000998  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000008d5  00000000  00000000  0000159e  2**0
+  7 .debug_abbrev 00000975  00000000  00000000  00001c97  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000719  00000000  00000000  00001e73  2**0
+  8 .debug_line   0000091f  00000000  00000000  0000260c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000ec  00000000  00000000  0000258c  2**2
+  9 .debug_frame  000000f0  00000000  00000000  00002f2c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000004ed  00000000  00000000  00002678  2**0
+ 10 .debug_str    0000056d  00000000  00000000  0000301c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000746  00000000  00000000  00002b65  2**0
+ 11 .debug_loc    000009de  00000000  00000000  00003589  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000090  00000000  00000000  000032ab  2**0
+ 12 .debug_ranges 00000078  00000000  00000000  00003f67  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -116,20 +116,20 @@ Disassembly of section .text:
   98:	11 e0       	ldi	r17, 0x01	; 1
   9a:	a0 e0       	ldi	r26, 0x00	; 0
   9c:	b1 e0       	ldi	r27, 0x01	; 1
-  9e:	e6 e3       	ldi	r30, 0x36	; 54
-  a0:	f5 e0       	ldi	r31, 0x05	; 5
+  9e:	ea e8       	ldi	r30, 0x8A	; 138
+  a0:	f7 e0       	ldi	r31, 0x07	; 7
   a2:	00 e0       	ldi	r16, 0x00	; 0
   a4:	0b bf       	out	0x3b, r16	; 59
   a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
   a8:	07 90       	elpm	r0, Z+
   aa:	0d 92       	st	X+, r0
-  ac:	a8 35       	cpi	r26, 0x58	; 88
+  ac:	ae 39       	cpi	r26, 0x9E	; 158
   ae:	b1 07       	cpc	r27, r17
   b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
 
 000000b2 <__do_clear_bss>:
   b2:	21 e0       	ldi	r18, 0x01	; 1
-  b4:	a8 e5       	ldi	r26, 0x58	; 88
+  b4:	ae e9       	ldi	r26, 0x9E	; 158
   b6:	b1 e0       	ldi	r27, 0x01	; 1
   b8:	01 c0       	rjmp	.+2      	; 0xbc <.do_clear_bss_start>
 
@@ -137,11 +137,11 @@ Disassembly of section .text:
   ba:	1d 92       	st	X+, r1
 
 000000bc <.do_clear_bss_start>:
-  bc:	aa 35       	cpi	r26, 0x5A	; 90
+  bc:	a0 3a       	cpi	r26, 0xA0	; 160
   be:	b2 07       	cpc	r27, r18
   c0:	e1 f7       	brne	.-8      	; 0xba <.do_clear_bss_loop>
   c2:	fb d0       	rcall	.+502    	; 0x2ba <main>
-  c4:	36 c2       	rjmp	.+1132   	; 0x532 <_exit>
+  c4:	60 c3       	rjmp	.+1728   	; 0x786 <_exit>
 
 000000c6 <__bad_interrupt>:
   c6:	9c cf       	rjmp	.-200    	; 0x0 <__vectors>
@@ -530,7 +530,7 @@ int main(void)
  2bc:	df 93       	push	r29
  2be:	cd b7       	in	r28, 0x3d	; 61
  2c0:	de b7       	in	r29, 0x3e	; 62
- 2c2:	c8 56       	subi	r28, 0x68	; 104
+ 2c2:	c6 5c       	subi	r28, 0xC6	; 198
  2c4:	d1 09       	sbc	r29, r1
  2c6:	0f b6       	in	r0, 0x3f	; 63
  2c8:	f8 94       	cli
@@ -548,13 +548,13 @@ int main(void)
  2da:	1b df       	rcall	.-458    	; 0x112 <USART1_Init>
  2dc:	f5 de       	rcall	.-534    	; 0xc8 <Timer_Init>
  2de:	fe 01       	movw	r30, r28
- 2e0:	31 96       	adiw	r30, 0x01	; 1
-	char random_value;
-	char p1_card_cnt = 0;
-	char p2_card_cnt = 0;
-	struct card_deck deck[26];
+ 2e0:	37 96       	adiw	r30, 0x07	; 7
 	
-	for(int i=0;i<26;i++){				// 카드 덱 초기화
+	struct card_deck deck[NUM_CARD];
+	struct card_deck p1_deck[NUM_CARD/2];
+	struct card_deck p2_deck[NUM_CARD/2];
+	
+	for(int i=0;i<NUM_CARD;i++){				// 카드 덱 초기화
  2e2:	80 e0       	ldi	r24, 0x00	; 0
  2e4:	90 e0       	ldi	r25, 0x00	; 0
 		if(i%2 == 0){
@@ -564,11 +564,11 @@ int main(void)
 		else if(i%2 == 1){
 			deck[i].color = 1;
  2e6:	41 e0       	ldi	r20, 0x01	; 1
-	char p1_card_cnt = 0;
-	char p2_card_cnt = 0;
-	struct card_deck deck[26];
+	struct card_deck deck[NUM_CARD];
+	struct card_deck p1_deck[NUM_CARD/2];
+	struct card_deck p2_deck[NUM_CARD/2];
 	
-	for(int i=0;i<26;i++){				// 카드 덱 초기화
+	for(int i=0;i<NUM_CARD;i++){				// 카드 덱 초기화
 		if(i%2 == 0){
  2e8:	80 fd       	sbrc	r24, 0
  2ea:	0c c0       	rjmp	.+24     	; 0x304 <main+0x4a>
@@ -618,368 +618,767 @@ int main(void)
 		}
 		deck[i].owner = 0;
  336:	12 82       	std	Z+2, r1	; 0x02
-	char random_value;
-	char p1_card_cnt = 0;
-	char p2_card_cnt = 0;
-	struct card_deck deck[26];
+		deck[i].opened = 0;
+ 338:	13 82       	std	Z+3, r1	; 0x03
 	
-	for(int i=0;i<26;i++){				// 카드 덱 초기화
- 338:	01 96       	adiw	r24, 0x01	; 1
- 33a:	34 96       	adiw	r30, 0x04	; 4
- 33c:	8a 31       	cpi	r24, 0x1A	; 26
- 33e:	91 05       	cpc	r25, r1
- 340:	99 f6       	brne	.-90     	; 0x2e8 <main+0x2e>
- 342:	c1 2c       	mov	r12, r1
- 344:	d1 2c       	mov	r13, r1
-    {
-		if(state == 0){ // state 0 : checking player 1 connected
-			USART0_Transmit_String("Press Y to Start\r\n");
-			USART1_Transmit_String("Waiting for Player 1\r\n");
-			rx = USART0_Receive();
-			if(rx == 'Y') state = 1;
- 346:	88 24       	eor	r8, r8
- 348:	83 94       	inc	r8
- 34a:	91 2c       	mov	r9, r1
-		} // state 0 end
-		if(state == 1){ // state 1 : checking player 1 connected
-			USART0_Transmit_String("Waiting for Player 0\r\n");
-			USART1_Transmit_String("Press Y to Start\r\n");
-			rx = USART1_Receive();
+	struct card_deck deck[NUM_CARD];
+	struct card_deck p1_deck[NUM_CARD/2];
+	struct card_deck p2_deck[NUM_CARD/2];
+	
+	for(int i=0;i<NUM_CARD;i++){				// 카드 덱 초기화
+ 33a:	01 96       	adiw	r24, 0x01	; 1
+ 33c:	34 96       	adiw	r30, 0x04	; 4
+ 33e:	88 31       	cpi	r24, 0x18	; 24
+ 340:	91 05       	cpc	r25, r1
+ 342:	91 f6       	brne	.-92     	; 0x2e8 <main+0x2e>
+ 344:	8f ef       	ldi	r24, 0xFF	; 255
+ 346:	ac 96       	adiw	r28, 0x2c	; 44
+ 348:	8f af       	std	Y+63, r24	; 0x3f
+ 34a:	ac 97       	sbiw	r28, 0x2c	; 44
+ 34c:	ad 96       	adiw	r28, 0x2d	; 45
+ 34e:	8f af       	std	Y+63, r24	; 0x3f
+ 350:	ad 97       	sbiw	r28, 0x2d	; 45
+ 352:	a1 2c       	mov	r10, r1
+ 354:	71 2c       	mov	r7, r1
+				_delay_ms(1);
+				state = 7;
+			}
+		} // state 8 end
+		if(state == 7){ // state 5
+			USART_Transmit_number(1,p2_deck[(int)get_number_1].number);
+ 356:	ce 01       	movw	r24, r28
+ 358:	01 96       	adiw	r24, 0x01	; 1
+ 35a:	6c 01       	movw	r12, r24
+ 35c:	1c 01       	movw	r2, r24
+ 35e:	22 0c       	add	r2, r2
+ 360:	33 1c       	adc	r3, r3
+ 362:	22 0c       	add	r2, r2
+ 364:	33 1c       	adc	r3, r3
+ 366:	e7 e9       	ldi	r30, 0x97	; 151
+ 368:	f0 e0       	ldi	r31, 0x00	; 0
+ 36a:	ec 0f       	add	r30, r28
+ 36c:	fd 1f       	adc	r31, r29
+ 36e:	2e 0e       	add	r2, r30
+ 370:	3f 1e       	adc	r3, r31
+ 372:	ff ef       	ldi	r31, 0xFF	; 255
+ 374:	2f 1a       	sub	r2, r31
+ 376:	3f 0a       	sbc	r3, r31
+			_delay_ms(1);
+			if(p2_deck[(int)get_number_1].number == get_number_2) USART1_Transmit_String("\r\nCorrect\r\n");
+ 378:	2e 01       	movw	r4, r28
+ 37a:	84 e0       	ldi	r24, 0x04	; 4
+ 37c:	48 0e       	add	r4, r24
+ 37e:	51 1c       	adc	r5, r1
 			if(rx == 'Y') state = 2;
- 34c:	68 94       	set
- 34e:	aa 24       	eor	r10, r10
- 350:	a1 f8       	bld	r10, 1
- 352:	b1 2c       	mov	r11, r1
-    {
-		if(state == 0){ // state 0 : checking player 1 connected
-			USART0_Transmit_String("Press Y to Start\r\n");
-			USART1_Transmit_String("Waiting for Player 1\r\n");
-			rx = USART0_Receive();
-			if(rx == 'Y') state = 1;
- 354:	48 2c       	mov	r4, r8
- 356:	59 2c       	mov	r5, r9
 		} // state 1 end
 		if(state == 2){ // state 2 : give card to players
-			USART0_Transmit_String("State 2\r\n");
 			while(p1_card_cnt < 4){	// give Player 1 Cards
-				random_value = TCNT0%26;
+				random_value = TCNT0%NUM_CARD;
 				if(deck[random_value].owner == 0){
- 358:	0f e4       	ldi	r16, 0x4F	; 79
- 35a:	1a e1       	ldi	r17, 0x1A	; 26
-					deck[random_value].owner = 1;
- 35c:	66 24       	eor	r6, r6
- 35e:	63 94       	inc	r6
-			}
-			USART0_Transmit_String("\r\n");
-			while(p2_card_cnt < 4){	// give Player 2 Cards
-				random_value = TCNT0%26;
-				if(deck[random_value].owner == 0){
-					deck[random_value].owner = 2;
- 360:	68 94       	set
- 362:	77 24       	eor	r7, r7
- 364:	71 f8       	bld	r7, 1
-		deck[i].owner = 0;
-		deck[i].opened = 0;
+ 380:	0f 2e       	mov	r0, r31
+ 382:	fb ea       	ldi	r31, 0xAB	; 171
+ 384:	bf 2e       	mov	r11, r31
+ 386:	f0 2d       	mov	r31, r0
+ 388:	7e 01       	movw	r14, r28
+ 38a:	97 e6       	ldi	r25, 0x67	; 103
+ 38c:	e9 0e       	add	r14, r25
+ 38e:	f1 1c       	adc	r15, r1
+		p1_deck[1].owner = 2;
+		p1_deck[1].opened = 0;
 	}
     while (1) 
     {
 		if(state == 0){ // state 0 : checking player 1 connected
- 366:	80 91 58 01 	lds	r24, 0x0158	; 0x800158 <__data_end>
- 36a:	90 91 59 01 	lds	r25, 0x0159	; 0x800159 <__data_end+0x1>
- 36e:	89 2b       	or	r24, r25
+ 390:	80 91 9e 01 	lds	r24, 0x019E	; 0x80019e <__data_end>
+ 394:	90 91 9f 01 	lds	r25, 0x019F	; 0x80019f <__data_end+0x1>
+ 398:	89 2b       	or	r24, r25
 			USART0_Transmit_String("Press Y to Start\r\n");
- 370:	71 f4       	brne	.+28     	; 0x38e <main+0xd4>
- 372:	89 e0       	ldi	r24, 0x09	; 9
- 374:	91 e0       	ldi	r25, 0x01	; 1
+ 39a:	81 f4       	brne	.+32     	; 0x3bc <main+0x102>
+ 39c:	89 e0       	ldi	r24, 0x09	; 9
+ 39e:	91 e0       	ldi	r25, 0x01	; 1
 			USART1_Transmit_String("Waiting for Player 1\r\n");
- 376:	bb de       	rcall	.-650    	; 0xee <USART0_Transmit_String>
- 378:	8c e1       	ldi	r24, 0x1C	; 28
- 37a:	91 e0       	ldi	r25, 0x01	; 1
- 37c:	88 df       	rcall	.-240    	; 0x28e <USART1_Transmit_String>
+ 3a0:	a6 de       	rcall	.-692    	; 0xee <USART0_Transmit_String>
+ 3a2:	8c e1       	ldi	r24, 0x1C	; 28
+ 3a4:	91 e0       	ldi	r25, 0x01	; 1
+ 3a6:	73 df       	rcall	.-282    	; 0x28e <USART1_Transmit_String>
 			rx = USART0_Receive();
- 37e:	c5 de       	rcall	.-630    	; 0x10a <USART0_Receive>
- 380:	89 35       	cpi	r24, 0x59	; 89
+ 3a8:	b0 de       	rcall	.-672    	; 0x10a <USART0_Receive>
+ 3aa:	89 35       	cpi	r24, 0x59	; 89
 			if(rx == 'Y') state = 1;
- 382:	29 f4       	brne	.+10     	; 0x38e <main+0xd4>
- 384:	40 92 58 01 	sts	0x0158, r4	; 0x800158 <__data_end>
- 388:	50 92 59 01 	sts	0x0159, r5	; 0x800159 <__data_end+0x1>
- 38c:	06 c0       	rjmp	.+12     	; 0x39a <main+0xe0>
- 38e:	80 91 58 01 	lds	r24, 0x0158	; 0x800158 <__data_end>
+ 3ac:	39 f4       	brne	.+14     	; 0x3bc <main+0x102>
+ 3ae:	81 e0       	ldi	r24, 0x01	; 1
+ 3b0:	90 e0       	ldi	r25, 0x00	; 0
+ 3b2:	90 93 9f 01 	sts	0x019F, r25	; 0x80019f <__data_end+0x1>
+ 3b6:	80 93 9e 01 	sts	0x019E, r24	; 0x80019e <__data_end>
+ 3ba:	06 c0       	rjmp	.+12     	; 0x3c8 <main+0x10e>
+ 3bc:	80 91 9e 01 	lds	r24, 0x019E	; 0x80019e <__data_end>
 		} // state 0 end
 		if(state == 1){ // state 1 : checking player 1 connected
- 392:	90 91 59 01 	lds	r25, 0x0159	; 0x800159 <__data_end+0x1>
- 396:	01 97       	sbiw	r24, 0x01	; 1
- 398:	71 f4       	brne	.+28     	; 0x3b6 <main+0xfc>
+ 3c0:	90 91 9f 01 	lds	r25, 0x019F	; 0x80019f <__data_end+0x1>
+ 3c4:	01 97       	sbiw	r24, 0x01	; 1
+ 3c6:	81 f4       	brne	.+32     	; 0x3e8 <main+0x12e>
 			USART0_Transmit_String("Waiting for Player 0\r\n");
- 39a:	83 e3       	ldi	r24, 0x33	; 51
- 39c:	91 e0       	ldi	r25, 0x01	; 1
- 39e:	a7 de       	rcall	.-690    	; 0xee <USART0_Transmit_String>
+ 3c8:	83 e3       	ldi	r24, 0x33	; 51
+ 3ca:	91 e0       	ldi	r25, 0x01	; 1
+ 3cc:	90 de       	rcall	.-736    	; 0xee <USART0_Transmit_String>
 			USART1_Transmit_String("Press Y to Start\r\n");
- 3a0:	89 e0       	ldi	r24, 0x09	; 9
- 3a2:	91 e0       	ldi	r25, 0x01	; 1
- 3a4:	74 df       	rcall	.-280    	; 0x28e <USART1_Transmit_String>
- 3a6:	81 df       	rcall	.-254    	; 0x2aa <USART1_Receive>
+ 3ce:	89 e0       	ldi	r24, 0x09	; 9
+ 3d0:	91 e0       	ldi	r25, 0x01	; 1
+ 3d2:	5d df       	rcall	.-326    	; 0x28e <USART1_Transmit_String>
+ 3d4:	6a df       	rcall	.-300    	; 0x2aa <USART1_Receive>
 			rx = USART1_Receive();
- 3a8:	89 35       	cpi	r24, 0x59	; 89
- 3aa:	29 f4       	brne	.+10     	; 0x3b6 <main+0xfc>
+ 3d6:	89 35       	cpi	r24, 0x59	; 89
+ 3d8:	39 f4       	brne	.+14     	; 0x3e8 <main+0x12e>
 			if(rx == 'Y') state = 2;
- 3ac:	b0 92 59 01 	sts	0x0159, r11	; 0x800159 <__data_end+0x1>
- 3b0:	a0 92 58 01 	sts	0x0158, r10	; 0x800158 <__data_end>
- 3b4:	06 c0       	rjmp	.+12     	; 0x3c2 <main+0x108>
- 3b6:	80 91 58 01 	lds	r24, 0x0158	; 0x800158 <__data_end>
+ 3da:	82 e0       	ldi	r24, 0x02	; 2
+ 3dc:	90 e0       	ldi	r25, 0x00	; 0
+ 3de:	90 93 9f 01 	sts	0x019F, r25	; 0x80019f <__data_end+0x1>
+ 3e2:	80 93 9e 01 	sts	0x019E, r24	; 0x80019e <__data_end>
+ 3e6:	08 c0       	rjmp	.+16     	; 0x3f8 <main+0x13e>
+ 3e8:	80 91 9e 01 	lds	r24, 0x019E	; 0x80019e <__data_end>
 		} // state 1 end
 		if(state == 2){ // state 2 : give card to players
- 3ba:	90 91 59 01 	lds	r25, 0x0159	; 0x800159 <__data_end+0x1>
- 3be:	02 97       	sbiw	r24, 0x02	; 2
- 3c0:	91 f6       	brne	.-92     	; 0x366 <main+0xac>
- 3c2:	8a e4       	ldi	r24, 0x4A	; 74
-			USART0_Transmit_String("State 2\r\n");
- 3c4:	91 e0       	ldi	r25, 0x01	; 1
- 3c6:	93 de       	rcall	.-730    	; 0xee <USART0_Transmit_String>
- 3c8:	36 c0       	rjmp	.+108    	; 0x436 <__LOCK_REGION_LENGTH__+0x36>
- 3ca:	82 b7       	in	r24, 0x32	; 50
+ 3ec:	90 91 9f 01 	lds	r25, 0x019F	; 0x80019f <__data_end+0x1>
+ 3f0:	82 30       	cpi	r24, 0x02	; 2
+ 3f2:	91 05       	cpc	r25, r1
+ 3f4:	09 f0       	breq	.+2      	; 0x3f8 <main+0x13e>
+ 3f6:	0f c1       	rjmp	.+542    	; 0x616 <__LOCK_REGION_LENGTH__+0x216>
+ 3f8:	48 e1       	ldi	r20, 0x18	; 24
+ 3fa:	51 e0       	ldi	r21, 0x01	; 1
 			while(p1_card_cnt < 4){	// give Player 1 Cards
- 3cc:	80 9f       	mul	r24, r16
-				random_value = TCNT0%26;
- 3ce:	91 2d       	mov	r25, r1
+				random_value = TCNT0%NUM_CARD;
 				if(deck[random_value].owner == 0){
- 3d0:	11 24       	eor	r1, r1
- 3d2:	96 95       	lsr	r25
- 3d4:	96 95       	lsr	r25
- 3d6:	96 95       	lsr	r25
- 3d8:	91 9f       	mul	r25, r17
- 3da:	80 19       	sub	r24, r0
- 3dc:	11 24       	eor	r1, r1
- 3de:	e8 2e       	mov	r14, r24
- 3e0:	f1 2c       	mov	r15, r1
- 3e2:	e1 e0       	ldi	r30, 0x01	; 1
- 3e4:	f0 e0       	ldi	r31, 0x00	; 0
- 3e6:	ec 0f       	add	r30, r28
- 3e8:	fd 1f       	adc	r31, r29
- 3ea:	94 e0       	ldi	r25, 0x04	; 4
- 3ec:	89 9f       	mul	r24, r25
- 3ee:	e0 0d       	add	r30, r0
- 3f0:	f1 1d       	adc	r31, r1
- 3f2:	11 24       	eor	r1, r1
- 3f4:	82 81       	ldd	r24, Z+2	; 0x02
- 3f6:	81 11       	cpse	r24, r1
- 3f8:	e8 cf       	rjmp	.-48     	; 0x3ca <main+0x110>
- 3fa:	ee 0c       	add	r14, r14
- 3fc:	ff 1c       	adc	r15, r15
+ 3fc:	1d c0       	rjmp	.+58     	; 0x438 <__LOCK_REGION_LENGTH__+0x38>
 					deck[random_value].owner = 1;
- 3fe:	ee 0c       	add	r14, r14
- 400:	ff 1c       	adc	r15, r15
- 402:	e1 e0       	ldi	r30, 0x01	; 1
- 404:	f0 e0       	ldi	r31, 0x00	; 0
- 406:	ec 0f       	add	r30, r28
- 408:	fd 1f       	adc	r31, r29
- 40a:	ee 0e       	add	r14, r30
- 40c:	ff 1e       	adc	r15, r31
- 40e:	f7 01       	movw	r30, r14
- 410:	62 82       	std	Z+2, r6	; 0x02
-					p1_card_cnt++;
- 412:	d3 94       	inc	r13
-					USART_Transmit_number(0, deck[random_value].color);
- 414:	60 81       	ld	r22, Z
- 416:	70 e0       	ldi	r23, 0x00	; 0
- 418:	80 e0       	ldi	r24, 0x00	; 0
- 41a:	90 e0       	ldi	r25, 0x00	; 0
- 41c:	8d de       	rcall	.-742    	; 0x138 <USART_Transmit_number>
-					USART0_Transmit_String("  ");
- 41e:	84 e5       	ldi	r24, 0x54	; 84
- 420:	91 e0       	ldi	r25, 0x01	; 1
- 422:	65 de       	rcall	.-822    	; 0xee <USART0_Transmit_String>
-					USART_Transmit_number(0, deck[random_value].number);
- 424:	f7 01       	movw	r30, r14
- 426:	61 81       	ldd	r22, Z+1	; 0x01
- 428:	70 e0       	ldi	r23, 0x00	; 0
- 42a:	80 e0       	ldi	r24, 0x00	; 0
- 42c:	90 e0       	ldi	r25, 0x00	; 0
- 42e:	84 de       	rcall	.-760    	; 0x138 <USART_Transmit_number>
-					USART0_Transmit_String("  ");
- 430:	84 e5       	ldi	r24, 0x54	; 84
- 432:	91 e0       	ldi	r25, 0x01	; 1
- 434:	5c de       	rcall	.-840    	; 0xee <USART0_Transmit_String>
- 436:	f3 e0       	ldi	r31, 0x03	; 3
+ 3fe:	82 b7       	in	r24, 0x32	; 50
+ 400:	8b 9d       	mul	r24, r11
 			rx = USART1_Receive();
 			if(rx == 'Y') state = 2;
 		} // state 1 end
 		if(state == 2){ // state 2 : give card to players
-			USART0_Transmit_String("State 2\r\n");
 			while(p1_card_cnt < 4){	// give Player 1 Cards
- 438:	fd 15       	cp	r31, r13
- 43a:	20 f4       	brcc	.+8      	; 0x444 <__LOCK_REGION_LENGTH__+0x44>
- 43c:	87 e4       	ldi	r24, 0x47	; 71
-					USART0_Transmit_String("  ");
-					USART_Transmit_number(0, deck[random_value].number);
-					USART0_Transmit_String("  ");
-				}
-			}
-			USART0_Transmit_String("\r\n");
- 43e:	91 e0       	ldi	r25, 0x01	; 1
- 440:	56 de       	rcall	.-852    	; 0xee <USART0_Transmit_String>
- 442:	50 c0       	rjmp	.+160    	; 0x4e4 <__LOCK_REGION_LENGTH__+0xe4>
- 444:	82 b7       	in	r24, 0x32	; 50
-			while(p2_card_cnt < 4){	// give Player 2 Cards
- 446:	80 9f       	mul	r24, r16
+				random_value = TCNT0%NUM_CARD;
+ 402:	91 2d       	mov	r25, r1
+				if(deck[random_value].owner == 0){
+ 404:	11 24       	eor	r1, r1
+ 406:	92 95       	swap	r25
+ 408:	9f 70       	andi	r25, 0x0F	; 15
+ 40a:	94 9f       	mul	r25, r20
+ 40c:	80 19       	sub	r24, r0
+ 40e:	11 24       	eor	r1, r1
+ 410:	28 2f       	mov	r18, r24
+ 412:	30 e0       	ldi	r19, 0x00	; 0
+ 414:	f6 01       	movw	r30, r12
+ 416:	94 e0       	ldi	r25, 0x04	; 4
+ 418:	89 9f       	mul	r24, r25
+ 41a:	e0 0d       	add	r30, r0
+ 41c:	f1 1d       	adc	r31, r1
+ 41e:	11 24       	eor	r1, r1
+ 420:	80 85       	ldd	r24, Z+8	; 0x08
+ 422:	81 11       	cpse	r24, r1
+ 424:	ec cf       	rjmp	.-40     	; 0x3fe <main+0x144>
+ 426:	22 0f       	add	r18, r18
+ 428:	33 1f       	adc	r19, r19
+					deck[random_value].owner = 1;
+ 42a:	22 0f       	add	r18, r18
+ 42c:	33 1f       	adc	r19, r19
+ 42e:	f6 01       	movw	r30, r12
+ 430:	e2 0f       	add	r30, r18
+ 432:	f3 1f       	adc	r31, r19
+ 434:	50 87       	std	Z+8, r21	; 0x08
+ 436:	73 94       	inc	r7
+ 438:	e3 e0       	ldi	r30, 0x03	; 3
+					p1_card_cnt++;
+ 43a:	e7 15       	cp	r30, r7
+			USART1_Transmit_String("Press Y to Start\r\n");
+			rx = USART1_Receive();
 			if(rx == 'Y') state = 2;
 		} // state 1 end
 		if(state == 2){ // state 2 : give card to players
-			USART0_Transmit_String("State 2\r\n");
 			while(p1_card_cnt < 4){	// give Player 1 Cards
-				random_value = TCNT0%26;
- 448:	91 2d       	mov	r25, r1
+ 43c:	98 f1       	brcs	.+102    	; 0x4a4 <__LOCK_REGION_LENGTH__+0xa4>
+ 43e:	82 b7       	in	r24, 0x32	; 50
+ 440:	8b 9d       	mul	r24, r11
+				random_value = TCNT0%NUM_CARD;
+ 442:	91 2d       	mov	r25, r1
 				if(deck[random_value].owner == 0){
- 44a:	11 24       	eor	r1, r1
- 44c:	96 95       	lsr	r25
- 44e:	96 95       	lsr	r25
- 450:	96 95       	lsr	r25
- 452:	91 9f       	mul	r25, r17
- 454:	80 19       	sub	r24, r0
- 456:	11 24       	eor	r1, r1
- 458:	e8 2e       	mov	r14, r24
- 45a:	f1 2c       	mov	r15, r1
- 45c:	e1 e0       	ldi	r30, 0x01	; 1
- 45e:	f0 e0       	ldi	r31, 0x00	; 0
- 460:	ec 0f       	add	r30, r28
- 462:	fd 1f       	adc	r31, r29
- 464:	94 e0       	ldi	r25, 0x04	; 4
- 466:	89 9f       	mul	r24, r25
- 468:	e0 0d       	add	r30, r0
- 46a:	f1 1d       	adc	r31, r1
- 46c:	11 24       	eor	r1, r1
- 46e:	82 81       	ldd	r24, Z+2	; 0x02
- 470:	88 23       	and	r24, r24
- 472:	09 f4       	brne	.+2      	; 0x476 <__LOCK_REGION_LENGTH__+0x76>
- 474:	c2 cf       	rjmp	.-124    	; 0x3fa <main+0x140>
- 476:	a9 cf       	rjmp	.-174    	; 0x3ca <main+0x110>
- 478:	82 b7       	in	r24, 0x32	; 50
- 47a:	80 9f       	mul	r24, r16
-					USART0_Transmit_String("  ");
+ 444:	11 24       	eor	r1, r1
+ 446:	92 95       	swap	r25
+ 448:	9f 70       	andi	r25, 0x0F	; 15
+ 44a:	94 9f       	mul	r25, r20
+ 44c:	80 19       	sub	r24, r0
+ 44e:	11 24       	eor	r1, r1
+ 450:	28 2f       	mov	r18, r24
+ 452:	30 e0       	ldi	r19, 0x00	; 0
+ 454:	f6 01       	movw	r30, r12
+ 456:	94 e0       	ldi	r25, 0x04	; 4
+ 458:	89 9f       	mul	r24, r25
+ 45a:	e0 0d       	add	r30, r0
+ 45c:	f1 1d       	adc	r31, r1
+ 45e:	11 24       	eor	r1, r1
+ 460:	80 85       	ldd	r24, Z+8	; 0x08
+ 462:	81 11       	cpse	r24, r1
+ 464:	cc cf       	rjmp	.-104    	; 0x3fe <main+0x144>
+ 466:	df cf       	rjmp	.-66     	; 0x426 <__LOCK_REGION_LENGTH__+0x26>
+ 468:	82 b7       	in	r24, 0x32	; 50
+ 46a:	8b 9d       	mul	r24, r11
+					deck[random_value].owner = 1;
+					p1_card_cnt++;
 				}
 			}
-			USART0_Transmit_String("\r\n");
 			while(p2_card_cnt < 4){	// give Player 2 Cards
-				random_value = TCNT0%26;
- 47c:	91 2d       	mov	r25, r1
+				random_value = TCNT0%NUM_CARD;
+ 46c:	91 2d       	mov	r25, r1
 				if(deck[random_value].owner == 0){
- 47e:	11 24       	eor	r1, r1
- 480:	96 95       	lsr	r25
- 482:	96 95       	lsr	r25
- 484:	96 95       	lsr	r25
- 486:	91 9f       	mul	r25, r17
- 488:	80 19       	sub	r24, r0
- 48a:	11 24       	eor	r1, r1
- 48c:	e8 2e       	mov	r14, r24
- 48e:	f1 2c       	mov	r15, r1
- 490:	e1 e0       	ldi	r30, 0x01	; 1
- 492:	f0 e0       	ldi	r31, 0x00	; 0
- 494:	ec 0f       	add	r30, r28
- 496:	fd 1f       	adc	r31, r29
- 498:	94 e0       	ldi	r25, 0x04	; 4
- 49a:	89 9f       	mul	r24, r25
- 49c:	e0 0d       	add	r30, r0
- 49e:	f1 1d       	adc	r31, r1
- 4a0:	11 24       	eor	r1, r1
- 4a2:	82 81       	ldd	r24, Z+2	; 0x02
- 4a4:	81 11       	cpse	r24, r1
- 4a6:	e8 cf       	rjmp	.-48     	; 0x478 <__LOCK_REGION_LENGTH__+0x78>
- 4a8:	ee 0c       	add	r14, r14
- 4aa:	ff 1c       	adc	r15, r15
+ 46e:	11 24       	eor	r1, r1
+ 470:	92 95       	swap	r25
+ 472:	9f 70       	andi	r25, 0x0F	; 15
+ 474:	94 9f       	mul	r25, r20
+ 476:	80 19       	sub	r24, r0
+ 478:	11 24       	eor	r1, r1
+ 47a:	28 2f       	mov	r18, r24
+ 47c:	30 e0       	ldi	r19, 0x00	; 0
+ 47e:	f6 01       	movw	r30, r12
+ 480:	94 e0       	ldi	r25, 0x04	; 4
+ 482:	89 9f       	mul	r24, r25
+ 484:	e0 0d       	add	r30, r0
+ 486:	f1 1d       	adc	r31, r1
+ 488:	11 24       	eor	r1, r1
+ 48a:	80 85       	ldd	r24, Z+8	; 0x08
+ 48c:	81 11       	cpse	r24, r1
+ 48e:	ec cf       	rjmp	.-40     	; 0x468 <__LOCK_REGION_LENGTH__+0x68>
+ 490:	22 0f       	add	r18, r18
+ 492:	33 1f       	adc	r19, r19
 					deck[random_value].owner = 2;
- 4ac:	ee 0c       	add	r14, r14
- 4ae:	ff 1c       	adc	r15, r15
- 4b0:	e1 e0       	ldi	r30, 0x01	; 1
- 4b2:	f0 e0       	ldi	r31, 0x00	; 0
- 4b4:	ec 0f       	add	r30, r28
- 4b6:	fd 1f       	adc	r31, r29
- 4b8:	ee 0e       	add	r14, r30
- 4ba:	ff 1e       	adc	r15, r31
- 4bc:	f7 01       	movw	r30, r14
- 4be:	72 82       	std	Z+2, r7	; 0x02
+ 494:	22 0f       	add	r18, r18
+ 496:	33 1f       	adc	r19, r19
+ 498:	f6 01       	movw	r30, r12
+ 49a:	e2 0f       	add	r30, r18
+ 49c:	f3 1f       	adc	r31, r19
+ 49e:	50 87       	std	Z+8, r21	; 0x08
+ 4a0:	a3 94       	inc	r10
+ 4a2:	02 c0       	rjmp	.+4      	; 0x4a8 <__LOCK_REGION_LENGTH__+0xa8>
 					p2_card_cnt++;
- 4c0:	c3 94       	inc	r12
-					USART_Transmit_number(1, deck[random_value].color);
- 4c2:	60 81       	ld	r22, Z
- 4c4:	70 e0       	ldi	r23, 0x00	; 0
- 4c6:	88 2d       	mov	r24, r8
- 4c8:	99 2d       	mov	r25, r9
- 4ca:	36 de       	rcall	.-916    	; 0x138 <USART_Transmit_number>
-					USART1_Transmit_String("  ");
- 4cc:	84 e5       	ldi	r24, 0x54	; 84
- 4ce:	91 e0       	ldi	r25, 0x01	; 1
- 4d0:	de de       	rcall	.-580    	; 0x28e <USART1_Transmit_String>
-					USART_Transmit_number(1, deck[random_value].number);
- 4d2:	f7 01       	movw	r30, r14
- 4d4:	61 81       	ldd	r22, Z+1	; 0x01
- 4d6:	70 e0       	ldi	r23, 0x00	; 0
- 4d8:	88 2d       	mov	r24, r8
- 4da:	99 2d       	mov	r25, r9
- 4dc:	2d de       	rcall	.-934    	; 0x138 <USART_Transmit_number>
- 4de:	84 e5       	ldi	r24, 0x54	; 84
-					USART1_Transmit_String("  ");
- 4e0:	91 e0       	ldi	r25, 0x01	; 1
- 4e2:	d5 de       	rcall	.-598    	; 0x28e <USART1_Transmit_String>
- 4e4:	f3 e0       	ldi	r31, 0x03	; 3
- 4e6:	fc 15       	cp	r31, r12
-					USART_Transmit_number(0, deck[random_value].number);
-					USART0_Transmit_String("  ");
+ 4a4:	48 e1       	ldi	r20, 0x18	; 24
+					p1_card_cnt++;
 				}
 			}
-			USART0_Transmit_String("\r\n");
 			while(p2_card_cnt < 4){	// give Player 2 Cards
- 4e8:	50 f4       	brcc	.+20     	; 0x4fe <__LOCK_REGION_LENGTH__+0xfe>
- 4ea:	87 e4       	ldi	r24, 0x47	; 71
- 4ec:	91 e0       	ldi	r25, 0x01	; 1
-					USART1_Transmit_String("  ");
-					USART_Transmit_number(1, deck[random_value].number);
-					USART1_Transmit_String("  ");
-				}
-			}
-			USART0_Transmit_String("\r\n");
- 4ee:	ff dd       	rcall	.-1026   	; 0xee <USART0_Transmit_String>
- 4f0:	83 e0       	ldi	r24, 0x03	; 3
- 4f2:	90 e0       	ldi	r25, 0x00	; 0
- 4f4:	90 93 59 01 	sts	0x0159, r25	; 0x800159 <__data_end+0x1>
-			state = 3;
- 4f8:	80 93 58 01 	sts	0x0158, r24	; 0x800158 <__data_end>
- 4fc:	34 cf       	rjmp	.-408    	; 0x366 <main+0xac>
- 4fe:	82 b7       	in	r24, 0x32	; 50
- 500:	80 9f       	mul	r24, r16
- 502:	91 2d       	mov	r25, r1
-					USART0_Transmit_String("  ");
-				}
-			}
-			USART0_Transmit_String("\r\n");
-			while(p2_card_cnt < 4){	// give Player 2 Cards
-				random_value = TCNT0%26;
- 504:	11 24       	eor	r1, r1
+				random_value = TCNT0%NUM_CARD;
 				if(deck[random_value].owner == 0){
- 506:	96 95       	lsr	r25
- 508:	96 95       	lsr	r25
- 50a:	96 95       	lsr	r25
- 50c:	91 9f       	mul	r25, r17
- 50e:	80 19       	sub	r24, r0
- 510:	11 24       	eor	r1, r1
- 512:	e8 2e       	mov	r14, r24
- 514:	f1 2c       	mov	r15, r1
- 516:	e1 e0       	ldi	r30, 0x01	; 1
- 518:	f0 e0       	ldi	r31, 0x00	; 0
- 51a:	ec 0f       	add	r30, r28
- 51c:	fd 1f       	adc	r31, r29
- 51e:	94 e0       	ldi	r25, 0x04	; 4
- 520:	89 9f       	mul	r24, r25
- 522:	e0 0d       	add	r30, r0
- 524:	f1 1d       	adc	r31, r1
- 526:	11 24       	eor	r1, r1
- 528:	82 81       	ldd	r24, Z+2	; 0x02
- 52a:	88 23       	and	r24, r24
- 52c:	09 f4       	brne	.+2      	; 0x530 <__LOCK_REGION_LENGTH__+0x130>
- 52e:	bc cf       	rjmp	.-136    	; 0x4a8 <__LOCK_REGION_LENGTH__+0xa8>
- 530:	a3 cf       	rjmp	.-186    	; 0x478 <__LOCK_REGION_LENGTH__+0x78>
+ 4a6:	52 e0       	ldi	r21, 0x02	; 2
+					deck[random_value].owner = 2;
+ 4a8:	e3 e0       	ldi	r30, 0x03	; 3
+				if(deck[random_value].owner == 0){
+					deck[random_value].owner = 1;
+					p1_card_cnt++;
+				}
+			}
+			while(p2_card_cnt < 4){	// give Player 2 Cards
+ 4aa:	ea 15       	cp	r30, r10
+ 4ac:	40 f4       	brcc	.+16     	; 0x4be <__LOCK_REGION_LENGTH__+0xbe>
+ 4ae:	8a e4       	ldi	r24, 0x4A	; 74
+					deck[random_value].owner = 2;
+					p2_card_cnt++;
+				}
+			}
+			temp = 0;
+			USART0_Transmit_String("P1 Deck : ");
+ 4b0:	91 e0       	ldi	r25, 0x01	; 1
+ 4b2:	1d de       	rcall	.-966    	; 0xee <USART0_Transmit_String>
+ 4b4:	8e 01       	movw	r16, r28
+ 4b6:	09 5f       	subi	r16, 0xF9	; 249
+ 4b8:	1f 4f       	sbci	r17, 0xFF	; 255
+ 4ba:	61 2c       	mov	r6, r1
+ 4bc:	15 c0       	rjmp	.+42     	; 0x4e8 <__LOCK_REGION_LENGTH__+0xe8>
+				if(deck[random_value].owner == 0){
+					deck[random_value].owner = 2;
+					p2_card_cnt++;
+				}
+			}
+			temp = 0;
+ 4be:	82 b7       	in	r24, 0x32	; 50
+ 4c0:	8b 9d       	mul	r24, r11
+					deck[random_value].owner = 1;
+					p1_card_cnt++;
+				}
+			}
+			while(p2_card_cnt < 4){	// give Player 2 Cards
+				random_value = TCNT0%NUM_CARD;
+ 4c2:	91 2d       	mov	r25, r1
+				if(deck[random_value].owner == 0){
+ 4c4:	11 24       	eor	r1, r1
+ 4c6:	92 95       	swap	r25
+ 4c8:	9f 70       	andi	r25, 0x0F	; 15
+ 4ca:	94 9f       	mul	r25, r20
+ 4cc:	80 19       	sub	r24, r0
+ 4ce:	11 24       	eor	r1, r1
+ 4d0:	28 2f       	mov	r18, r24
+ 4d2:	30 e0       	ldi	r19, 0x00	; 0
+ 4d4:	f6 01       	movw	r30, r12
+ 4d6:	94 e0       	ldi	r25, 0x04	; 4
+ 4d8:	89 9f       	mul	r24, r25
+ 4da:	e0 0d       	add	r30, r0
+ 4dc:	f1 1d       	adc	r31, r1
+ 4de:	11 24       	eor	r1, r1
+ 4e0:	80 85       	ldd	r24, Z+8	; 0x08
+ 4e2:	81 11       	cpse	r24, r1
+ 4e4:	c1 cf       	rjmp	.-126    	; 0x468 <__LOCK_REGION_LENGTH__+0x68>
+ 4e6:	d4 cf       	rjmp	.-88     	; 0x490 <__LOCK_REGION_LENGTH__+0x90>
+ 4e8:	f8 01       	movw	r30, r16
+ 4ea:	82 81       	ldd	r24, Z+2	; 0x02
+				}
+			}
+			temp = 0;
+			USART0_Transmit_String("P1 Deck : ");
+			for(int i=0; i<NUM_CARD; i++){
+				if(deck[i].owner == 1){
+ 4ec:	81 30       	cpi	r24, 0x01	; 1
+ 4ee:	61 f5       	brne	.+88     	; 0x548 <__LOCK_REGION_LENGTH__+0x148>
+ 4f0:	97 01       	movw	r18, r14
+ 4f2:	f4 e0       	ldi	r31, 0x04	; 4
+					p1_deck[temp] = deck[i];
+ 4f4:	6f 9e       	mul	r6, r31
+ 4f6:	20 0d       	add	r18, r0
+ 4f8:	31 1d       	adc	r19, r1
+ 4fa:	11 24       	eor	r1, r1
+ 4fc:	f8 01       	movw	r30, r16
+ 4fe:	80 81       	ld	r24, Z
+ 500:	91 81       	ldd	r25, Z+1	; 0x01
+ 502:	a2 81       	ldd	r26, Z+2	; 0x02
+ 504:	b3 81       	ldd	r27, Z+3	; 0x03
+ 506:	f9 01       	movw	r30, r18
+ 508:	80 83       	st	Z, r24
+ 50a:	91 83       	std	Z+1, r25	; 0x01
+ 50c:	a2 83       	std	Z+2, r26	; 0x02
+ 50e:	b3 83       	std	Z+3, r27	; 0x03
+ 510:	63 94       	inc	r6
+ 512:	47 01       	movw	r8, r14
+					temp++;
+ 514:	f4 e0       	ldi	r31, 0x04	; 4
+					USART_Transmit_number(0, p1_deck[temp].color);
+ 516:	6f 9e       	mul	r6, r31
+ 518:	80 0c       	add	r8, r0
+ 51a:	91 1c       	adc	r9, r1
+ 51c:	11 24       	eor	r1, r1
+ 51e:	f4 01       	movw	r30, r8
+ 520:	60 81       	ld	r22, Z
+ 522:	70 e0       	ldi	r23, 0x00	; 0
+ 524:	80 e0       	ldi	r24, 0x00	; 0
+ 526:	90 e0       	ldi	r25, 0x00	; 0
+ 528:	07 de       	rcall	.-1010   	; 0x138 <USART_Transmit_number>
+					USART_Transmit_number(0, p1_deck[temp].number);
+ 52a:	f4 01       	movw	r30, r8
+ 52c:	61 81       	ldd	r22, Z+1	; 0x01
+ 52e:	70 e0       	ldi	r23, 0x00	; 0
+ 530:	80 e0       	ldi	r24, 0x00	; 0
+ 532:	90 e0       	ldi	r25, 0x00	; 0
+ 534:	01 de       	rcall	.-1022   	; 0x138 <USART_Transmit_number>
+ 536:	85 e5       	ldi	r24, 0x55	; 85
+					USART0_Transmit_String("   ");
+ 538:	91 e0       	ldi	r25, 0x01	; 1
+ 53a:	d9 dd       	rcall	.-1102   	; 0xee <USART0_Transmit_String>
+ 53c:	83 ec       	ldi	r24, 0xC3	; 195
+ 53e:	99 e0       	ldi	r25, 0x09	; 9
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
 
-00000532 <_exit>:
- 532:	f8 94       	cli
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 540:	01 97       	sbiw	r24, 0x01	; 1
+ 542:	f1 f7       	brne	.-4      	; 0x540 <__LOCK_REGION_LENGTH__+0x140>
+ 544:	00 c0       	rjmp	.+0      	; 0x546 <__LOCK_REGION_LENGTH__+0x146>
+ 546:	00 00       	nop
+ 548:	0c 5f       	subi	r16, 0xFC	; 252
+ 54a:	1f 4f       	sbci	r17, 0xFF	; 255
+ 54c:	e0 16       	cp	r14, r16
+					p2_card_cnt++;
+				}
+			}
+			temp = 0;
+			USART0_Transmit_String("P1 Deck : ");
+			for(int i=0; i<NUM_CARD; i++){
+ 54e:	f1 06       	cpc	r15, r17
+ 550:	59 f6       	brne	.-106    	; 0x4e8 <__LOCK_REGION_LENGTH__+0xe8>
+ 552:	89 e5       	ldi	r24, 0x59	; 89
+					USART0_Transmit_String("   ");
+					_delay_ms(10);
+				}
+			}
+			temp = 0;
+			USART1_Transmit_String("P2 Deck : ");
+ 554:	91 e0       	ldi	r25, 0x01	; 1
+ 556:	9b de       	rcall	.-714    	; 0x28e <USART1_Transmit_String>
+ 558:	8e 01       	movw	r16, r28
+ 55a:	09 5f       	subi	r16, 0xF9	; 249
+ 55c:	1f 4f       	sbci	r17, 0xFF	; 255
+ 55e:	61 2c       	mov	r6, r1
+ 560:	f8 01       	movw	r30, r16
+					USART_Transmit_number(0, p1_deck[temp].number);
+					USART0_Transmit_String("   ");
+					_delay_ms(10);
+				}
+			}
+			temp = 0;
+ 562:	82 81       	ldd	r24, Z+2	; 0x02
+			USART1_Transmit_String("P2 Deck : ");
+			for(int i=0; i<NUM_CARD; i++){
+				if(deck[i].owner == 2){
+ 564:	82 30       	cpi	r24, 0x02	; 2
+ 566:	51 f5       	brne	.+84     	; 0x5bc <__LOCK_REGION_LENGTH__+0x1bc>
+ 568:	0f 2e       	mov	r0, r31
+ 56a:	f7 e9       	ldi	r31, 0x97	; 151
+					p2_deck[temp] = deck[i];
+ 56c:	8f 2e       	mov	r8, r31
+ 56e:	91 2c       	mov	r9, r1
+ 570:	f0 2d       	mov	r31, r0
+ 572:	8c 0e       	add	r8, r28
+ 574:	9d 1e       	adc	r9, r29
+ 576:	f4 e0       	ldi	r31, 0x04	; 4
+ 578:	6f 9e       	mul	r6, r31
+ 57a:	80 0c       	add	r8, r0
+ 57c:	91 1c       	adc	r9, r1
+ 57e:	11 24       	eor	r1, r1
+ 580:	f8 01       	movw	r30, r16
+ 582:	60 81       	ld	r22, Z
+ 584:	21 81       	ldd	r18, Z+1	; 0x01
+ 586:	98 2f       	mov	r25, r24
+ 588:	83 81       	ldd	r24, Z+3	; 0x03
+ 58a:	f4 01       	movw	r30, r8
+ 58c:	60 83       	st	Z, r22
+ 58e:	21 83       	std	Z+1, r18	; 0x01
+ 590:	92 83       	std	Z+2, r25	; 0x02
+ 592:	83 83       	std	Z+3, r24	; 0x03
+					USART_Transmit_number(1, p2_deck[temp].color);
+ 594:	70 e0       	ldi	r23, 0x00	; 0
+ 596:	81 e0       	ldi	r24, 0x01	; 1
+ 598:	90 e0       	ldi	r25, 0x00	; 0
+ 59a:	ce dd       	rcall	.-1124   	; 0x138 <USART_Transmit_number>
+ 59c:	f4 01       	movw	r30, r8
+					USART_Transmit_number(1, p2_deck[temp].number);
+ 59e:	61 81       	ldd	r22, Z+1	; 0x01
+ 5a0:	70 e0       	ldi	r23, 0x00	; 0
+ 5a2:	81 e0       	ldi	r24, 0x01	; 1
+ 5a4:	90 e0       	ldi	r25, 0x00	; 0
+ 5a6:	c8 dd       	rcall	.-1136   	; 0x138 <USART_Transmit_number>
+ 5a8:	85 e5       	ldi	r24, 0x55	; 85
+ 5aa:	91 e0       	ldi	r25, 0x01	; 1
+					USART1_Transmit_String("   ");
+ 5ac:	70 de       	rcall	.-800    	; 0x28e <USART1_Transmit_String>
+ 5ae:	83 ec       	ldi	r24, 0xC3	; 195
+ 5b0:	99 e0       	ldi	r25, 0x09	; 9
+ 5b2:	01 97       	sbiw	r24, 0x01	; 1
+ 5b4:	f1 f7       	brne	.-4      	; 0x5b2 <__LOCK_REGION_LENGTH__+0x1b2>
+ 5b6:	00 c0       	rjmp	.+0      	; 0x5b8 <__LOCK_REGION_LENGTH__+0x1b8>
+ 5b8:	00 00       	nop
+ 5ba:	63 94       	inc	r6
+					_delay_ms(10);
+					temp++;
+ 5bc:	0c 5f       	subi	r16, 0xFC	; 252
+ 5be:	1f 4f       	sbci	r17, 0xFF	; 255
+ 5c0:	e0 16       	cp	r14, r16
+					_delay_ms(10);
+				}
+			}
+			temp = 0;
+			USART1_Transmit_String("P2 Deck : ");
+			for(int i=0; i<NUM_CARD; i++){
+ 5c2:	f1 06       	cpc	r15, r17
+ 5c4:	69 f6       	brne	.-102    	; 0x560 <__LOCK_REGION_LENGTH__+0x160>
+ 5c6:	87 e4       	ldi	r24, 0x47	; 71
+					USART1_Transmit_String("   ");
+					_delay_ms(10);
+					temp++;
+				}
+			}
+			USART1_Transmit_String("\r\n");
+ 5c8:	91 e0       	ldi	r25, 0x01	; 1
+ 5ca:	61 de       	rcall	.-830    	; 0x28e <USART1_Transmit_String>
+ 5cc:	89 e5       	ldi	r24, 0x59	; 89
+			USART1_Transmit_String("P2 Deck : ");
+ 5ce:	91 e0       	ldi	r25, 0x01	; 1
+ 5d0:	5e de       	rcall	.-836    	; 0x28e <USART1_Transmit_String>
+ 5d2:	8e 01       	movw	r16, r28
+ 5d4:	09 56       	subi	r16, 0x69	; 105
+ 5d6:	1f 4f       	sbci	r17, 0xFF	; 255
+ 5d8:	48 01       	movw	r8, r16
+ 5da:	90 e1       	ldi	r25, 0x10	; 16
+ 5dc:	89 0e       	add	r8, r25
+ 5de:	91 1c       	adc	r9, r1
+			for(int i=0;i<4;i++){
+				USART_Transmit_number(1, p2_deck[i].color);
+ 5e0:	f8 01       	movw	r30, r16
+ 5e2:	60 81       	ld	r22, Z
+ 5e4:	70 e0       	ldi	r23, 0x00	; 0
+ 5e6:	81 e0       	ldi	r24, 0x01	; 1
+ 5e8:	90 e0       	ldi	r25, 0x00	; 0
+ 5ea:	a6 dd       	rcall	.-1204   	; 0x138 <USART_Transmit_number>
+ 5ec:	f8 01       	movw	r30, r16
+				USART_Transmit_number(1, p2_deck[i].number);
+ 5ee:	61 81       	ldd	r22, Z+1	; 0x01
+ 5f0:	70 e0       	ldi	r23, 0x00	; 0
+ 5f2:	81 e0       	ldi	r24, 0x01	; 1
+ 5f4:	90 e0       	ldi	r25, 0x00	; 0
+ 5f6:	a0 dd       	rcall	.-1216   	; 0x138 <USART_Transmit_number>
+ 5f8:	85 e5       	ldi	r24, 0x55	; 85
+				USART1_Transmit_String("   ");
+ 5fa:	91 e0       	ldi	r25, 0x01	; 1
+ 5fc:	48 de       	rcall	.-880    	; 0x28e <USART1_Transmit_String>
+ 5fe:	0c 5f       	subi	r16, 0xFC	; 252
+ 600:	1f 4f       	sbci	r17, 0xFF	; 255
+ 602:	08 15       	cp	r16, r8
+ 604:	19 05       	cpc	r17, r9
+					temp++;
+				}
+			}
+			USART1_Transmit_String("\r\n");
+			USART1_Transmit_String("P2 Deck : ");
+			for(int i=0;i<4;i++){
+ 606:	61 f7       	brne	.-40     	; 0x5e0 <__LOCK_REGION_LENGTH__+0x1e0>
+ 608:	83 e0       	ldi	r24, 0x03	; 3
+ 60a:	90 e0       	ldi	r25, 0x00	; 0
+				USART_Transmit_number(1, p2_deck[i].color);
+				USART_Transmit_number(1, p2_deck[i].number);
+				USART1_Transmit_String("   ");
+			}
+			state = 3;
+ 60c:	90 93 9f 01 	sts	0x019F, r25	; 0x80019f <__data_end+0x1>
+ 610:	80 93 9e 01 	sts	0x019E, r24	; 0x80019e <__data_end>
+ 614:	02 c0       	rjmp	.+4      	; 0x61a <__LOCK_REGION_LENGTH__+0x21a>
+ 616:	03 97       	sbiw	r24, 0x03	; 3
+ 618:	79 f4       	brne	.+30     	; 0x638 <__LOCK_REGION_LENGTH__+0x238>
+		} // state 2 end
+		
+		if(state == 3){ // state 3
+ 61a:	84 e6       	ldi	r24, 0x64	; 100
+			USART0_Transmit_String("Choose Card to Open : "); // 몇 번째에 있는 카드 선택인지
+ 61c:	91 e0       	ldi	r25, 0x01	; 1
+ 61e:	67 dd       	rcall	.-1330   	; 0xee <USART0_Transmit_String>
+ 620:	74 dd       	rcall	.-1304   	; 0x10a <USART0_Receive>
+ 622:	80 53       	subi	r24, 0x30	; 48
+			rx = USART0_Receive();
+ 624:	8a 30       	cpi	r24, 0x0A	; 10
+ 626:	40 f4       	brcc	.+16     	; 0x638 <__LOCK_REGION_LENGTH__+0x238>
+			if((rx >= '0')&&(rx <= '9')){
+ 628:	89 83       	std	Y+1, r24	; 0x01
+ 62a:	84 e0       	ldi	r24, 0x04	; 4
+ 62c:	90 e0       	ldi	r25, 0x00	; 0
+				get_number_1[0] = rx-48;
+ 62e:	90 93 9f 01 	sts	0x019F, r25	; 0x80019f <__data_end+0x1>
+				state = 4;	
+ 632:	80 93 9e 01 	sts	0x019E, r24	; 0x80019e <__data_end>
+ 636:	06 c0       	rjmp	.+12     	; 0x644 <__LOCK_REGION_LENGTH__+0x244>
+ 638:	80 91 9e 01 	lds	r24, 0x019E	; 0x80019e <__data_end>
+			}
+		} // state 3 end
+		if(state == 4){ // state 4
+ 63c:	90 91 9f 01 	lds	r25, 0x019F	; 0x80019f <__data_end+0x1>
+ 640:	04 97       	sbiw	r24, 0x04	; 4
+ 642:	f9 f4       	brne	.+62     	; 0x682 <__LOCK_REGION_LENGTH__+0x282>
+ 644:	62 dd       	rcall	.-1340   	; 0x10a <USART0_Receive>
+ 646:	80 53       	subi	r24, 0x30	; 48
+			rx = USART0_Receive();
+ 648:	8a 30       	cpi	r24, 0x0A	; 10
+ 64a:	d8 f4       	brcc	.+54     	; 0x682 <__LOCK_REGION_LENGTH__+0x282>
+			if((rx >= '0')&&(rx <= '9')){
+ 64c:	8a 83       	std	Y+2, r24	; 0x02
+ 64e:	99 81       	ldd	r25, Y+1	; 0x01
+ 650:	99 0f       	add	r25, r25
+				get_number_1[1] = rx-48;
+ 652:	69 2f       	mov	r22, r25
+				get_number_1[2] = get_number_1[0]*10 + get_number_1[1];
+ 654:	66 0f       	add	r22, r22
+ 656:	66 0f       	add	r22, r22
+ 658:	69 0f       	add	r22, r25
+ 65a:	86 0f       	add	r24, r22
+ 65c:	8b 83       	std	Y+3, r24	; 0x03
+ 65e:	68 2f       	mov	r22, r24
+ 660:	70 e0       	ldi	r23, 0x00	; 0
+ 662:	81 e0       	ldi	r24, 0x01	; 1
+				USART_Transmit_number(1,get_number_1[2]);
+ 664:	90 e0       	ldi	r25, 0x00	; 0
+ 666:	68 dd       	rcall	.-1328   	; 0x138 <USART_Transmit_number>
+ 668:	89 ef       	ldi	r24, 0xF9	; 249
+ 66a:	90 e0       	ldi	r25, 0x00	; 0
+ 66c:	01 97       	sbiw	r24, 0x01	; 1
+ 66e:	f1 f7       	brne	.-4      	; 0x66c <__LOCK_REGION_LENGTH__+0x26c>
+ 670:	00 c0       	rjmp	.+0      	; 0x672 <__LOCK_REGION_LENGTH__+0x272>
+ 672:	00 00       	nop
+ 674:	85 e0       	ldi	r24, 0x05	; 5
+ 676:	90 e0       	ldi	r25, 0x00	; 0
+				_delay_ms(1);
+				state = 5;
+ 678:	90 93 9f 01 	sts	0x019F, r25	; 0x80019f <__data_end+0x1>
+ 67c:	80 93 9e 01 	sts	0x019E, r24	; 0x80019e <__data_end>
+ 680:	06 c0       	rjmp	.+12     	; 0x68e <__LOCK_REGION_LENGTH__+0x28e>
+ 682:	80 91 9e 01 	lds	r24, 0x019E	; 0x80019e <__data_end>
+			}			
+		} // state 4 end
+		if(state == 5){ // state 5
+ 686:	90 91 9f 01 	lds	r25, 0x019F	; 0x80019f <__data_end+0x1>
+ 68a:	05 97       	sbiw	r24, 0x05	; 5
+ 68c:	79 f4       	brne	.+30     	; 0x6ac <__LOCK_REGION_LENGTH__+0x2ac>
+ 68e:	8b e7       	ldi	r24, 0x7B	; 123
+			USART0_Transmit_String("\r\nNumber? : "); // 카드가 무엇인지
+ 690:	91 e0       	ldi	r25, 0x01	; 1
+ 692:	2d dd       	rcall	.-1446   	; 0xee <USART0_Transmit_String>
+ 694:	3a dd       	rcall	.-1420   	; 0x10a <USART0_Receive>
+ 696:	80 53       	subi	r24, 0x30	; 48
+			rx = USART0_Receive();
+ 698:	8a 30       	cpi	r24, 0x0A	; 10
+ 69a:	40 f4       	brcc	.+16     	; 0x6ac <__LOCK_REGION_LENGTH__+0x2ac>
+			if((rx >= '0')&&(rx <= '9')){
+ 69c:	8c 83       	std	Y+4, r24	; 0x04
+ 69e:	86 e0       	ldi	r24, 0x06	; 6
+ 6a0:	90 e0       	ldi	r25, 0x00	; 0
+				get_number_2[0] = rx-48;
+ 6a2:	90 93 9f 01 	sts	0x019F, r25	; 0x80019f <__data_end+0x1>
+				state = 6;
+ 6a6:	80 93 9e 01 	sts	0x019E, r24	; 0x80019e <__data_end>
+ 6aa:	06 c0       	rjmp	.+12     	; 0x6b8 <__LOCK_REGION_LENGTH__+0x2b8>
+ 6ac:	80 91 9e 01 	lds	r24, 0x019E	; 0x80019e <__data_end>
+			}
+		} // state 5 end
+		if(state == 6){ // state 8
+ 6b0:	90 91 9f 01 	lds	r25, 0x019F	; 0x80019f <__data_end+0x1>
+ 6b4:	06 97       	sbiw	r24, 0x06	; 6
+ 6b6:	f9 f4       	brne	.+62     	; 0x6f6 <__LOCK_REGION_LENGTH__+0x2f6>
+ 6b8:	28 dd       	rcall	.-1456   	; 0x10a <USART0_Receive>
+ 6ba:	80 53       	subi	r24, 0x30	; 48
+			rx = USART0_Receive();
+ 6bc:	8a 30       	cpi	r24, 0x0A	; 10
+ 6be:	d8 f4       	brcc	.+54     	; 0x6f6 <__LOCK_REGION_LENGTH__+0x2f6>
+			if((rx >= '0')&&(rx <= '9')){
+ 6c0:	8d 83       	std	Y+5, r24	; 0x05
+ 6c2:	9c 81       	ldd	r25, Y+4	; 0x04
+ 6c4:	99 0f       	add	r25, r25
+				get_number_2[1] = rx-48;
+ 6c6:	69 2f       	mov	r22, r25
+				get_number_2[2] = get_number_2[0]*10 + get_number_2[1];
+ 6c8:	66 0f       	add	r22, r22
+ 6ca:	66 0f       	add	r22, r22
+ 6cc:	69 0f       	add	r22, r25
+ 6ce:	86 0f       	add	r24, r22
+ 6d0:	8e 83       	std	Y+6, r24	; 0x06
+ 6d2:	68 2f       	mov	r22, r24
+ 6d4:	70 e0       	ldi	r23, 0x00	; 0
+ 6d6:	81 e0       	ldi	r24, 0x01	; 1
+				USART_Transmit_number(1,get_number_2[2]);
+ 6d8:	90 e0       	ldi	r25, 0x00	; 0
+ 6da:	2e dd       	rcall	.-1444   	; 0x138 <USART_Transmit_number>
+ 6dc:	e9 ef       	ldi	r30, 0xF9	; 249
+ 6de:	f0 e0       	ldi	r31, 0x00	; 0
+ 6e0:	31 97       	sbiw	r30, 0x01	; 1
+ 6e2:	f1 f7       	brne	.-4      	; 0x6e0 <__LOCK_REGION_LENGTH__+0x2e0>
+ 6e4:	00 c0       	rjmp	.+0      	; 0x6e6 <__LOCK_REGION_LENGTH__+0x2e6>
+ 6e6:	00 00       	nop
+ 6e8:	87 e0       	ldi	r24, 0x07	; 7
+ 6ea:	90 e0       	ldi	r25, 0x00	; 0
+ 6ec:	90 93 9f 01 	sts	0x019F, r25	; 0x80019f <__data_end+0x1>
+				_delay_ms(1);
+				state = 7;
+ 6f0:	80 93 9e 01 	sts	0x019E, r24	; 0x80019e <__data_end>
+ 6f4:	08 c0       	rjmp	.+16     	; 0x706 <__LOCK_REGION_LENGTH__+0x306>
+ 6f6:	80 91 9e 01 	lds	r24, 0x019E	; 0x80019e <__data_end>
+			}
+		} // state 8 end
+		if(state == 7){ // state 5
+ 6fa:	90 91 9f 01 	lds	r25, 0x019F	; 0x80019f <__data_end+0x1>
+ 6fe:	87 30       	cpi	r24, 0x07	; 7
+ 700:	91 05       	cpc	r25, r1
+ 702:	09 f0       	breq	.+2      	; 0x706 <__LOCK_REGION_LENGTH__+0x306>
+ 704:	3c c0       	rjmp	.+120    	; 0x77e <__LOCK_REGION_LENGTH__+0x37e>
+ 706:	f1 01       	movw	r30, r2
+			USART_Transmit_number(1,p2_deck[(int)get_number_1].number);
+ 708:	00 81       	ld	r16, Z
+ 70a:	10 e0       	ldi	r17, 0x00	; 0
+ 70c:	b8 01       	movw	r22, r16
+ 70e:	81 e0       	ldi	r24, 0x01	; 1
+ 710:	90 e0       	ldi	r25, 0x00	; 0
+ 712:	12 dd       	rcall	.-1500   	; 0x138 <USART_Transmit_number>
+ 714:	89 ef       	ldi	r24, 0xF9	; 249
+ 716:	90 e0       	ldi	r25, 0x00	; 0
+ 718:	01 97       	sbiw	r24, 0x01	; 1
+ 71a:	f1 f7       	brne	.-4      	; 0x718 <__LOCK_REGION_LENGTH__+0x318>
+ 71c:	00 c0       	rjmp	.+0      	; 0x71e <__LOCK_REGION_LENGTH__+0x31e>
+ 71e:	00 00       	nop
+ 720:	40 16       	cp	r4, r16
+			_delay_ms(1);
+			if(p2_deck[(int)get_number_1].number == get_number_2) USART1_Transmit_String("\r\nCorrect\r\n");
+ 722:	51 06       	cpc	r5, r17
+ 724:	21 f4       	brne	.+8      	; 0x72e <__LOCK_REGION_LENGTH__+0x32e>
+ 726:	88 e8       	ldi	r24, 0x88	; 136
+ 728:	91 e0       	ldi	r25, 0x01	; 1
+ 72a:	b1 dd       	rcall	.-1182   	; 0x28e <USART1_Transmit_String>
+ 72c:	03 c0       	rjmp	.+6      	; 0x734 <__LOCK_REGION_LENGTH__+0x334>
+ 72e:	84 e9       	ldi	r24, 0x94	; 148
+			else USART1_Transmit_String("\r\nWRong\r\n");		
+ 730:	91 e0       	ldi	r25, 0x01	; 1
+ 732:	ad dd       	rcall	.-1190   	; 0x28e <USART1_Transmit_String>
+ 734:	88 e0       	ldi	r24, 0x08	; 8
+			state = 8;
+ 736:	90 e0       	ldi	r25, 0x00	; 0
+ 738:	90 93 9f 01 	sts	0x019F, r25	; 0x80019f <__data_end+0x1>
+ 73c:	80 93 9e 01 	sts	0x019E, r24	; 0x80019e <__data_end>
+ 740:	8e 01       	movw	r16, r28
+ 742:	09 56       	subi	r16, 0x69	; 105
+ 744:	1f 4f       	sbci	r17, 0xFF	; 255
+ 746:	48 01       	movw	r8, r16
+ 748:	90 e1       	ldi	r25, 0x10	; 16
+ 74a:	89 0e       	add	r8, r25
+ 74c:	91 1c       	adc	r9, r1
+ 74e:	f8 01       	movw	r30, r16
+		}
+		if(state == 8){
+			for(int i=0;i<4;i++){
+				USART_Transmit_number(1,p2_deck[i].number);
+ 750:	61 81       	ldd	r22, Z+1	; 0x01
+ 752:	70 e0       	ldi	r23, 0x00	; 0
+ 754:	81 e0       	ldi	r24, 0x01	; 1
+ 756:	90 e0       	ldi	r25, 0x00	; 0
+ 758:	ef dc       	rcall	.-1570   	; 0x138 <USART_Transmit_number>
+ 75a:	86 e5       	ldi	r24, 0x56	; 86
+ 75c:	91 e0       	ldi	r25, 0x01	; 1
+				USART1_Transmit_String("  ");
+ 75e:	97 dd       	rcall	.-1234   	; 0x28e <USART1_Transmit_String>
+ 760:	0c 5f       	subi	r16, 0xFC	; 252
+ 762:	1f 4f       	sbci	r17, 0xFF	; 255
+ 764:	08 15       	cp	r16, r8
+ 766:	19 05       	cpc	r17, r9
+ 768:	91 f7       	brne	.-28     	; 0x74e <__LOCK_REGION_LENGTH__+0x34e>
+			if(p2_deck[(int)get_number_1].number == get_number_2) USART1_Transmit_String("\r\nCorrect\r\n");
+			else USART1_Transmit_String("\r\nWRong\r\n");		
+			state = 8;
+		}
+		if(state == 8){
+			for(int i=0;i<4;i++){
+ 76a:	87 e4       	ldi	r24, 0x47	; 71
+ 76c:	91 e0       	ldi	r25, 0x01	; 1
+ 76e:	8f dd       	rcall	.-1250   	; 0x28e <USART1_Transmit_String>
+				USART_Transmit_number(1,p2_deck[i].number);
+				USART1_Transmit_String("  ");
+			}
+			USART1_Transmit_String("\r\n");
+ 770:	89 e0       	ldi	r24, 0x09	; 9
+ 772:	90 e0       	ldi	r25, 0x00	; 0
+ 774:	90 93 9f 01 	sts	0x019F, r25	; 0x80019f <__data_end+0x1>
+			state = 9;
+ 778:	80 93 9e 01 	sts	0x019E, r24	; 0x80019e <__data_end>
+ 77c:	09 ce       	rjmp	.-1006   	; 0x390 <main+0xd6>
+ 77e:	08 97       	sbiw	r24, 0x08	; 8
+ 780:	09 f0       	breq	.+2      	; 0x784 <__LOCK_REGION_LENGTH__+0x384>
+ 782:	06 ce       	rjmp	.-1012   	; 0x390 <main+0xd6>
+ 784:	dd cf       	rjmp	.-70     	; 0x740 <__LOCK_REGION_LENGTH__+0x340>
 
-00000534 <__stop_program>:
- 534:	ff cf       	rjmp	.-2      	; 0x534 <__stop_program>
+00000786 <_exit>:
+			_delay_ms(1);
+			if(p2_deck[(int)get_number_1].number == get_number_2) USART1_Transmit_String("\r\nCorrect\r\n");
+			else USART1_Transmit_String("\r\nWRong\r\n");		
+			state = 8;
+		}
+		if(state == 8){
+ 786:	f8 94       	cli
+
+00000788 <__stop_program>:
+ 788:	ff cf       	rjmp	.-2      	; 0x788 <__stop_program>
