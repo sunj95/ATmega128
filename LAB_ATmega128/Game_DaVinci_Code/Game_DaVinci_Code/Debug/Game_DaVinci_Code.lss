@@ -3,31 +3,31 @@ Game_DaVinci_Code.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         000000e0  00800100  00000bf0  00000c84  2**0
+  0 .data         000001c6  00800100  00000ce0  00000d74  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000bf0  00000000  00000000  00000094  2**1
+  1 .text         00000ce0  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          000000d0  008001e0  008001e0  00000d64  2**0
+  2 .bss          000000d2  008002c6  008002c6  00000f3a  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000d64  2**0
+  3 .comment      00000030  00000000  00000000  00000f3a  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000d94  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000f6c  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000080  00000000  00000000  00000dd0  2**0
+  5 .debug_aranges 00000080  00000000  00000000  00000fa8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000168d  00000000  00000000  00000e50  2**0
+  6 .debug_info   00001672  00000000  00000000  00001028  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 0000092f  00000000  00000000  000024dd  2**0
+  7 .debug_abbrev 000008b3  00000000  00000000  0000269a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000c44  00000000  00000000  00002e0c  2**0
+  8 .debug_line   00000c7c  00000000  00000000  00002f4d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000124  00000000  00000000  00003a50  2**2
+  9 .debug_frame  00000180  00000000  00000000  00003bcc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000059e  00000000  00000000  00003b74  2**0
+ 10 .debug_str    0000056e  00000000  00000000  00003d4c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000008e6  00000000  00000000  00004112  2**0
+ 11 .debug_loc    000008cd  00000000  00000000  000042ba  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000070  00000000  00000000  000049f8  2**0
+ 12 .debug_ranges 00000070  00000000  00000000  00004b87  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -113,35 +113,35 @@ Disassembly of section .text:
   96:	cd bf       	out	0x3d, r28	; 61
 
 00000098 <__do_copy_data>:
-  98:	11 e0       	ldi	r17, 0x01	; 1
+  98:	12 e0       	ldi	r17, 0x02	; 2
   9a:	a0 e0       	ldi	r26, 0x00	; 0
   9c:	b1 e0       	ldi	r27, 0x01	; 1
-  9e:	e0 ef       	ldi	r30, 0xF0	; 240
-  a0:	fb e0       	ldi	r31, 0x0B	; 11
+  9e:	e0 ee       	ldi	r30, 0xE0	; 224
+  a0:	fc e0       	ldi	r31, 0x0C	; 12
   a2:	00 e0       	ldi	r16, 0x00	; 0
   a4:	0b bf       	out	0x3b, r16	; 59
   a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
   a8:	07 90       	elpm	r0, Z+
   aa:	0d 92       	st	X+, r0
-  ac:	a0 3e       	cpi	r26, 0xE0	; 224
+  ac:	a6 3c       	cpi	r26, 0xC6	; 198
   ae:	b1 07       	cpc	r27, r17
   b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
 
 000000b2 <__do_clear_bss>:
-  b2:	22 e0       	ldi	r18, 0x02	; 2
-  b4:	a0 ee       	ldi	r26, 0xE0	; 224
-  b6:	b1 e0       	ldi	r27, 0x01	; 1
+  b2:	23 e0       	ldi	r18, 0x03	; 3
+  b4:	a6 ec       	ldi	r26, 0xC6	; 198
+  b6:	b2 e0       	ldi	r27, 0x02	; 2
   b8:	01 c0       	rjmp	.+2      	; 0xbc <.do_clear_bss_start>
 
 000000ba <.do_clear_bss_loop>:
   ba:	1d 92       	st	X+, r1
 
 000000bc <.do_clear_bss_start>:
-  bc:	a0 3b       	cpi	r26, 0xB0	; 176
+  bc:	a8 39       	cpi	r26, 0x98	; 152
   be:	b2 07       	cpc	r27, r18
   c0:	e1 f7       	brne	.-8      	; 0xba <.do_clear_bss_loop>
   c2:	5a d1       	rcall	.+692    	; 0x378 <main>
-  c4:	93 c5       	rjmp	.+2854   	; 0xbec <_exit>
+  c4:	0b c6       	rjmp	.+3094   	; 0xcdc <_exit>
 
 000000c6 <__bad_interrupt>:
   c6:	9c cf       	rjmp	.-200    	; 0x0 <__vectors>
@@ -515,11 +515,11 @@ void showP2toP1 (void){
  2b2:	91 e0       	ldi	r25, 0x01	; 1
  2b4:	1b df       	rcall	.-458    	; 0xec <USART0_Transmit_String>
 	for(int jj=0; jj<p2_card_cnt; jj++){
- 2b6:	80 91 e3 01 	lds	r24, 0x01E3	; 0x8001e3 <p2_card_cnt>
+ 2b6:	80 91 cb 02 	lds	r24, 0x02CB	; 0x8002cb <p2_card_cnt>
  2ba:	88 23       	and	r24, r24
  2bc:	e9 f0       	breq	.+58     	; 0x2f8 <showP2toP1+0x50>
- 2be:	c0 e2       	ldi	r28, 0x20	; 32
- 2c0:	d2 e0       	ldi	r29, 0x02	; 2
+ 2be:	c8 e0       	ldi	r28, 0x08	; 8
+ 2c0:	d3 e0       	ldi	r29, 0x03	; 3
  2c2:	00 e0       	ldi	r16, 0x00	; 0
  2c4:	10 e0       	ldi	r17, 0x00	; 0
 		if(p2_deck[jj].opened == 0) USART0_Transmit_String("XX");
@@ -553,7 +553,7 @@ void showP2toP1 (void){
 	for(int jj=0; jj<p2_card_cnt; jj++){
  2e8:	1f 4f       	sbci	r17, 0xFF	; 255
  2ea:	24 96       	adiw	r28, 0x04	; 4
- 2ec:	80 91 e3 01 	lds	r24, 0x01E3	; 0x8001e3 <p2_card_cnt>
+ 2ec:	80 91 cb 02 	lds	r24, 0x02CB	; 0x8002cb <p2_card_cnt>
  2f0:	90 e0       	ldi	r25, 0x00	; 0
  2f2:	08 17       	cp	r16, r24
  2f4:	19 07       	cpc	r17, r25
@@ -564,8 +564,8 @@ void showP2toP1 (void){
 		USART0_Transmit_String("   ");
 	}
 	USART0_Transmit_String("\r\n");
- 2f8:	8d e4       	ldi	r24, 0x4D	; 77
- 2fa:	91 e0       	ldi	r25, 0x01	; 1
+ 2f8:	81 e9       	ldi	r24, 0x91	; 145
+ 2fa:	92 e0       	ldi	r25, 0x02	; 2
  2fc:	f7 de       	rcall	.-530    	; 0xec <USART0_Transmit_String>
  2fe:	df 91       	pop	r29
 }
@@ -586,11 +586,11 @@ void showP1toP2 (void){
  312:	91 e0       	ldi	r25, 0x01	; 1
  314:	10 df       	rcall	.-480    	; 0x136 <USART1_Transmit_String>
 	for(int jj=0; jj<p1_card_cnt; jj++){
- 316:	80 91 e4 01 	lds	r24, 0x01E4	; 0x8001e4 <p1_card_cnt>
+ 316:	80 91 cc 02 	lds	r24, 0x02CC	; 0x8002cc <p1_card_cnt>
  31a:	88 23       	and	r24, r24
  31c:	e9 f0       	breq	.+58     	; 0x358 <showP1toP2+0x50>
- 31e:	c7 ee       	ldi	r28, 0xE7	; 231
- 320:	d1 e0       	ldi	r29, 0x01	; 1
+ 31e:	cf ec       	ldi	r28, 0xCF	; 207
+ 320:	d2 e0       	ldi	r29, 0x02	; 2
  322:	00 e0       	ldi	r16, 0x00	; 0
  324:	10 e0       	ldi	r17, 0x00	; 0
 		if(p1_deck[jj].opened == 0) USART1_Transmit_String("XX");
@@ -624,7 +624,7 @@ void showP1toP2 (void){
 	for(int jj=0; jj<p1_card_cnt; jj++){
  348:	1f 4f       	sbci	r17, 0xFF	; 255
  34a:	24 96       	adiw	r28, 0x04	; 4
- 34c:	80 91 e4 01 	lds	r24, 0x01E4	; 0x8001e4 <p1_card_cnt>
+ 34c:	80 91 cc 02 	lds	r24, 0x02CC	; 0x8002cc <p1_card_cnt>
  350:	90 e0       	ldi	r25, 0x00	; 0
  352:	08 17       	cp	r16, r24
  354:	19 07       	cpc	r17, r25
@@ -635,8 +635,8 @@ void showP1toP2 (void){
 		USART1_Transmit_String("   ");
 	}
 	USART1_Transmit_String("\r\n");
- 358:	8d e4       	ldi	r24, 0x4D	; 77
- 35a:	91 e0       	ldi	r25, 0x01	; 1
+ 358:	81 e9       	ldi	r24, 0x91	; 145
+ 35a:	92 e0       	ldi	r25, 0x02	; 2
  35c:	ec de       	rcall	.-552    	; 0x136 <USART1_Transmit_String>
  35e:	df 91       	pop	r29
 }
@@ -663,1422 +663,1560 @@ char USART1_Receive(void){
  376:	08 95       	ret
 
 00000378 <main>:
+struct card_deck deck[NUM_CARD];
 struct card_deck p1_deck[NUM_CARD/2];
 struct card_deck p2_deck[NUM_CARD/2];
 
 int main(void)
 {
+ 378:	2f 92       	push	r2
+ 37a:	3f 92       	push	r3
+ 37c:	4f 92       	push	r4
+ 37e:	5f 92       	push	r5
+ 380:	6f 92       	push	r6
+ 382:	7f 92       	push	r7
+ 384:	8f 92       	push	r8
+ 386:	9f 92       	push	r9
+ 388:	af 92       	push	r10
+ 38a:	bf 92       	push	r11
+ 38c:	cf 92       	push	r12
+ 38e:	df 92       	push	r13
+ 390:	ef 92       	push	r14
+ 392:	ff 92       	push	r15
+ 394:	0f 93       	push	r16
+ 396:	1f 93       	push	r17
+ 398:	cf 93       	push	r28
+ 39a:	df 93       	push	r29
 	USART0_Init(103);
- 378:	87 e6       	ldi	r24, 0x67	; 103
- 37a:	90 e0       	ldi	r25, 0x00	; 0
- 37c:	aa de       	rcall	.-684    	; 0xd2 <USART0_Init>
+ 39c:	87 e6       	ldi	r24, 0x67	; 103
+ 39e:	90 e0       	ldi	r25, 0x00	; 0
+ 3a0:	98 de       	rcall	.-720    	; 0xd2 <USART0_Init>
 	USART1_Init(103);
- 37e:	87 e6       	ldi	r24, 0x67	; 103
- 380:	90 e0       	ldi	r25, 0x00	; 0
+ 3a2:	87 e6       	ldi	r24, 0x67	; 103
+ 3a4:	90 e0       	ldi	r25, 0x00	; 0
 	Timer_Init();
- 382:	c6 de       	rcall	.-628    	; 0x110 <USART1_Init>
- 384:	a1 de       	rcall	.-702    	; 0xc8 <Timer_Init>
- 386:	0f 2e       	mov	r0, r31
- 388:	f0 e5       	ldi	r31, 0x50	; 80
- 38a:	4f 2e       	mov	r4, r31
- 38c:	f2 e0       	ldi	r31, 0x02	; 2
- 38e:	5f 2e       	mov	r5, r31
- 390:	f0 2d       	mov	r31, r0
- 392:	f2 01       	movw	r30, r4
+ 3a6:	b4 de       	rcall	.-664    	; 0x110 <USART1_Init>
+ 3a8:	8f de       	rcall	.-738    	; 0xc8 <Timer_Init>
+ 3aa:	0f 2e       	mov	r0, r31
+ 3ac:	f8 e3       	ldi	r31, 0x38	; 56
+ 3ae:	4f 2e       	mov	r4, r31
+ 3b0:	f3 e0       	ldi	r31, 0x03	; 3
+ 3b2:	5f 2e       	mov	r5, r31
+ 3b4:	f0 2d       	mov	r31, r0
+ 3b6:	f2 01       	movw	r30, r4
 	
 	for(int i=0;i<NUM_CARD;i++){				// 카드 덱 초기화
- 394:	80 e0       	ldi	r24, 0x00	; 0
- 396:	90 e0       	ldi	r25, 0x00	; 0
+ 3b8:	80 e0       	ldi	r24, 0x00	; 0
+ 3ba:	90 e0       	ldi	r25, 0x00	; 0
 		if(i%2 == 0){
 			deck[i].color = 0;
 			deck[i].number = i/2;
 		}
 		else if(i%2 == 1){
 			deck[i].color = 1;
- 398:	41 e0       	ldi	r20, 0x01	; 1
+ 3bc:	41 e0       	ldi	r20, 0x01	; 1
 	USART0_Init(103);
 	USART1_Init(103);
 	Timer_Init();
 	
 	for(int i=0;i<NUM_CARD;i++){				// 카드 덱 초기화
 		if(i%2 == 0){
- 39a:	80 fd       	sbrc	r24, 0
- 39c:	0c c0       	rjmp	.+24     	; 0x3b6 <main+0x3e>
- 39e:	df 01       	movw	r26, r30
+ 3be:	80 fd       	sbrc	r24, 0
+ 3c0:	0c c0       	rjmp	.+24     	; 0x3da <main+0x62>
+ 3c2:	df 01       	movw	r26, r30
 			deck[i].color = 0;
- 3a0:	10 82       	st	Z, r1
+ 3c4:	10 82       	st	Z, r1
 			deck[i].number = i/2;
- 3a2:	9c 01       	movw	r18, r24
- 3a4:	99 23       	and	r25, r25
- 3a6:	14 f4       	brge	.+4      	; 0x3ac <main+0x34>
- 3a8:	2f 5f       	subi	r18, 0xFF	; 255
- 3aa:	3f 4f       	sbci	r19, 0xFF	; 255
- 3ac:	35 95       	asr	r19
- 3ae:	27 95       	ror	r18
- 3b0:	11 96       	adiw	r26, 0x01	; 1
- 3b2:	2c 93       	st	X, r18
- 3b4:	19 c0       	rjmp	.+50     	; 0x3e8 <main+0x70>
+ 3c6:	9c 01       	movw	r18, r24
+ 3c8:	99 23       	and	r25, r25
+ 3ca:	14 f4       	brge	.+4      	; 0x3d0 <main+0x58>
+ 3cc:	2f 5f       	subi	r18, 0xFF	; 255
+ 3ce:	3f 4f       	sbci	r19, 0xFF	; 255
+ 3d0:	35 95       	asr	r19
+ 3d2:	27 95       	ror	r18
+ 3d4:	11 96       	adiw	r26, 0x01	; 1
+ 3d6:	2c 93       	st	X, r18
+ 3d8:	19 c0       	rjmp	.+50     	; 0x40c <__LOCK_REGION_LENGTH__+0xc>
 		}
 		else if(i%2 == 1){
- 3b6:	9c 01       	movw	r18, r24
- 3b8:	21 70       	andi	r18, 0x01	; 1
- 3ba:	30 78       	andi	r19, 0x80	; 128
- 3bc:	33 23       	and	r19, r19
- 3be:	34 f4       	brge	.+12     	; 0x3cc <main+0x54>
- 3c0:	21 50       	subi	r18, 0x01	; 1
- 3c2:	31 09       	sbc	r19, r1
- 3c4:	2e 6f       	ori	r18, 0xFE	; 254
- 3c6:	3f 6f       	ori	r19, 0xFF	; 255
- 3c8:	2f 5f       	subi	r18, 0xFF	; 255
- 3ca:	3f 4f       	sbci	r19, 0xFF	; 255
- 3cc:	21 30       	cpi	r18, 0x01	; 1
- 3ce:	31 05       	cpc	r19, r1
- 3d0:	59 f4       	brne	.+22     	; 0x3e8 <main+0x70>
- 3d2:	df 01       	movw	r26, r30
+ 3da:	9c 01       	movw	r18, r24
+ 3dc:	21 70       	andi	r18, 0x01	; 1
+ 3de:	30 78       	andi	r19, 0x80	; 128
+ 3e0:	33 23       	and	r19, r19
+ 3e2:	34 f4       	brge	.+12     	; 0x3f0 <main+0x78>
+ 3e4:	21 50       	subi	r18, 0x01	; 1
+ 3e6:	31 09       	sbc	r19, r1
+ 3e8:	2e 6f       	ori	r18, 0xFE	; 254
+ 3ea:	3f 6f       	ori	r19, 0xFF	; 255
+ 3ec:	2f 5f       	subi	r18, 0xFF	; 255
+ 3ee:	3f 4f       	sbci	r19, 0xFF	; 255
+ 3f0:	21 30       	cpi	r18, 0x01	; 1
+ 3f2:	31 05       	cpc	r19, r1
+ 3f4:	59 f4       	brne	.+22     	; 0x40c <__LOCK_REGION_LENGTH__+0xc>
+ 3f6:	df 01       	movw	r26, r30
 			deck[i].color = 1;
- 3d4:	40 83       	st	Z, r20
+ 3f8:	40 83       	st	Z, r20
 			deck[i].number = i/2;
- 3d6:	9c 01       	movw	r18, r24
- 3d8:	99 23       	and	r25, r25
- 3da:	14 f4       	brge	.+4      	; 0x3e0 <main+0x68>
- 3dc:	2f 5f       	subi	r18, 0xFF	; 255
- 3de:	3f 4f       	sbci	r19, 0xFF	; 255
- 3e0:	35 95       	asr	r19
- 3e2:	27 95       	ror	r18
- 3e4:	11 96       	adiw	r26, 0x01	; 1
- 3e6:	2c 93       	st	X, r18
+ 3fa:	9c 01       	movw	r18, r24
+ 3fc:	99 23       	and	r25, r25
+ 3fe:	14 f4       	brge	.+4      	; 0x404 <__LOCK_REGION_LENGTH__+0x4>
+ 400:	2f 5f       	subi	r18, 0xFF	; 255
+ 402:	3f 4f       	sbci	r19, 0xFF	; 255
+ 404:	35 95       	asr	r19
+ 406:	27 95       	ror	r18
+ 408:	11 96       	adiw	r26, 0x01	; 1
+ 40a:	2c 93       	st	X, r18
 		}
 		deck[i].owner = 0;
- 3e8:	12 82       	std	Z+2, r1	; 0x02
+ 40c:	12 82       	std	Z+2, r1	; 0x02
 		deck[i].opened = 0;
- 3ea:	13 82       	std	Z+3, r1	; 0x03
+ 40e:	13 82       	std	Z+3, r1	; 0x03
 {
 	USART0_Init(103);
 	USART1_Init(103);
 	Timer_Init();
 	
 	for(int i=0;i<NUM_CARD;i++){				// 카드 덱 초기화
- 3ec:	01 96       	adiw	r24, 0x01	; 1
- 3ee:	34 96       	adiw	r30, 0x04	; 4
- 3f0:	88 31       	cpi	r24, 0x18	; 24
- 3f2:	91 05       	cpc	r25, r1
- 3f4:	91 f6       	brne	.-92     	; 0x39a <main+0x22>
- 3f6:	e7 ee       	ldi	r30, 0xE7	; 231
- 3f8:	f1 e0       	ldi	r31, 0x01	; 1
- 3fa:	8f ef       	ldi	r24, 0xFF	; 255
- 3fc:	84 83       	std	Z+4, r24	; 0x04
- 3fe:	85 83       	std	Z+5, r24	; 0x05
- 400:	17 82       	std	Z+7, r1	; 0x07
- 402:	82 e0       	ldi	r24, 0x02	; 2
- 404:	86 83       	std	Z+6, r24	; 0x06
+ 410:	01 96       	adiw	r24, 0x01	; 1
+ 412:	34 96       	adiw	r30, 0x04	; 4
+ 414:	88 31       	cpi	r24, 0x18	; 24
+ 416:	91 05       	cpc	r25, r1
+ 418:	91 f6       	brne	.-92     	; 0x3be <main+0x46>
+ 41a:	ef ec       	ldi	r30, 0xCF	; 207
+ 41c:	f2 e0       	ldi	r31, 0x02	; 2
+ 41e:	8f ef       	ldi	r24, 0xFF	; 255
+ 420:	84 83       	std	Z+4, r24	; 0x04
+ 422:	85 83       	std	Z+5, r24	; 0x05
+ 424:	91 e0       	ldi	r25, 0x01	; 1
+ 426:	96 83       	std	Z+6, r25	; 0x06
+ 428:	17 82       	std	Z+7, r1	; 0x07
+ 42a:	e8 e0       	ldi	r30, 0x08	; 8
+ 42c:	f3 e0       	ldi	r31, 0x03	; 3
+ 42e:	84 83       	std	Z+4, r24	; 0x04
+ 430:	85 83       	std	Z+5, r24	; 0x05
+ 432:	82 e0       	ldi	r24, 0x02	; 2
+ 434:	86 83       	std	Z+6, r24	; 0x06
+ 436:	17 82       	std	Z+7, r1	; 0x07
 				get_number_2[2] = get_number_2[0]*10 + get_number_2[1];
 				state = 14;
 			}
 		} // state 13 end
-		if(state == 14){ // state 5
+		if(state == 14){ // state 14
 			temp = p1_deck[(int)get_number_1[2]].number;
- 406:	0f 2e       	mov	r0, r31
- 408:	f8 e1       	ldi	r31, 0x18	; 24
- 40a:	ef 2e       	mov	r14, r31
- 40c:	f2 e0       	ldi	r31, 0x02	; 2
- 40e:	ff 2e       	mov	r15, r31
- 410:	f0 2d       	mov	r31, r0
-			USART1_Transmit_String("Target Number : ");
-			USART_Transmit_number(1, temp);
-			USART1_Transmit_String("\r\n");
+ 438:	00 e0       	ldi	r16, 0x00	; 0
+ 43a:	13 e0       	ldi	r17, 0x03	; 3
 			if(temp == get_number_2[2]){
- 412:	0b e1       	ldi	r16, 0x1B	; 27
- 414:	12 e0       	ldi	r17, 0x02	; 2
- 416:	0f 2e       	mov	r0, r31
- 418:	f0 eb       	ldi	r31, 0xB0	; 176
- 41a:	af 2e       	mov	r10, r31
- 41c:	f2 e0       	ldi	r31, 0x02	; 2
- 41e:	bf 2e       	mov	r11, r31
- 420:	f0 2d       	mov	r31, r0
-			USART1_Transmit_String("Number? : "); // 카드가 무엇인지
-			rx = USART1_Receive();
-			USART1_Transmit(rx);
-			if((rx >= '0')&&(rx <= '9')){
-				get_number_2[0] = rx-48;
-				state = 13;
- 422:	0f 2e       	mov	r0, r31
- 424:	fd e0       	ldi	r31, 0x0D	; 13
- 426:	2f 2e       	mov	r2, r31
- 428:	31 2c       	mov	r3, r1
- 42a:	f0 2d       	mov	r31, r0
-				else state = 10;
+ 43c:	0f 2e       	mov	r0, r31
+ 43e:	f3 e0       	ldi	r31, 0x03	; 3
+ 440:	ef 2e       	mov	r14, r31
+ 442:	f3 e0       	ldi	r31, 0x03	; 3
+ 444:	ff 2e       	mov	r15, r31
+ 446:	f0 2d       	mov	r31, r0
 			}
 			else{
 				USART1_Transmit_String("Wrong\r\n");
 				USART1_Transmit_String("Player 1's Turn\r\n");
+				USART1_Transmit_String("-------------------------------------------\r\n");
 				state = 3;
- 42c:	0f 2e       	mov	r0, r31
- 42e:	f3 e0       	ldi	r31, 0x03	; 3
- 430:	cf 2e       	mov	r12, r31
- 432:	d1 2c       	mov	r13, r1
- 434:	f0 2d       	mov	r31, r0
-					}
+ 448:	0f 2e       	mov	r0, r31
+ 44a:	f3 e0       	ldi	r31, 0x03	; 3
+ 44c:	cf 2e       	mov	r12, r31
+ 44e:	d1 2c       	mov	r13, r1
+ 450:	f0 2d       	mov	r31, r0
+ 452:	0f 2e       	mov	r0, r31
+ 454:	f8 e9       	ldi	r31, 0x98	; 152
+ 456:	af 2e       	mov	r10, r31
+ 458:	f3 e0       	ldi	r31, 0x03	; 3
+ 45a:	bf 2e       	mov	r11, r31
+ 45c:	f0 2d       	mov	r31, r0
 				}
 				showP1toP2();
 				p1_opened_cnt++;
-				if(p1_card_cnt == p1_opened_cnt) state = 30;
+				p2_corr_flag = 1;
+				if(p2_card_cnt == p2_opened_cnt) state = 31;
 				else state = 10;
- 436:	0f 2e       	mov	r0, r31
- 438:	fa e0       	ldi	r31, 0x0A	; 10
- 43a:	6f 2e       	mov	r6, r31
- 43c:	71 2c       	mov	r7, r1
- 43e:	f0 2d       	mov	r31, r0
+ 45e:	0f 2e       	mov	r0, r31
+ 460:	fa e0       	ldi	r31, 0x0A	; 10
+ 462:	6f 2e       	mov	r6, r31
+ 464:	71 2c       	mov	r7, r1
+ 466:	f0 2d       	mov	r31, r0
+			USART1_Transmit(rx);
+			USART1_Transmit_String("\r\n");
+			if((rx >= '0')&&(rx <= '9')){
+				get_number_2[1] = rx-48;
+				get_number_2[2] = get_number_2[0]*10 + get_number_2[1];
+				state = 14;
+ 468:	0f 2e       	mov	r0, r31
+ 46a:	fe e0       	ldi	r31, 0x0E	; 14
+ 46c:	2f 2e       	mov	r2, r31
+ 46e:	31 2c       	mov	r3, r1
+ 470:	f0 2d       	mov	r31, r0
 			state = 3;
 		} // state 2 end
 		if(state == 3){ // state : give 1 card to player 1
 			temp = p1_card_cnt + 1;
 			while(p1_card_cnt < temp){
 				random_value = TCNT0%NUM_CARD;
- 440:	0f 2e       	mov	r0, r31
- 442:	fb ea       	ldi	r31, 0xAB	; 171
- 444:	8f 2e       	mov	r8, r31
- 446:	f0 2d       	mov	r31, r0
- 448:	0f 2e       	mov	r0, r31
- 44a:	f8 e1       	ldi	r31, 0x18	; 24
- 44c:	9f 2e       	mov	r9, r31
- 44e:	f0 2d       	mov	r31, r0
-		p1_deck[1].owner = 2;
-		p1_deck[1].opened = 0;
+ 472:	0f 2e       	mov	r0, r31
+ 474:	fb ea       	ldi	r31, 0xAB	; 171
+ 476:	8f 2e       	mov	r8, r31
+ 478:	f0 2d       	mov	r31, r0
+ 47a:	0f 2e       	mov	r0, r31
+ 47c:	f8 e1       	ldi	r31, 0x18	; 24
+ 47e:	9f 2e       	mov	r9, r31
+ 480:	f0 2d       	mov	r31, r0
+		p2_deck[1].owner = 2;
+		p2_deck[1].opened = 0;
 	}
     while (1) 
     {
 		if(state == 0){ // state 0 : checking player 1 connected
- 450:	80 91 e5 01 	lds	r24, 0x01E5	; 0x8001e5 <state>
- 454:	90 91 e6 01 	lds	r25, 0x01E6	; 0x8001e6 <state+0x1>
- 458:	89 2b       	or	r24, r25
+ 482:	80 91 cd 02 	lds	r24, 0x02CD	; 0x8002cd <state>
+ 486:	90 91 ce 02 	lds	r25, 0x02CE	; 0x8002ce <state+0x1>
+ 48a:	89 2b       	or	r24, r25
 			USART0_Transmit_String("Press Y to Start\r\n");
- 45a:	91 f4       	brne	.+36     	; 0x480 <__LOCK_REGION_LENGTH__+0x80>
- 45c:	86 e2       	ldi	r24, 0x26	; 38
- 45e:	91 e0       	ldi	r25, 0x01	; 1
+ 48c:	91 f4       	brne	.+36     	; 0x4b2 <__LOCK_REGION_LENGTH__+0xb2>
+ 48e:	86 e2       	ldi	r24, 0x26	; 38
+ 490:	91 e0       	ldi	r25, 0x01	; 1
 			USART1_Transmit_String("Waiting for Player 1\r\n");
- 460:	45 de       	rcall	.-886    	; 0xec <USART0_Transmit_String>
- 462:	89 e3       	ldi	r24, 0x39	; 57
- 464:	91 e0       	ldi	r25, 0x01	; 1
- 466:	67 de       	rcall	.-818    	; 0x136 <USART1_Transmit_String>
+ 492:	2c de       	rcall	.-936    	; 0xec <USART0_Transmit_String>
+ 494:	89 e3       	ldi	r24, 0x39	; 57
+ 496:	91 e0       	ldi	r25, 0x01	; 1
+ 498:	4e de       	rcall	.-868    	; 0x136 <USART1_Transmit_String>
 			rx = USART0_Receive();
- 468:	4f de       	rcall	.-866    	; 0x108 <USART0_Receive>
- 46a:	80 93 17 02 	sts	0x0217, r24	; 0x800217 <rx>
- 46e:	89 35       	cpi	r24, 0x59	; 89
+ 49a:	36 de       	rcall	.-916    	; 0x108 <USART0_Receive>
+ 49c:	80 93 ff 02 	sts	0x02FF, r24	; 0x8002ff <rx>
+ 4a0:	89 35       	cpi	r24, 0x59	; 89
 			if(rx == 'Y') state = 1;
- 470:	39 f4       	brne	.+14     	; 0x480 <__LOCK_REGION_LENGTH__+0x80>
- 472:	81 e0       	ldi	r24, 0x01	; 1
- 474:	90 e0       	ldi	r25, 0x00	; 0
- 476:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
- 47a:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- 47e:	06 c0       	rjmp	.+12     	; 0x48c <__LOCK_REGION_LENGTH__+0x8c>
- 480:	80 91 e5 01 	lds	r24, 0x01E5	; 0x8001e5 <state>
+ 4a2:	39 f4       	brne	.+14     	; 0x4b2 <__LOCK_REGION_LENGTH__+0xb2>
+ 4a4:	81 e0       	ldi	r24, 0x01	; 1
+ 4a6:	90 e0       	ldi	r25, 0x00	; 0
+ 4a8:	90 93 ce 02 	sts	0x02CE, r25	; 0x8002ce <state+0x1>
+ 4ac:	80 93 cd 02 	sts	0x02CD, r24	; 0x8002cd <state>
+ 4b0:	06 c0       	rjmp	.+12     	; 0x4be <__LOCK_REGION_LENGTH__+0xbe>
+ 4b2:	80 91 cd 02 	lds	r24, 0x02CD	; 0x8002cd <state>
 		} // state 0 end
 		if(state == 1){ // state 1 : checking player 1 connected
- 484:	90 91 e6 01 	lds	r25, 0x01E6	; 0x8001e6 <state+0x1>
- 488:	01 97       	sbiw	r24, 0x01	; 1
- 48a:	91 f4       	brne	.+36     	; 0x4b0 <__LOCK_REGION_LENGTH__+0xb0>
+ 4b6:	90 91 ce 02 	lds	r25, 0x02CE	; 0x8002ce <state+0x1>
+ 4ba:	01 97       	sbiw	r24, 0x01	; 1
+ 4bc:	91 f4       	brne	.+36     	; 0x4e2 <__LOCK_REGION_LENGTH__+0xe2>
 			USART0_Transmit_String("Waiting for Player 2\r\n");
- 48c:	80 e5       	ldi	r24, 0x50	; 80
- 48e:	91 e0       	ldi	r25, 0x01	; 1
- 490:	2d de       	rcall	.-934    	; 0xec <USART0_Transmit_String>
+ 4be:	80 e5       	ldi	r24, 0x50	; 80
+ 4c0:	91 e0       	ldi	r25, 0x01	; 1
+ 4c2:	14 de       	rcall	.-984    	; 0xec <USART0_Transmit_String>
 			USART1_Transmit_String("Press Y to Start\r\n");
- 492:	86 e2       	ldi	r24, 0x26	; 38
- 494:	91 e0       	ldi	r25, 0x01	; 1
- 496:	4f de       	rcall	.-866    	; 0x136 <USART1_Transmit_String>
- 498:	67 df       	rcall	.-306    	; 0x368 <USART1_Receive>
+ 4c4:	86 e2       	ldi	r24, 0x26	; 38
+ 4c6:	91 e0       	ldi	r25, 0x01	; 1
+ 4c8:	36 de       	rcall	.-916    	; 0x136 <USART1_Transmit_String>
+ 4ca:	4e df       	rcall	.-356    	; 0x368 <USART1_Receive>
 			rx = USART1_Receive();
- 49a:	80 93 17 02 	sts	0x0217, r24	; 0x800217 <rx>
- 49e:	89 35       	cpi	r24, 0x59	; 89
- 4a0:	39 f4       	brne	.+14     	; 0x4b0 <__LOCK_REGION_LENGTH__+0xb0>
+ 4cc:	80 93 ff 02 	sts	0x02FF, r24	; 0x8002ff <rx>
+ 4d0:	89 35       	cpi	r24, 0x59	; 89
+ 4d2:	39 f4       	brne	.+14     	; 0x4e2 <__LOCK_REGION_LENGTH__+0xe2>
 			if(rx == 'Y') state = 2;
- 4a2:	82 e0       	ldi	r24, 0x02	; 2
- 4a4:	90 e0       	ldi	r25, 0x00	; 0
- 4a6:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
- 4aa:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- 4ae:	08 c0       	rjmp	.+16     	; 0x4c0 <__LOCK_REGION_LENGTH__+0xc0>
- 4b0:	80 91 e5 01 	lds	r24, 0x01E5	; 0x8001e5 <state>
+ 4d4:	82 e0       	ldi	r24, 0x02	; 2
+ 4d6:	90 e0       	ldi	r25, 0x00	; 0
+ 4d8:	90 93 ce 02 	sts	0x02CE, r25	; 0x8002ce <state+0x1>
+ 4dc:	80 93 cd 02 	sts	0x02CD, r24	; 0x8002cd <state>
+ 4e0:	08 c0       	rjmp	.+16     	; 0x4f2 <__LOCK_REGION_LENGTH__+0xf2>
+ 4e2:	80 91 cd 02 	lds	r24, 0x02CD	; 0x8002cd <state>
 		} // state 1 end
 		if(state == 2){ // state 2 : give card to players
- 4b4:	90 91 e6 01 	lds	r25, 0x01E6	; 0x8001e6 <state+0x1>
- 4b8:	82 30       	cpi	r24, 0x02	; 2
- 4ba:	91 05       	cpc	r25, r1
- 4bc:	09 f0       	breq	.+2      	; 0x4c0 <__LOCK_REGION_LENGTH__+0xc0>
- 4be:	c7 c0       	rjmp	.+398    	; 0x64e <__LOCK_REGION_LENGTH__+0x24e>
- 4c0:	31 e0       	ldi	r19, 0x01	; 1
- 4c2:	22 c0       	rjmp	.+68     	; 0x508 <__LOCK_REGION_LENGTH__+0x108>
+ 4e6:	90 91 ce 02 	lds	r25, 0x02CE	; 0x8002ce <state+0x1>
+ 4ea:	82 30       	cpi	r24, 0x02	; 2
+ 4ec:	91 05       	cpc	r25, r1
+ 4ee:	09 f0       	breq	.+2      	; 0x4f2 <__LOCK_REGION_LENGTH__+0xf2>
+ 4f0:	c7 c0       	rjmp	.+398    	; 0x680 <__LOCK_REGION_LENGTH__+0x280>
+ 4f2:	31 e0       	ldi	r19, 0x01	; 1
+ 4f4:	22 c0       	rjmp	.+68     	; 0x53a <__LOCK_REGION_LENGTH__+0x13a>
 			while(p1_card_cnt < 4){	// give Player 1 Cards
 				random_value = TCNT0%NUM_CARD;
 				if(deck[random_value].owner == 0){
 					deck[random_value].owner = 1;
- 4c4:	92 b7       	in	r25, 0x32	; 50
- 4c6:	98 9d       	mul	r25, r8
+ 4f6:	92 b7       	in	r25, 0x32	; 50
+ 4f8:	98 9d       	mul	r25, r8
 			rx = USART1_Receive();
 			if(rx == 'Y') state = 2;
 		} // state 1 end
 		if(state == 2){ // state 2 : give card to players
 			while(p1_card_cnt < 4){	// give Player 1 Cards
 				random_value = TCNT0%NUM_CARD;
- 4c8:	81 2d       	mov	r24, r1
- 4ca:	11 24       	eor	r1, r1
- 4cc:	82 95       	swap	r24
- 4ce:	8f 70       	andi	r24, 0x0F	; 15
- 4d0:	89 9d       	mul	r24, r9
- 4d2:	90 19       	sub	r25, r0
- 4d4:	11 24       	eor	r1, r1
- 4d6:	90 93 1f 02 	sts	0x021F, r25	; 0x80021f <random_value>
- 4da:	89 2f       	mov	r24, r25
- 4dc:	90 e0       	ldi	r25, 0x00	; 0
+ 4fa:	81 2d       	mov	r24, r1
+ 4fc:	11 24       	eor	r1, r1
+ 4fe:	82 95       	swap	r24
+ 500:	8f 70       	andi	r24, 0x0F	; 15
+ 502:	89 9d       	mul	r24, r9
+ 504:	90 19       	sub	r25, r0
+ 506:	11 24       	eor	r1, r1
+ 508:	90 93 07 03 	sts	0x0307, r25	; 0x800307 <random_value>
+ 50c:	89 2f       	mov	r24, r25
+ 50e:	90 e0       	ldi	r25, 0x00	; 0
 				if(deck[random_value].owner == 0){
- 4de:	fc 01       	movw	r30, r24
- 4e0:	ee 0f       	add	r30, r30
- 4e2:	ff 1f       	adc	r31, r31
- 4e4:	ee 0f       	add	r30, r30
- 4e6:	ff 1f       	adc	r31, r31
- 4e8:	e0 5b       	subi	r30, 0xB0	; 176
- 4ea:	fd 4f       	sbci	r31, 0xFD	; 253
- 4ec:	42 81       	ldd	r20, Z+2	; 0x02
- 4ee:	41 11       	cpse	r20, r1
- 4f0:	0d c0       	rjmp	.+26     	; 0x50c <__LOCK_REGION_LENGTH__+0x10c>
- 4f2:	88 0f       	add	r24, r24
- 4f4:	99 1f       	adc	r25, r25
+ 510:	fc 01       	movw	r30, r24
+ 512:	ee 0f       	add	r30, r30
+ 514:	ff 1f       	adc	r31, r31
+ 516:	ee 0f       	add	r30, r30
+ 518:	ff 1f       	adc	r31, r31
+ 51a:	e8 5c       	subi	r30, 0xC8	; 200
+ 51c:	fc 4f       	sbci	r31, 0xFC	; 252
+ 51e:	42 81       	ldd	r20, Z+2	; 0x02
+ 520:	41 11       	cpse	r20, r1
+ 522:	0d c0       	rjmp	.+26     	; 0x53e <__LOCK_REGION_LENGTH__+0x13e>
+ 524:	88 0f       	add	r24, r24
+ 526:	99 1f       	adc	r25, r25
 					deck[random_value].owner = 1;
- 4f6:	88 0f       	add	r24, r24
- 4f8:	99 1f       	adc	r25, r25
- 4fa:	fc 01       	movw	r30, r24
- 4fc:	e0 5b       	subi	r30, 0xB0	; 176
- 4fe:	fd 4f       	sbci	r31, 0xFD	; 253
- 500:	32 83       	std	Z+2, r19	; 0x02
- 502:	2f 5f       	subi	r18, 0xFF	; 255
- 504:	20 93 e4 01 	sts	0x01E4, r18	; 0x8001e4 <p1_card_cnt>
+ 528:	88 0f       	add	r24, r24
+ 52a:	99 1f       	adc	r25, r25
+ 52c:	fc 01       	movw	r30, r24
+ 52e:	e8 5c       	subi	r30, 0xC8	; 200
+ 530:	fc 4f       	sbci	r31, 0xFC	; 252
+ 532:	32 83       	std	Z+2, r19	; 0x02
+ 534:	2f 5f       	subi	r18, 0xFF	; 255
+ 536:	20 93 cc 02 	sts	0x02CC, r18	; 0x8002cc <p1_card_cnt>
 					p1_card_cnt++;
- 508:	20 91 e4 01 	lds	r18, 0x01E4	; 0x8001e4 <p1_card_cnt>
+ 53a:	20 91 cc 02 	lds	r18, 0x02CC	; 0x8002cc <p1_card_cnt>
 			USART1_Transmit_String("Press Y to Start\r\n");
 			rx = USART1_Receive();
 			if(rx == 'Y') state = 2;
 		} // state 1 end
 		if(state == 2){ // state 2 : give card to players
 			while(p1_card_cnt < 4){	// give Player 1 Cards
- 50c:	24 30       	cpi	r18, 0x04	; 4
- 50e:	d0 f2       	brcs	.-76     	; 0x4c4 <__LOCK_REGION_LENGTH__+0xc4>
- 510:	32 e0       	ldi	r19, 0x02	; 2
- 512:	22 c0       	rjmp	.+68     	; 0x558 <__LOCK_REGION_LENGTH__+0x158>
+ 53e:	24 30       	cpi	r18, 0x04	; 4
+ 540:	d0 f2       	brcs	.-76     	; 0x4f6 <__LOCK_REGION_LENGTH__+0xf6>
+ 542:	32 e0       	ldi	r19, 0x02	; 2
+ 544:	22 c0       	rjmp	.+68     	; 0x58a <__LOCK_REGION_LENGTH__+0x18a>
 				}
 			}
 			while(p2_card_cnt < 4){	// give Player 2 Cards
 				random_value = TCNT0%NUM_CARD;
 				if(deck[random_value].owner == 0){
 					deck[random_value].owner = 2;
- 514:	92 b7       	in	r25, 0x32	; 50
- 516:	98 9d       	mul	r25, r8
+ 546:	92 b7       	in	r25, 0x32	; 50
+ 548:	98 9d       	mul	r25, r8
 					deck[random_value].owner = 1;
 					p1_card_cnt++;
 				}
 			}
 			while(p2_card_cnt < 4){	// give Player 2 Cards
 				random_value = TCNT0%NUM_CARD;
- 518:	81 2d       	mov	r24, r1
- 51a:	11 24       	eor	r1, r1
- 51c:	82 95       	swap	r24
- 51e:	8f 70       	andi	r24, 0x0F	; 15
- 520:	89 9d       	mul	r24, r9
- 522:	90 19       	sub	r25, r0
- 524:	11 24       	eor	r1, r1
- 526:	90 93 1f 02 	sts	0x021F, r25	; 0x80021f <random_value>
- 52a:	89 2f       	mov	r24, r25
- 52c:	90 e0       	ldi	r25, 0x00	; 0
+ 54a:	81 2d       	mov	r24, r1
+ 54c:	11 24       	eor	r1, r1
+ 54e:	82 95       	swap	r24
+ 550:	8f 70       	andi	r24, 0x0F	; 15
+ 552:	89 9d       	mul	r24, r9
+ 554:	90 19       	sub	r25, r0
+ 556:	11 24       	eor	r1, r1
+ 558:	90 93 07 03 	sts	0x0307, r25	; 0x800307 <random_value>
+ 55c:	89 2f       	mov	r24, r25
+ 55e:	90 e0       	ldi	r25, 0x00	; 0
 				if(deck[random_value].owner == 0){
- 52e:	fc 01       	movw	r30, r24
- 530:	ee 0f       	add	r30, r30
- 532:	ff 1f       	adc	r31, r31
- 534:	ee 0f       	add	r30, r30
- 536:	ff 1f       	adc	r31, r31
- 538:	e0 5b       	subi	r30, 0xB0	; 176
- 53a:	fd 4f       	sbci	r31, 0xFD	; 253
- 53c:	42 81       	ldd	r20, Z+2	; 0x02
- 53e:	41 11       	cpse	r20, r1
- 540:	0d c0       	rjmp	.+26     	; 0x55c <__LOCK_REGION_LENGTH__+0x15c>
- 542:	88 0f       	add	r24, r24
- 544:	99 1f       	adc	r25, r25
+ 560:	fc 01       	movw	r30, r24
+ 562:	ee 0f       	add	r30, r30
+ 564:	ff 1f       	adc	r31, r31
+ 566:	ee 0f       	add	r30, r30
+ 568:	ff 1f       	adc	r31, r31
+ 56a:	e8 5c       	subi	r30, 0xC8	; 200
+ 56c:	fc 4f       	sbci	r31, 0xFC	; 252
+ 56e:	42 81       	ldd	r20, Z+2	; 0x02
+ 570:	41 11       	cpse	r20, r1
+ 572:	0d c0       	rjmp	.+26     	; 0x58e <__LOCK_REGION_LENGTH__+0x18e>
+ 574:	88 0f       	add	r24, r24
+ 576:	99 1f       	adc	r25, r25
 					deck[random_value].owner = 2;
- 546:	88 0f       	add	r24, r24
- 548:	99 1f       	adc	r25, r25
- 54a:	fc 01       	movw	r30, r24
- 54c:	e0 5b       	subi	r30, 0xB0	; 176
- 54e:	fd 4f       	sbci	r31, 0xFD	; 253
- 550:	32 83       	std	Z+2, r19	; 0x02
- 552:	2f 5f       	subi	r18, 0xFF	; 255
- 554:	20 93 e3 01 	sts	0x01E3, r18	; 0x8001e3 <p2_card_cnt>
+ 578:	88 0f       	add	r24, r24
+ 57a:	99 1f       	adc	r25, r25
+ 57c:	fc 01       	movw	r30, r24
+ 57e:	e8 5c       	subi	r30, 0xC8	; 200
+ 580:	fc 4f       	sbci	r31, 0xFC	; 252
+ 582:	32 83       	std	Z+2, r19	; 0x02
+ 584:	2f 5f       	subi	r18, 0xFF	; 255
+ 586:	20 93 cb 02 	sts	0x02CB, r18	; 0x8002cb <p2_card_cnt>
 					p2_card_cnt++;
- 558:	20 91 e3 01 	lds	r18, 0x01E3	; 0x8001e3 <p2_card_cnt>
+ 58a:	20 91 cb 02 	lds	r18, 0x02CB	; 0x8002cb <p2_card_cnt>
 				if(deck[random_value].owner == 0){
 					deck[random_value].owner = 1;
 					p1_card_cnt++;
 				}
 			}
 			while(p2_card_cnt < 4){	// give Player 2 Cards
- 55c:	24 30       	cpi	r18, 0x04	; 4
- 55e:	d0 f2       	brcs	.-76     	; 0x514 <__LOCK_REGION_LENGTH__+0x114>
- 560:	10 92 e0 01 	sts	0x01E0, r1	; 0x8001e0 <__data_end>
+ 58e:	24 30       	cpi	r18, 0x04	; 4
+ 590:	d0 f2       	brcs	.-76     	; 0x546 <__LOCK_REGION_LENGTH__+0x146>
+ 592:	10 92 c8 02 	sts	0x02C8, r1	; 0x8002c8 <temp>
 				if(deck[random_value].owner == 0){
 					deck[random_value].owner = 2;
 					p2_card_cnt++;
 				}
 			}
 			temp = 0;
- 564:	8b e1       	ldi	r24, 0x1B	; 27
+ 596:	8b e1       	ldi	r24, 0x1B	; 27
 			USART0_Transmit_String("P1 Deck : "); // display P1 deck to P1
- 566:	91 e0       	ldi	r25, 0x01	; 1
- 568:	c1 dd       	rcall	.-1150   	; 0xec <USART0_Transmit_String>
- 56a:	e2 01       	movw	r28, r4
- 56c:	8a 81       	ldd	r24, Y+2	; 0x02
- 56e:	81 30       	cpi	r24, 0x01	; 1
+ 598:	91 e0       	ldi	r25, 0x01	; 1
+ 59a:	a8 dd       	rcall	.-1200   	; 0xec <USART0_Transmit_String>
+ 59c:	e2 01       	movw	r28, r4
+ 59e:	8a 81       	ldd	r24, Y+2	; 0x02
+ 5a0:	81 30       	cpi	r24, 0x01	; 1
 			for(int i=0; i<NUM_CARD; i++){
 				if(deck[i].owner == 1){
- 570:	41 f5       	brne	.+80     	; 0x5c2 <__LOCK_REGION_LENGTH__+0x1c2>
- 572:	e0 91 e0 01 	lds	r30, 0x01E0	; 0x8001e0 <__data_end>
+ 5a2:	41 f5       	brne	.+80     	; 0x5f4 <__LOCK_REGION_LENGTH__+0x1f4>
+ 5a4:	e0 91 c8 02 	lds	r30, 0x02C8	; 0x8002c8 <temp>
 					p1_deck[temp] = deck[i];
- 576:	f0 e0       	ldi	r31, 0x00	; 0
- 578:	ee 0f       	add	r30, r30
- 57a:	ff 1f       	adc	r31, r31
- 57c:	ee 0f       	add	r30, r30
- 57e:	ff 1f       	adc	r31, r31
- 580:	e9 51       	subi	r30, 0x19	; 25
- 582:	fe 4f       	sbci	r31, 0xFE	; 254
- 584:	88 81       	ld	r24, Y
- 586:	39 81       	ldd	r19, Y+1	; 0x01
- 588:	2a 81       	ldd	r18, Y+2	; 0x02
- 58a:	9b 81       	ldd	r25, Y+3	; 0x03
- 58c:	68 2f       	mov	r22, r24
- 58e:	80 83       	st	Z, r24
- 590:	31 83       	std	Z+1, r19	; 0x01
- 592:	22 83       	std	Z+2, r18	; 0x02
- 594:	93 83       	std	Z+3, r25	; 0x03
- 596:	80 e0       	ldi	r24, 0x00	; 0
+ 5a8:	f0 e0       	ldi	r31, 0x00	; 0
+ 5aa:	ee 0f       	add	r30, r30
+ 5ac:	ff 1f       	adc	r31, r31
+ 5ae:	ee 0f       	add	r30, r30
+ 5b0:	ff 1f       	adc	r31, r31
+ 5b2:	e1 53       	subi	r30, 0x31	; 49
+ 5b4:	fd 4f       	sbci	r31, 0xFD	; 253
+ 5b6:	88 81       	ld	r24, Y
+ 5b8:	39 81       	ldd	r19, Y+1	; 0x01
+ 5ba:	2a 81       	ldd	r18, Y+2	; 0x02
+ 5bc:	9b 81       	ldd	r25, Y+3	; 0x03
+ 5be:	68 2f       	mov	r22, r24
+ 5c0:	80 83       	st	Z, r24
+ 5c2:	31 83       	std	Z+1, r19	; 0x01
+ 5c4:	22 83       	std	Z+2, r18	; 0x02
+ 5c6:	93 83       	std	Z+3, r25	; 0x03
+ 5c8:	80 e0       	ldi	r24, 0x00	; 0
 					USART_Transmit_number(0, p1_deck[temp].color);
- 598:	dc dd       	rcall	.-1096   	; 0x152 <USART_Transmit_number>
- 59a:	e0 91 e0 01 	lds	r30, 0x01E0	; 0x8001e0 <__data_end>
+ 5ca:	c3 dd       	rcall	.-1146   	; 0x152 <USART_Transmit_number>
+ 5cc:	e0 91 c8 02 	lds	r30, 0x02C8	; 0x8002c8 <temp>
 					USART_Transmit_number(0, p1_deck[temp].number); 
- 59e:	f0 e0       	ldi	r31, 0x00	; 0
- 5a0:	ee 0f       	add	r30, r30
- 5a2:	ff 1f       	adc	r31, r31
- 5a4:	ee 0f       	add	r30, r30
- 5a6:	ff 1f       	adc	r31, r31
- 5a8:	e9 51       	subi	r30, 0x19	; 25
- 5aa:	fe 4f       	sbci	r31, 0xFE	; 254
- 5ac:	61 81       	ldd	r22, Z+1	; 0x01
- 5ae:	80 e0       	ldi	r24, 0x00	; 0
- 5b0:	d0 dd       	rcall	.-1120   	; 0x152 <USART_Transmit_number>
- 5b2:	87 e1       	ldi	r24, 0x17	; 23
+ 5d0:	f0 e0       	ldi	r31, 0x00	; 0
+ 5d2:	ee 0f       	add	r30, r30
+ 5d4:	ff 1f       	adc	r31, r31
+ 5d6:	ee 0f       	add	r30, r30
+ 5d8:	ff 1f       	adc	r31, r31
+ 5da:	e1 53       	subi	r30, 0x31	; 49
+ 5dc:	fd 4f       	sbci	r31, 0xFD	; 253
+ 5de:	61 81       	ldd	r22, Z+1	; 0x01
+ 5e0:	80 e0       	ldi	r24, 0x00	; 0
+ 5e2:	b7 dd       	rcall	.-1170   	; 0x152 <USART_Transmit_number>
+ 5e4:	87 e1       	ldi	r24, 0x17	; 23
 					USART0_Transmit_String("   ");
- 5b4:	91 e0       	ldi	r25, 0x01	; 1
- 5b6:	9a dd       	rcall	.-1228   	; 0xec <USART0_Transmit_String>
- 5b8:	80 91 e0 01 	lds	r24, 0x01E0	; 0x8001e0 <__data_end>
+ 5e6:	91 e0       	ldi	r25, 0x01	; 1
+ 5e8:	81 dd       	rcall	.-1278   	; 0xec <USART0_Transmit_String>
+ 5ea:	80 91 c8 02 	lds	r24, 0x02C8	; 0x8002c8 <temp>
 					temp++;
- 5bc:	8f 5f       	subi	r24, 0xFF	; 255
- 5be:	80 93 e0 01 	sts	0x01E0, r24	; 0x8001e0 <__data_end>
- 5c2:	24 96       	adiw	r28, 0x04	; 4
+ 5ee:	8f 5f       	subi	r24, 0xFF	; 255
+ 5f0:	80 93 c8 02 	sts	0x02C8, r24	; 0x8002c8 <temp>
+ 5f4:	24 96       	adiw	r28, 0x04	; 4
 					p2_card_cnt++;
 				}
 			}
 			temp = 0;
 			USART0_Transmit_String("P1 Deck : "); // display P1 deck to P1
 			for(int i=0; i<NUM_CARD; i++){
- 5c4:	ca 15       	cp	r28, r10
- 5c6:	db 05       	cpc	r29, r11
- 5c8:	89 f6       	brne	.-94     	; 0x56c <__LOCK_REGION_LENGTH__+0x16c>
+ 5f6:	ac 16       	cp	r10, r28
+ 5f8:	bd 06       	cpc	r11, r29
+ 5fa:	89 f6       	brne	.-94     	; 0x59e <__LOCK_REGION_LENGTH__+0x19e>
 					USART_Transmit_number(0, p1_deck[temp].number); 
 					USART0_Transmit_String("   ");
 					temp++;
 				}
 			}
 			USART0_Transmit_String("\r\n");
- 5ca:	8d e4       	ldi	r24, 0x4D	; 77
- 5cc:	91 e0       	ldi	r25, 0x01	; 1
- 5ce:	8e dd       	rcall	.-1252   	; 0xec <USART0_Transmit_String>
- 5d0:	10 92 e0 01 	sts	0x01E0, r1	; 0x8001e0 <__data_end>
+ 5fc:	81 e9       	ldi	r24, 0x91	; 145
+ 5fe:	92 e0       	ldi	r25, 0x02	; 2
+ 600:	75 dd       	rcall	.-1302   	; 0xec <USART0_Transmit_String>
+ 602:	10 92 c8 02 	sts	0x02C8, r1	; 0x8002c8 <temp>
 			temp = 0;
- 5d4:	89 e0       	ldi	r24, 0x09	; 9
+ 606:	89 e0       	ldi	r24, 0x09	; 9
 			USART1_Transmit_String("P2 Deck : "); // display P2 deck to P2
- 5d6:	91 e0       	ldi	r25, 0x01	; 1
- 5d8:	ae dd       	rcall	.-1188   	; 0x136 <USART1_Transmit_String>
- 5da:	e2 01       	movw	r28, r4
- 5dc:	8a 81       	ldd	r24, Y+2	; 0x02
- 5de:	82 30       	cpi	r24, 0x02	; 2
+ 608:	91 e0       	ldi	r25, 0x01	; 1
+ 60a:	95 dd       	rcall	.-1238   	; 0x136 <USART1_Transmit_String>
+ 60c:	e2 01       	movw	r28, r4
+ 60e:	8a 81       	ldd	r24, Y+2	; 0x02
+ 610:	82 30       	cpi	r24, 0x02	; 2
 			for(int i=0; i<NUM_CARD; i++){
 				if(deck[i].owner == 2){
- 5e0:	41 f5       	brne	.+80     	; 0x632 <__LOCK_REGION_LENGTH__+0x232>
- 5e2:	e0 91 e0 01 	lds	r30, 0x01E0	; 0x8001e0 <__data_end>
+ 612:	41 f5       	brne	.+80     	; 0x664 <__LOCK_REGION_LENGTH__+0x264>
+ 614:	e0 91 c8 02 	lds	r30, 0x02C8	; 0x8002c8 <temp>
 					p2_deck[temp] = deck[i];
- 5e6:	f0 e0       	ldi	r31, 0x00	; 0
- 5e8:	ee 0f       	add	r30, r30
- 5ea:	ff 1f       	adc	r31, r31
- 5ec:	ee 0f       	add	r30, r30
- 5ee:	ff 1f       	adc	r31, r31
- 5f0:	e0 5e       	subi	r30, 0xE0	; 224
- 5f2:	fd 4f       	sbci	r31, 0xFD	; 253
- 5f4:	88 81       	ld	r24, Y
- 5f6:	39 81       	ldd	r19, Y+1	; 0x01
- 5f8:	2a 81       	ldd	r18, Y+2	; 0x02
- 5fa:	9b 81       	ldd	r25, Y+3	; 0x03
- 5fc:	68 2f       	mov	r22, r24
- 5fe:	80 83       	st	Z, r24
- 600:	31 83       	std	Z+1, r19	; 0x01
- 602:	22 83       	std	Z+2, r18	; 0x02
- 604:	93 83       	std	Z+3, r25	; 0x03
+ 618:	f0 e0       	ldi	r31, 0x00	; 0
+ 61a:	ee 0f       	add	r30, r30
+ 61c:	ff 1f       	adc	r31, r31
+ 61e:	ee 0f       	add	r30, r30
+ 620:	ff 1f       	adc	r31, r31
+ 622:	e8 5f       	subi	r30, 0xF8	; 248
+ 624:	fc 4f       	sbci	r31, 0xFC	; 252
+ 626:	88 81       	ld	r24, Y
+ 628:	39 81       	ldd	r19, Y+1	; 0x01
+ 62a:	2a 81       	ldd	r18, Y+2	; 0x02
+ 62c:	9b 81       	ldd	r25, Y+3	; 0x03
+ 62e:	68 2f       	mov	r22, r24
+ 630:	80 83       	st	Z, r24
+ 632:	31 83       	std	Z+1, r19	; 0x01
+ 634:	22 83       	std	Z+2, r18	; 0x02
+ 636:	93 83       	std	Z+3, r25	; 0x03
 					USART_Transmit_number(1, p2_deck[temp].color);
- 606:	81 e0       	ldi	r24, 0x01	; 1
- 608:	a4 dd       	rcall	.-1208   	; 0x152 <USART_Transmit_number>
+ 638:	81 e0       	ldi	r24, 0x01	; 1
+ 63a:	8b dd       	rcall	.-1258   	; 0x152 <USART_Transmit_number>
 					USART_Transmit_number(1, p2_deck[temp].number); 
- 60a:	e0 91 e0 01 	lds	r30, 0x01E0	; 0x8001e0 <__data_end>
- 60e:	f0 e0       	ldi	r31, 0x00	; 0
- 610:	ee 0f       	add	r30, r30
- 612:	ff 1f       	adc	r31, r31
- 614:	ee 0f       	add	r30, r30
- 616:	ff 1f       	adc	r31, r31
- 618:	e0 5e       	subi	r30, 0xE0	; 224
- 61a:	fd 4f       	sbci	r31, 0xFD	; 253
- 61c:	61 81       	ldd	r22, Z+1	; 0x01
- 61e:	81 e0       	ldi	r24, 0x01	; 1
+ 63c:	e0 91 c8 02 	lds	r30, 0x02C8	; 0x8002c8 <temp>
+ 640:	f0 e0       	ldi	r31, 0x00	; 0
+ 642:	ee 0f       	add	r30, r30
+ 644:	ff 1f       	adc	r31, r31
+ 646:	ee 0f       	add	r30, r30
+ 648:	ff 1f       	adc	r31, r31
+ 64a:	e8 5f       	subi	r30, 0xF8	; 248
+ 64c:	fc 4f       	sbci	r31, 0xFC	; 252
+ 64e:	61 81       	ldd	r22, Z+1	; 0x01
+ 650:	81 e0       	ldi	r24, 0x01	; 1
 					USART1_Transmit_String("   ");
- 620:	98 dd       	rcall	.-1232   	; 0x152 <USART_Transmit_number>
- 622:	87 e1       	ldi	r24, 0x17	; 23
- 624:	91 e0       	ldi	r25, 0x01	; 1
- 626:	87 dd       	rcall	.-1266   	; 0x136 <USART1_Transmit_String>
+ 652:	7f dd       	rcall	.-1282   	; 0x152 <USART_Transmit_number>
+ 654:	87 e1       	ldi	r24, 0x17	; 23
+ 656:	91 e0       	ldi	r25, 0x01	; 1
+ 658:	6e dd       	rcall	.-1316   	; 0x136 <USART1_Transmit_String>
 					temp++;
- 628:	80 91 e0 01 	lds	r24, 0x01E0	; 0x8001e0 <__data_end>
- 62c:	8f 5f       	subi	r24, 0xFF	; 255
- 62e:	80 93 e0 01 	sts	0x01E0, r24	; 0x8001e0 <__data_end>
- 632:	24 96       	adiw	r28, 0x04	; 4
+ 65a:	80 91 c8 02 	lds	r24, 0x02C8	; 0x8002c8 <temp>
+ 65e:	8f 5f       	subi	r24, 0xFF	; 255
+ 660:	80 93 c8 02 	sts	0x02C8, r24	; 0x8002c8 <temp>
+ 664:	24 96       	adiw	r28, 0x04	; 4
 				}
 			}
 			USART0_Transmit_String("\r\n");
 			temp = 0;
 			USART1_Transmit_String("P2 Deck : "); // display P2 deck to P2
 			for(int i=0; i<NUM_CARD; i++){
- 634:	ca 15       	cp	r28, r10
- 636:	db 05       	cpc	r29, r11
- 638:	89 f6       	brne	.-94     	; 0x5dc <__LOCK_REGION_LENGTH__+0x1dc>
+ 666:	ac 16       	cp	r10, r28
+ 668:	bd 06       	cpc	r11, r29
+ 66a:	89 f6       	brne	.-94     	; 0x60e <__LOCK_REGION_LENGTH__+0x20e>
 					USART_Transmit_number(1, p2_deck[temp].number); 
 					USART1_Transmit_String("   ");
 					temp++;
 				}
 			}
 			USART1_Transmit_String("\r\n");
- 63a:	8d e4       	ldi	r24, 0x4D	; 77
- 63c:	91 e0       	ldi	r25, 0x01	; 1
- 63e:	7b dd       	rcall	.-1290   	; 0x136 <USART1_Transmit_String>
- 640:	33 de       	rcall	.-922    	; 0x2a8 <showP2toP1>
+ 66c:	81 e9       	ldi	r24, 0x91	; 145
+ 66e:	92 e0       	ldi	r25, 0x02	; 2
+ 670:	62 dd       	rcall	.-1340   	; 0x136 <USART1_Transmit_String>
+ 672:	1a de       	rcall	.-972    	; 0x2a8 <showP2toP1>
 			showP2toP1();
- 642:	62 de       	rcall	.-828    	; 0x308 <showP1toP2>
- 644:	d0 92 e6 01 	sts	0x01E6, r13	; 0x8001e6 <state+0x1>
+ 674:	49 de       	rcall	.-878    	; 0x308 <showP1toP2>
+ 676:	d0 92 ce 02 	sts	0x02CE, r13	; 0x8002ce <state+0x1>
 			showP1toP2();				
- 648:	c0 92 e5 01 	sts	0x01E5, r12	; 0x8001e5 <state>
+ 67a:	c0 92 cd 02 	sts	0x02CD, r12	; 0x8002cd <state>
 			state = 3;
- 64c:	04 c0       	rjmp	.+8      	; 0x656 <__LOCK_REGION_LENGTH__+0x256>
- 64e:	83 30       	cpi	r24, 0x03	; 3
- 650:	91 05       	cpc	r25, r1
- 652:	09 f0       	breq	.+2      	; 0x656 <__LOCK_REGION_LENGTH__+0x256>
+ 67e:	04 c0       	rjmp	.+8      	; 0x688 <__LOCK_REGION_LENGTH__+0x288>
+ 680:	83 30       	cpi	r24, 0x03	; 3
+ 682:	91 05       	cpc	r25, r1
+ 684:	09 f0       	breq	.+2      	; 0x688 <__LOCK_REGION_LENGTH__+0x288>
 		} // state 2 end
 		if(state == 3){ // state : give 1 card to player 1
- 654:	6d c0       	rjmp	.+218    	; 0x730 <__LOCK_REGION_LENGTH__+0x330>
- 656:	30 91 e4 01 	lds	r19, 0x01E4	; 0x8001e4 <p1_card_cnt>
- 65a:	3f 5f       	subi	r19, 0xFF	; 255
+ 686:	6d c0       	rjmp	.+218    	; 0x762 <__LOCK_REGION_LENGTH__+0x362>
+ 688:	30 91 cc 02 	lds	r19, 0x02CC	; 0x8002cc <p1_card_cnt>
+ 68c:	3f 5f       	subi	r19, 0xFF	; 255
 			temp = p1_card_cnt + 1;
- 65c:	30 93 e0 01 	sts	0x01E0, r19	; 0x8001e0 <__data_end>
- 660:	41 e0       	ldi	r20, 0x01	; 1
- 662:	22 c0       	rjmp	.+68     	; 0x6a8 <__LOCK_REGION_LENGTH__+0x2a8>
- 664:	92 b7       	in	r25, 0x32	; 50
+ 68e:	30 93 c8 02 	sts	0x02C8, r19	; 0x8002c8 <temp>
+ 692:	41 e0       	ldi	r20, 0x01	; 1
+ 694:	22 c0       	rjmp	.+68     	; 0x6da <__LOCK_REGION_LENGTH__+0x2da>
+ 696:	92 b7       	in	r25, 0x32	; 50
 			while(p1_card_cnt < temp){
 				random_value = TCNT0%NUM_CARD;
 				if(deck[random_value].owner == 0){
 					deck[random_value].owner = 1;
- 666:	98 9d       	mul	r25, r8
+ 698:	98 9d       	mul	r25, r8
 			showP1toP2();				
 			state = 3;
 		} // state 2 end
 		if(state == 3){ // state : give 1 card to player 1
 			temp = p1_card_cnt + 1;
 			while(p1_card_cnt < temp){
- 668:	81 2d       	mov	r24, r1
+ 69a:	81 2d       	mov	r24, r1
 				random_value = TCNT0%NUM_CARD;
- 66a:	11 24       	eor	r1, r1
- 66c:	82 95       	swap	r24
- 66e:	8f 70       	andi	r24, 0x0F	; 15
- 670:	89 9d       	mul	r24, r9
- 672:	90 19       	sub	r25, r0
- 674:	11 24       	eor	r1, r1
- 676:	90 93 1f 02 	sts	0x021F, r25	; 0x80021f <random_value>
- 67a:	89 2f       	mov	r24, r25
- 67c:	90 e0       	ldi	r25, 0x00	; 0
- 67e:	fc 01       	movw	r30, r24
+ 69c:	11 24       	eor	r1, r1
+ 69e:	82 95       	swap	r24
+ 6a0:	8f 70       	andi	r24, 0x0F	; 15
+ 6a2:	89 9d       	mul	r24, r9
+ 6a4:	90 19       	sub	r25, r0
+ 6a6:	11 24       	eor	r1, r1
+ 6a8:	90 93 07 03 	sts	0x0307, r25	; 0x800307 <random_value>
+ 6ac:	89 2f       	mov	r24, r25
+ 6ae:	90 e0       	ldi	r25, 0x00	; 0
+ 6b0:	fc 01       	movw	r30, r24
 				if(deck[random_value].owner == 0){
- 680:	ee 0f       	add	r30, r30
- 682:	ff 1f       	adc	r31, r31
- 684:	ee 0f       	add	r30, r30
- 686:	ff 1f       	adc	r31, r31
- 688:	e0 5b       	subi	r30, 0xB0	; 176
- 68a:	fd 4f       	sbci	r31, 0xFD	; 253
- 68c:	52 81       	ldd	r21, Z+2	; 0x02
- 68e:	51 11       	cpse	r21, r1
- 690:	0d c0       	rjmp	.+26     	; 0x6ac <__LOCK_REGION_LENGTH__+0x2ac>
- 692:	88 0f       	add	r24, r24
- 694:	99 1f       	adc	r25, r25
+ 6b2:	ee 0f       	add	r30, r30
+ 6b4:	ff 1f       	adc	r31, r31
+ 6b6:	ee 0f       	add	r30, r30
+ 6b8:	ff 1f       	adc	r31, r31
+ 6ba:	e8 5c       	subi	r30, 0xC8	; 200
+ 6bc:	fc 4f       	sbci	r31, 0xFC	; 252
+ 6be:	52 81       	ldd	r21, Z+2	; 0x02
+ 6c0:	51 11       	cpse	r21, r1
+ 6c2:	0d c0       	rjmp	.+26     	; 0x6de <__LOCK_REGION_LENGTH__+0x2de>
+ 6c4:	88 0f       	add	r24, r24
+ 6c6:	99 1f       	adc	r25, r25
 					deck[random_value].owner = 1;
- 696:	88 0f       	add	r24, r24
- 698:	99 1f       	adc	r25, r25
- 69a:	fc 01       	movw	r30, r24
- 69c:	e0 5b       	subi	r30, 0xB0	; 176
- 69e:	fd 4f       	sbci	r31, 0xFD	; 253
- 6a0:	42 83       	std	Z+2, r20	; 0x02
- 6a2:	2f 5f       	subi	r18, 0xFF	; 255
- 6a4:	20 93 e4 01 	sts	0x01E4, r18	; 0x8001e4 <p1_card_cnt>
+ 6c8:	88 0f       	add	r24, r24
+ 6ca:	99 1f       	adc	r25, r25
+ 6cc:	fc 01       	movw	r30, r24
+ 6ce:	e8 5c       	subi	r30, 0xC8	; 200
+ 6d0:	fc 4f       	sbci	r31, 0xFC	; 252
+ 6d2:	42 83       	std	Z+2, r20	; 0x02
+ 6d4:	2f 5f       	subi	r18, 0xFF	; 255
+ 6d6:	20 93 cc 02 	sts	0x02CC, r18	; 0x8002cc <p1_card_cnt>
 					p1_card_cnt++;
- 6a8:	20 91 e4 01 	lds	r18, 0x01E4	; 0x8001e4 <p1_card_cnt>
+ 6da:	20 91 cc 02 	lds	r18, 0x02CC	; 0x8002cc <p1_card_cnt>
 			showP1toP2();				
 			state = 3;
 		} // state 2 end
 		if(state == 3){ // state : give 1 card to player 1
 			temp = p1_card_cnt + 1;
 			while(p1_card_cnt < temp){
- 6ac:	23 17       	cp	r18, r19
- 6ae:	d0 f2       	brcs	.-76     	; 0x664 <__LOCK_REGION_LENGTH__+0x264>
- 6b0:	10 92 e0 01 	sts	0x01E0, r1	; 0x8001e0 <__data_end>
+ 6de:	23 17       	cp	r18, r19
+ 6e0:	d0 f2       	brcs	.-76     	; 0x696 <__LOCK_REGION_LENGTH__+0x296>
+ 6e2:	10 92 c8 02 	sts	0x02C8, r1	; 0x8002c8 <temp>
 				if(deck[random_value].owner == 0){
 					deck[random_value].owner = 1;
 					p1_card_cnt++;
 				}
 			}
 			temp = 0;
- 6b4:	8b e1       	ldi	r24, 0x1B	; 27
- 6b6:	91 e0       	ldi	r25, 0x01	; 1
+ 6e6:	8b e1       	ldi	r24, 0x1B	; 27
+ 6e8:	91 e0       	ldi	r25, 0x01	; 1
 			USART0_Transmit_String("P1 Deck : ");
- 6b8:	19 dd       	rcall	.-1486   	; 0xec <USART0_Transmit_String>
- 6ba:	e2 01       	movw	r28, r4
- 6bc:	8a 81       	ldd	r24, Y+2	; 0x02
- 6be:	81 30       	cpi	r24, 0x01	; 1
- 6c0:	41 f5       	brne	.+80     	; 0x712 <__LOCK_REGION_LENGTH__+0x312>
+ 6ea:	00 dd       	rcall	.-1536   	; 0xec <USART0_Transmit_String>
+ 6ec:	e2 01       	movw	r28, r4
+ 6ee:	8a 81       	ldd	r24, Y+2	; 0x02
+ 6f0:	81 30       	cpi	r24, 0x01	; 1
+ 6f2:	41 f5       	brne	.+80     	; 0x744 <__LOCK_REGION_LENGTH__+0x344>
 			for(int i=0; i<NUM_CARD; i++){
 				if(deck[i].owner == 1){
- 6c2:	e0 91 e0 01 	lds	r30, 0x01E0	; 0x8001e0 <__data_end>
+ 6f4:	e0 91 c8 02 	lds	r30, 0x02C8	; 0x8002c8 <temp>
 					p1_deck[temp] = deck[i];
- 6c6:	f0 e0       	ldi	r31, 0x00	; 0
- 6c8:	ee 0f       	add	r30, r30
- 6ca:	ff 1f       	adc	r31, r31
- 6cc:	ee 0f       	add	r30, r30
- 6ce:	ff 1f       	adc	r31, r31
- 6d0:	e9 51       	subi	r30, 0x19	; 25
- 6d2:	fe 4f       	sbci	r31, 0xFE	; 254
- 6d4:	88 81       	ld	r24, Y
- 6d6:	39 81       	ldd	r19, Y+1	; 0x01
- 6d8:	2a 81       	ldd	r18, Y+2	; 0x02
- 6da:	9b 81       	ldd	r25, Y+3	; 0x03
- 6dc:	68 2f       	mov	r22, r24
- 6de:	80 83       	st	Z, r24
- 6e0:	31 83       	std	Z+1, r19	; 0x01
- 6e2:	22 83       	std	Z+2, r18	; 0x02
- 6e4:	93 83       	std	Z+3, r25	; 0x03
+ 6f8:	f0 e0       	ldi	r31, 0x00	; 0
+ 6fa:	ee 0f       	add	r30, r30
+ 6fc:	ff 1f       	adc	r31, r31
+ 6fe:	ee 0f       	add	r30, r30
+ 700:	ff 1f       	adc	r31, r31
+ 702:	e1 53       	subi	r30, 0x31	; 49
+ 704:	fd 4f       	sbci	r31, 0xFD	; 253
+ 706:	88 81       	ld	r24, Y
+ 708:	39 81       	ldd	r19, Y+1	; 0x01
+ 70a:	2a 81       	ldd	r18, Y+2	; 0x02
+ 70c:	9b 81       	ldd	r25, Y+3	; 0x03
+ 70e:	68 2f       	mov	r22, r24
+ 710:	80 83       	st	Z, r24
+ 712:	31 83       	std	Z+1, r19	; 0x01
+ 714:	22 83       	std	Z+2, r18	; 0x02
+ 716:	93 83       	std	Z+3, r25	; 0x03
 					USART_Transmit_number(0, p1_deck[temp].color);
- 6e6:	80 e0       	ldi	r24, 0x00	; 0
- 6e8:	34 dd       	rcall	.-1432   	; 0x152 <USART_Transmit_number>
- 6ea:	e0 91 e0 01 	lds	r30, 0x01E0	; 0x8001e0 <__data_end>
+ 718:	80 e0       	ldi	r24, 0x00	; 0
+ 71a:	1b dd       	rcall	.-1482   	; 0x152 <USART_Transmit_number>
+ 71c:	e0 91 c8 02 	lds	r30, 0x02C8	; 0x8002c8 <temp>
 					USART_Transmit_number(0, p1_deck[temp].number);
- 6ee:	f0 e0       	ldi	r31, 0x00	; 0
- 6f0:	ee 0f       	add	r30, r30
- 6f2:	ff 1f       	adc	r31, r31
- 6f4:	ee 0f       	add	r30, r30
- 6f6:	ff 1f       	adc	r31, r31
- 6f8:	e9 51       	subi	r30, 0x19	; 25
- 6fa:	fe 4f       	sbci	r31, 0xFE	; 254
- 6fc:	61 81       	ldd	r22, Z+1	; 0x01
- 6fe:	80 e0       	ldi	r24, 0x00	; 0
- 700:	28 dd       	rcall	.-1456   	; 0x152 <USART_Transmit_number>
+ 720:	f0 e0       	ldi	r31, 0x00	; 0
+ 722:	ee 0f       	add	r30, r30
+ 724:	ff 1f       	adc	r31, r31
+ 726:	ee 0f       	add	r30, r30
+ 728:	ff 1f       	adc	r31, r31
+ 72a:	e1 53       	subi	r30, 0x31	; 49
+ 72c:	fd 4f       	sbci	r31, 0xFD	; 253
+ 72e:	61 81       	ldd	r22, Z+1	; 0x01
+ 730:	80 e0       	ldi	r24, 0x00	; 0
+ 732:	0f dd       	rcall	.-1506   	; 0x152 <USART_Transmit_number>
 					USART0_Transmit_String("   ");
- 702:	87 e1       	ldi	r24, 0x17	; 23
- 704:	91 e0       	ldi	r25, 0x01	; 1
- 706:	f2 dc       	rcall	.-1564   	; 0xec <USART0_Transmit_String>
- 708:	80 91 e0 01 	lds	r24, 0x01E0	; 0x8001e0 <__data_end>
+ 734:	87 e1       	ldi	r24, 0x17	; 23
+ 736:	91 e0       	ldi	r25, 0x01	; 1
+ 738:	d9 dc       	rcall	.-1614   	; 0xec <USART0_Transmit_String>
+ 73a:	80 91 c8 02 	lds	r24, 0x02C8	; 0x8002c8 <temp>
 					temp++;
- 70c:	8f 5f       	subi	r24, 0xFF	; 255
- 70e:	80 93 e0 01 	sts	0x01E0, r24	; 0x8001e0 <__data_end>
- 712:	24 96       	adiw	r28, 0x04	; 4
- 714:	ca 15       	cp	r28, r10
+ 73e:	8f 5f       	subi	r24, 0xFF	; 255
+ 740:	80 93 c8 02 	sts	0x02C8, r24	; 0x8002c8 <temp>
+ 744:	24 96       	adiw	r28, 0x04	; 4
+ 746:	ca 15       	cp	r28, r10
 					p1_card_cnt++;
 				}
 			}
 			temp = 0;
 			USART0_Transmit_String("P1 Deck : ");
 			for(int i=0; i<NUM_CARD; i++){
- 716:	db 05       	cpc	r29, r11
- 718:	89 f6       	brne	.-94     	; 0x6bc <__LOCK_REGION_LENGTH__+0x2bc>
- 71a:	8d e4       	ldi	r24, 0x4D	; 77
+ 748:	db 05       	cpc	r29, r11
+ 74a:	89 f6       	brne	.-94     	; 0x6ee <__LOCK_REGION_LENGTH__+0x2ee>
+ 74c:	81 e9       	ldi	r24, 0x91	; 145
 					USART_Transmit_number(0, p1_deck[temp].number);
 					USART0_Transmit_String("   ");
 					temp++;
 				}
 			}
 			USART0_Transmit_String("\r\n");
- 71c:	91 e0       	ldi	r25, 0x01	; 1
- 71e:	e6 dc       	rcall	.-1588   	; 0xec <USART0_Transmit_String>
- 720:	c3 dd       	rcall	.-1146   	; 0x2a8 <showP2toP1>
- 722:	85 e0       	ldi	r24, 0x05	; 5
+ 74e:	92 e0       	ldi	r25, 0x02	; 2
+ 750:	cd dc       	rcall	.-1638   	; 0xec <USART0_Transmit_String>
+ 752:	aa dd       	rcall	.-1196   	; 0x2a8 <showP2toP1>
+ 754:	85 e0       	ldi	r24, 0x05	; 5
 			showP2toP1();
- 724:	90 e0       	ldi	r25, 0x00	; 0
- 726:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
+ 756:	90 e0       	ldi	r25, 0x00	; 0
+ 758:	90 93 ce 02 	sts	0x02CE, r25	; 0x8002ce <state+0x1>
 			state = 5;
- 72a:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- 72e:	74 c0       	rjmp	.+232    	; 0x818 <__LOCK_REGION_LENGTH__+0x418>
- 730:	04 97       	sbiw	r24, 0x04	; 4
- 732:	09 f0       	breq	.+2      	; 0x736 <__LOCK_REGION_LENGTH__+0x336>
- 734:	6b c0       	rjmp	.+214    	; 0x80c <__LOCK_REGION_LENGTH__+0x40c>
+ 75c:	80 93 cd 02 	sts	0x02CD, r24	; 0x8002cd <state>
+ 760:	75 c0       	rjmp	.+234    	; 0x84c <__LOCK_REGION_LENGTH__+0x44c>
+ 762:	04 97       	sbiw	r24, 0x04	; 4
+ 764:	09 f0       	breq	.+2      	; 0x768 <__LOCK_REGION_LENGTH__+0x368>
+ 766:	6b c0       	rjmp	.+214    	; 0x83e <__LOCK_REGION_LENGTH__+0x43e>
 		}
 		
 		if(state == 4){ // state : give 1 card to player 2
- 736:	30 91 e3 01 	lds	r19, 0x01E3	; 0x8001e3 <p2_card_cnt>
- 73a:	3f 5f       	subi	r19, 0xFF	; 255
+ 768:	30 91 cb 02 	lds	r19, 0x02CB	; 0x8002cb <p2_card_cnt>
+ 76c:	3f 5f       	subi	r19, 0xFF	; 255
 			temp = p2_card_cnt + 1;
- 73c:	30 93 e0 01 	sts	0x01E0, r19	; 0x8001e0 <__data_end>
- 740:	42 e0       	ldi	r20, 0x02	; 2
- 742:	22 c0       	rjmp	.+68     	; 0x788 <__LOCK_REGION_LENGTH__+0x388>
- 744:	92 b7       	in	r25, 0x32	; 50
+ 76e:	30 93 c8 02 	sts	0x02C8, r19	; 0x8002c8 <temp>
+ 772:	42 e0       	ldi	r20, 0x02	; 2
+ 774:	22 c0       	rjmp	.+68     	; 0x7ba <__LOCK_REGION_LENGTH__+0x3ba>
+ 776:	92 b7       	in	r25, 0x32	; 50
 			while(p2_card_cnt < temp){
 				random_value = TCNT0%NUM_CARD;
 				if(deck[random_value].owner == 0){
 					deck[random_value].owner = 2;
- 746:	98 9d       	mul	r25, r8
+ 778:	98 9d       	mul	r25, r8
 			state = 5;
 		}
 		
 		if(state == 4){ // state : give 1 card to player 2
 			temp = p2_card_cnt + 1;
 			while(p2_card_cnt < temp){
- 748:	81 2d       	mov	r24, r1
+ 77a:	81 2d       	mov	r24, r1
 				random_value = TCNT0%NUM_CARD;
- 74a:	11 24       	eor	r1, r1
- 74c:	82 95       	swap	r24
- 74e:	8f 70       	andi	r24, 0x0F	; 15
- 750:	89 9d       	mul	r24, r9
- 752:	90 19       	sub	r25, r0
- 754:	11 24       	eor	r1, r1
- 756:	90 93 1f 02 	sts	0x021F, r25	; 0x80021f <random_value>
- 75a:	89 2f       	mov	r24, r25
- 75c:	90 e0       	ldi	r25, 0x00	; 0
- 75e:	fc 01       	movw	r30, r24
+ 77c:	11 24       	eor	r1, r1
+ 77e:	82 95       	swap	r24
+ 780:	8f 70       	andi	r24, 0x0F	; 15
+ 782:	89 9d       	mul	r24, r9
+ 784:	90 19       	sub	r25, r0
+ 786:	11 24       	eor	r1, r1
+ 788:	90 93 07 03 	sts	0x0307, r25	; 0x800307 <random_value>
+ 78c:	89 2f       	mov	r24, r25
+ 78e:	90 e0       	ldi	r25, 0x00	; 0
+ 790:	fc 01       	movw	r30, r24
 				if(deck[random_value].owner == 0){
- 760:	ee 0f       	add	r30, r30
- 762:	ff 1f       	adc	r31, r31
- 764:	ee 0f       	add	r30, r30
- 766:	ff 1f       	adc	r31, r31
- 768:	e0 5b       	subi	r30, 0xB0	; 176
- 76a:	fd 4f       	sbci	r31, 0xFD	; 253
- 76c:	52 81       	ldd	r21, Z+2	; 0x02
- 76e:	51 11       	cpse	r21, r1
- 770:	0d c0       	rjmp	.+26     	; 0x78c <__LOCK_REGION_LENGTH__+0x38c>
- 772:	88 0f       	add	r24, r24
- 774:	99 1f       	adc	r25, r25
+ 792:	ee 0f       	add	r30, r30
+ 794:	ff 1f       	adc	r31, r31
+ 796:	ee 0f       	add	r30, r30
+ 798:	ff 1f       	adc	r31, r31
+ 79a:	e8 5c       	subi	r30, 0xC8	; 200
+ 79c:	fc 4f       	sbci	r31, 0xFC	; 252
+ 79e:	52 81       	ldd	r21, Z+2	; 0x02
+ 7a0:	51 11       	cpse	r21, r1
+ 7a2:	0d c0       	rjmp	.+26     	; 0x7be <__LOCK_REGION_LENGTH__+0x3be>
+ 7a4:	88 0f       	add	r24, r24
+ 7a6:	99 1f       	adc	r25, r25
 					deck[random_value].owner = 2;
- 776:	88 0f       	add	r24, r24
- 778:	99 1f       	adc	r25, r25
- 77a:	fc 01       	movw	r30, r24
- 77c:	e0 5b       	subi	r30, 0xB0	; 176
- 77e:	fd 4f       	sbci	r31, 0xFD	; 253
- 780:	42 83       	std	Z+2, r20	; 0x02
- 782:	2f 5f       	subi	r18, 0xFF	; 255
- 784:	20 93 e3 01 	sts	0x01E3, r18	; 0x8001e3 <p2_card_cnt>
+ 7a8:	88 0f       	add	r24, r24
+ 7aa:	99 1f       	adc	r25, r25
+ 7ac:	fc 01       	movw	r30, r24
+ 7ae:	e8 5c       	subi	r30, 0xC8	; 200
+ 7b0:	fc 4f       	sbci	r31, 0xFC	; 252
+ 7b2:	42 83       	std	Z+2, r20	; 0x02
+ 7b4:	2f 5f       	subi	r18, 0xFF	; 255
+ 7b6:	20 93 cb 02 	sts	0x02CB, r18	; 0x8002cb <p2_card_cnt>
 					p2_card_cnt++;
- 788:	20 91 e3 01 	lds	r18, 0x01E3	; 0x8001e3 <p2_card_cnt>
+ 7ba:	20 91 cb 02 	lds	r18, 0x02CB	; 0x8002cb <p2_card_cnt>
 			state = 5;
 		}
 		
 		if(state == 4){ // state : give 1 card to player 2
 			temp = p2_card_cnt + 1;
 			while(p2_card_cnt < temp){
- 78c:	23 17       	cp	r18, r19
- 78e:	d0 f2       	brcs	.-76     	; 0x744 <__LOCK_REGION_LENGTH__+0x344>
- 790:	10 92 e0 01 	sts	0x01E0, r1	; 0x8001e0 <__data_end>
+ 7be:	23 17       	cp	r18, r19
+ 7c0:	d0 f2       	brcs	.-76     	; 0x776 <__LOCK_REGION_LENGTH__+0x376>
+ 7c2:	10 92 c8 02 	sts	0x02C8, r1	; 0x8002c8 <temp>
 				if(deck[random_value].owner == 0){
 					deck[random_value].owner = 2;
 					p2_card_cnt++;
 				}
 			}
 			temp = 0;
- 794:	89 e0       	ldi	r24, 0x09	; 9
+ 7c6:	89 e0       	ldi	r24, 0x09	; 9
 			USART1_Transmit_String("P2 Deck : ");
- 796:	91 e0       	ldi	r25, 0x01	; 1
- 798:	ce dc       	rcall	.-1636   	; 0x136 <USART1_Transmit_String>
- 79a:	e2 01       	movw	r28, r4
- 79c:	8a 81       	ldd	r24, Y+2	; 0x02
- 79e:	82 30       	cpi	r24, 0x02	; 2
+ 7c8:	91 e0       	ldi	r25, 0x01	; 1
+ 7ca:	b5 dc       	rcall	.-1686   	; 0x136 <USART1_Transmit_String>
+ 7cc:	e2 01       	movw	r28, r4
+ 7ce:	8a 81       	ldd	r24, Y+2	; 0x02
+ 7d0:	82 30       	cpi	r24, 0x02	; 2
 			for(int i=0; i<NUM_CARD; i++){
 				if(deck[i].owner == 2){
- 7a0:	41 f5       	brne	.+80     	; 0x7f2 <__LOCK_REGION_LENGTH__+0x3f2>
- 7a2:	e0 91 e0 01 	lds	r30, 0x01E0	; 0x8001e0 <__data_end>
+ 7d2:	41 f5       	brne	.+80     	; 0x824 <__LOCK_REGION_LENGTH__+0x424>
+ 7d4:	e0 91 c8 02 	lds	r30, 0x02C8	; 0x8002c8 <temp>
 					p2_deck[temp] = deck[i];
- 7a6:	f0 e0       	ldi	r31, 0x00	; 0
- 7a8:	ee 0f       	add	r30, r30
- 7aa:	ff 1f       	adc	r31, r31
- 7ac:	ee 0f       	add	r30, r30
- 7ae:	ff 1f       	adc	r31, r31
- 7b0:	e0 5e       	subi	r30, 0xE0	; 224
- 7b2:	fd 4f       	sbci	r31, 0xFD	; 253
- 7b4:	88 81       	ld	r24, Y
- 7b6:	39 81       	ldd	r19, Y+1	; 0x01
- 7b8:	2a 81       	ldd	r18, Y+2	; 0x02
- 7ba:	9b 81       	ldd	r25, Y+3	; 0x03
- 7bc:	68 2f       	mov	r22, r24
- 7be:	80 83       	st	Z, r24
- 7c0:	31 83       	std	Z+1, r19	; 0x01
- 7c2:	22 83       	std	Z+2, r18	; 0x02
- 7c4:	93 83       	std	Z+3, r25	; 0x03
+ 7d8:	f0 e0       	ldi	r31, 0x00	; 0
+ 7da:	ee 0f       	add	r30, r30
+ 7dc:	ff 1f       	adc	r31, r31
+ 7de:	ee 0f       	add	r30, r30
+ 7e0:	ff 1f       	adc	r31, r31
+ 7e2:	e8 5f       	subi	r30, 0xF8	; 248
+ 7e4:	fc 4f       	sbci	r31, 0xFC	; 252
+ 7e6:	88 81       	ld	r24, Y
+ 7e8:	39 81       	ldd	r19, Y+1	; 0x01
+ 7ea:	2a 81       	ldd	r18, Y+2	; 0x02
+ 7ec:	9b 81       	ldd	r25, Y+3	; 0x03
+ 7ee:	68 2f       	mov	r22, r24
+ 7f0:	80 83       	st	Z, r24
+ 7f2:	31 83       	std	Z+1, r19	; 0x01
+ 7f4:	22 83       	std	Z+2, r18	; 0x02
+ 7f6:	93 83       	std	Z+3, r25	; 0x03
 					USART_Transmit_number(1, p2_deck[temp].color);
- 7c6:	81 e0       	ldi	r24, 0x01	; 1
+ 7f8:	81 e0       	ldi	r24, 0x01	; 1
 					USART_Transmit_number(1, p2_deck[temp].number);
- 7c8:	c4 dc       	rcall	.-1656   	; 0x152 <USART_Transmit_number>
- 7ca:	e0 91 e0 01 	lds	r30, 0x01E0	; 0x8001e0 <__data_end>
- 7ce:	f0 e0       	ldi	r31, 0x00	; 0
- 7d0:	ee 0f       	add	r30, r30
- 7d2:	ff 1f       	adc	r31, r31
- 7d4:	ee 0f       	add	r30, r30
- 7d6:	ff 1f       	adc	r31, r31
- 7d8:	e0 5e       	subi	r30, 0xE0	; 224
- 7da:	fd 4f       	sbci	r31, 0xFD	; 253
- 7dc:	61 81       	ldd	r22, Z+1	; 0x01
- 7de:	81 e0       	ldi	r24, 0x01	; 1
- 7e0:	b8 dc       	rcall	.-1680   	; 0x152 <USART_Transmit_number>
+ 7fa:	ab dc       	rcall	.-1706   	; 0x152 <USART_Transmit_number>
+ 7fc:	e0 91 c8 02 	lds	r30, 0x02C8	; 0x8002c8 <temp>
+ 800:	f0 e0       	ldi	r31, 0x00	; 0
+ 802:	ee 0f       	add	r30, r30
+ 804:	ff 1f       	adc	r31, r31
+ 806:	ee 0f       	add	r30, r30
+ 808:	ff 1f       	adc	r31, r31
+ 80a:	e8 5f       	subi	r30, 0xF8	; 248
+ 80c:	fc 4f       	sbci	r31, 0xFC	; 252
+ 80e:	61 81       	ldd	r22, Z+1	; 0x01
+ 810:	81 e0       	ldi	r24, 0x01	; 1
+ 812:	9f dc       	rcall	.-1730   	; 0x152 <USART_Transmit_number>
 					USART1_Transmit_String("   ");
- 7e2:	87 e1       	ldi	r24, 0x17	; 23
- 7e4:	91 e0       	ldi	r25, 0x01	; 1
- 7e6:	a7 dc       	rcall	.-1714   	; 0x136 <USART1_Transmit_String>
- 7e8:	80 91 e0 01 	lds	r24, 0x01E0	; 0x8001e0 <__data_end>
+ 814:	87 e1       	ldi	r24, 0x17	; 23
+ 816:	91 e0       	ldi	r25, 0x01	; 1
+ 818:	8e dc       	rcall	.-1764   	; 0x136 <USART1_Transmit_String>
+ 81a:	80 91 c8 02 	lds	r24, 0x02C8	; 0x8002c8 <temp>
 					temp++;
- 7ec:	8f 5f       	subi	r24, 0xFF	; 255
- 7ee:	80 93 e0 01 	sts	0x01E0, r24	; 0x8001e0 <__data_end>
+ 81e:	8f 5f       	subi	r24, 0xFF	; 255
+ 820:	80 93 c8 02 	sts	0x02C8, r24	; 0x8002c8 <temp>
+ 824:	24 96       	adiw	r28, 0x04	; 4
 					p2_card_cnt++;
 				}
 			}
 			temp = 0;
 			USART1_Transmit_String("P2 Deck : ");
 			for(int i=0; i<NUM_CARD; i++){
- 7f2:	24 96       	adiw	r28, 0x04	; 4
- 7f4:	ca 15       	cp	r28, r10
- 7f6:	db 05       	cpc	r29, r11
+ 826:	ac 16       	cp	r10, r28
 					USART_Transmit_number(1, p2_deck[temp].number);
 					USART1_Transmit_String("   ");
 					temp++;
 				}
 			}
 			USART1_Transmit_String("\r\n");
- 7f8:	89 f6       	brne	.-94     	; 0x79c <__LOCK_REGION_LENGTH__+0x39c>
- 7fa:	8d e4       	ldi	r24, 0x4D	; 77
- 7fc:	91 e0       	ldi	r25, 0x01	; 1
- 7fe:	9b dc       	rcall	.-1738   	; 0x136 <USART1_Transmit_String>
+ 828:	bd 06       	cpc	r11, r29
+ 82a:	89 f6       	brne	.-94     	; 0x7ce <__LOCK_REGION_LENGTH__+0x3ce>
+ 82c:	81 e9       	ldi	r24, 0x91	; 145
 			showP1toP2();
- 800:	83 dd       	rcall	.-1274   	; 0x308 <showP1toP2>
- 802:	70 92 e6 01 	sts	0x01E6, r7	; 0x8001e6 <state+0x1>
+ 82e:	92 e0       	ldi	r25, 0x02	; 2
+ 830:	82 dc       	rcall	.-1788   	; 0x136 <USART1_Transmit_String>
 			state = 10;
- 806:	60 92 e5 01 	sts	0x01E5, r6	; 0x8001e5 <state>
- 80a:	4b c0       	rjmp	.+150    	; 0x8a2 <__LOCK_REGION_LENGTH__+0x4a2>
- 80c:	80 91 e5 01 	lds	r24, 0x01E5	; 0x8001e5 <state>
+ 832:	6a dd       	rcall	.-1324   	; 0x308 <showP1toP2>
+ 834:	70 92 ce 02 	sts	0x02CE, r7	; 0x8002ce <state+0x1>
+ 838:	60 92 cd 02 	sts	0x02CD, r6	; 0x8002cd <state>
 		}
 		if(state == 5){ // state 5 
- 810:	90 91 e6 01 	lds	r25, 0x01E6	; 0x8001e6 <state+0x1>
- 814:	05 97       	sbiw	r24, 0x05	; 5
- 816:	d9 f4       	brne	.+54     	; 0x84e <__LOCK_REGION_LENGTH__+0x44e>
- 818:	89 ef       	ldi	r24, 0xF9	; 249
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
- 81a:	90 e0       	ldi	r25, 0x00	; 0
- 81c:	01 97       	sbiw	r24, 0x01	; 1
- 81e:	f1 f7       	brne	.-4      	; 0x81c <__LOCK_REGION_LENGTH__+0x41c>
- 820:	00 c0       	rjmp	.+0      	; 0x822 <__LOCK_REGION_LENGTH__+0x422>
-			_delay_ms(1);
-			USART0_Transmit_String("Choose Card to Open : "); // 몇 번째에 있는 카드 선택인지
- 822:	00 00       	nop
- 824:	87 e6       	ldi	r24, 0x67	; 103
- 826:	91 e0       	ldi	r25, 0x01	; 1
+ 83c:	6a c0       	rjmp	.+212    	; 0x912 <__LOCK_REGION_LENGTH__+0x512>
+ 83e:	80 91 cd 02 	lds	r24, 0x02CD	; 0x8002cd <state>
+ 842:	90 91 ce 02 	lds	r25, 0x02CE	; 0x8002ce <state+0x1>
+ 846:	05 97       	sbiw	r24, 0x05	; 5
+ 848:	09 f0       	breq	.+2      	; 0x84c <__LOCK_REGION_LENGTH__+0x44c>
+			//_delay_ms(1);
+			if(p1_corr_flag == 0) USART0_Transmit_String("Choose Card to Open : ");
+ 84a:	3d c0       	rjmp	.+122    	; 0x8c6 <__LOCK_REGION_LENGTH__+0x4c6>
+ 84c:	80 91 c7 02 	lds	r24, 0x02C7	; 0x8002c7 <p1_corr_flag>
+ 850:	81 11       	cpse	r24, r1
+ 852:	04 c0       	rjmp	.+8      	; 0x85c <__LOCK_REGION_LENGTH__+0x45c>
+ 854:	87 e6       	ldi	r24, 0x67	; 103
+ 856:	91 e0       	ldi	r25, 0x01	; 1
+ 858:	49 dc       	rcall	.-1902   	; 0xec <USART0_Transmit_String>
+ 85a:	05 c0       	rjmp	.+10     	; 0x866 <__LOCK_REGION_LENGTH__+0x466>
+			else if(p1_corr_flag == 1) USART0_Transmit_String("Choose Card to Open, Press P to Pass : "); // 몇 번째에 있는 카드 선택인지
+ 85c:	81 30       	cpi	r24, 0x01	; 1
+ 85e:	19 f4       	brne	.+6      	; 0x866 <__LOCK_REGION_LENGTH__+0x466>
+ 860:	8e e7       	ldi	r24, 0x7E	; 126
+ 862:	91 e0       	ldi	r25, 0x01	; 1
+ 864:	43 dc       	rcall	.-1914   	; 0xec <USART0_Transmit_String>
 			rx = USART0_Receive();
- 828:	61 dc       	rcall	.-1854   	; 0xec <USART0_Transmit_String>
- 82a:	6e dc       	rcall	.-1828   	; 0x108 <USART0_Receive>
- 82c:	80 93 17 02 	sts	0x0217, r24	; 0x800217 <rx>
+ 866:	50 dc       	rcall	.-1888   	; 0x108 <USART0_Receive>
+ 868:	80 93 ff 02 	sts	0x02FF, r24	; 0x8002ff <rx>
 			USART0_Transmit(rx);
- 830:	59 dc       	rcall	.-1870   	; 0xe4 <USART0_Transmit>
- 832:	80 91 17 02 	lds	r24, 0x0217	; 0x800217 <rx>
+ 86c:	3b dc       	rcall	.-1930   	; 0xe4 <USART0_Transmit>
 			if((rx >= '0')&&(rx <= '9')){
- 836:	80 53       	subi	r24, 0x30	; 48
- 838:	8a 30       	cpi	r24, 0x0A	; 10
- 83a:	48 f4       	brcc	.+18     	; 0x84e <__LOCK_REGION_LENGTH__+0x44e>
- 83c:	d7 01       	movw	r26, r14
+ 86e:	90 91 ff 02 	lds	r25, 0x02FF	; 0x8002ff <rx>
+ 872:	80 ed       	ldi	r24, 0xD0	; 208
+ 874:	89 0f       	add	r24, r25
+ 876:	8a 30       	cpi	r24, 0x0A	; 10
+ 878:	68 f4       	brcc	.+26     	; 0x894 <__LOCK_REGION_LENGTH__+0x494>
 				get_number_1[0] = rx-48;
- 83e:	8c 93       	st	X, r24
- 840:	86 e0       	ldi	r24, 0x06	; 6
+ 87a:	d8 01       	movw	r26, r16
+ 87c:	8c 93       	st	X, r24
 				state = 6;	
- 842:	90 e0       	ldi	r25, 0x00	; 0
- 844:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
- 848:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- 84c:	06 c0       	rjmp	.+12     	; 0x85a <__LOCK_REGION_LENGTH__+0x45a>
- 84e:	80 91 e5 01 	lds	r24, 0x01E5	; 0x8001e5 <state>
+ 87e:	26 e0       	ldi	r18, 0x06	; 6
+ 880:	30 e0       	ldi	r19, 0x00	; 0
+ 882:	30 93 ce 02 	sts	0x02CE, r19	; 0x8002ce <state+0x1>
+ 886:	20 93 cd 02 	sts	0x02CD, r18	; 0x8002cd <state>
+			}
+			if(p1_corr_flag == 1 && rx == 'P'){
+ 88a:	80 91 c7 02 	lds	r24, 0x02C7	; 0x8002c7 <p1_corr_flag>
+ 88e:	81 30       	cpi	r24, 0x01	; 1
+ 890:	01 f5       	brne	.+64     	; 0x8d2 <__LOCK_REGION_LENGTH__+0x4d2>
+ 892:	07 c2       	rjmp	.+1038   	; 0xca2 <__LOCK_REGION_LENGTH__+0x8a2>
+ 894:	80 91 c7 02 	lds	r24, 0x02C7	; 0x8002c7 <p1_corr_flag>
+ 898:	81 30       	cpi	r24, 0x01	; 1
+ 89a:	a9 f4       	brne	.+42     	; 0x8c6 <__LOCK_REGION_LENGTH__+0x4c6>
+				USART0_Transmit_String("\r\n");
+ 89c:	90 35       	cpi	r25, 0x50	; 80
+ 89e:	99 f4       	brne	.+38     	; 0x8c6 <__LOCK_REGION_LENGTH__+0x4c6>
+ 8a0:	81 e9       	ldi	r24, 0x91	; 145
+ 8a2:	92 e0       	ldi	r25, 0x02	; 2
+				USART0_Transmit_String("Passed\r\n");
+ 8a4:	23 dc       	rcall	.-1978   	; 0xec <USART0_Transmit_String>
+ 8a6:	86 ea       	ldi	r24, 0xA6	; 166
+ 8a8:	91 e0       	ldi	r25, 0x01	; 1
+ 8aa:	20 dc       	rcall	.-1984   	; 0xec <USART0_Transmit_String>
+				USART0_Transmit_String("-------------------------------------------\r\n");
+ 8ac:	8f ea       	ldi	r24, 0xAF	; 175
+ 8ae:	91 e0       	ldi	r25, 0x01	; 1
+ 8b0:	1d dc       	rcall	.-1990   	; 0xec <USART0_Transmit_String>
+ 8b2:	8d ed       	ldi	r24, 0xDD	; 221
+				USART1_Transmit_String("Player 1 Passed, It's your turn\r\n");
+ 8b4:	91 e0       	ldi	r25, 0x01	; 1
+ 8b6:	3f dc       	rcall	.-1922   	; 0x136 <USART1_Transmit_String>
+ 8b8:	84 e0       	ldi	r24, 0x04	; 4
+ 8ba:	90 e0       	ldi	r25, 0x00	; 0
+				state = 4;
+ 8bc:	90 93 ce 02 	sts	0x02CE, r25	; 0x8002ce <state+0x1>
+ 8c0:	80 93 cd 02 	sts	0x02CD, r24	; 0x8002cd <state>
+ 8c4:	41 c0       	rjmp	.+130    	; 0x948 <__LOCK_REGION_LENGTH__+0x548>
+ 8c6:	80 91 cd 02 	lds	r24, 0x02CD	; 0x8002cd <state>
 			}
 		} // state 3 end
 		if(state == 6){ // state 4
- 852:	90 91 e6 01 	lds	r25, 0x01E6	; 0x8001e6 <state+0x1>
- 856:	06 97       	sbiw	r24, 0x06	; 6
- 858:	21 f5       	brne	.+72     	; 0x8a2 <__LOCK_REGION_LENGTH__+0x4a2>
- 85a:	56 dc       	rcall	.-1876   	; 0x108 <USART0_Receive>
+ 8ca:	90 91 ce 02 	lds	r25, 0x02CE	; 0x8002ce <state+0x1>
+ 8ce:	06 97       	sbiw	r24, 0x06	; 6
+ 8d0:	01 f5       	brne	.+64     	; 0x912 <__LOCK_REGION_LENGTH__+0x512>
+ 8d2:	10 92 c7 02 	sts	0x02C7, r1	; 0x8002c7 <p1_corr_flag>
+			p1_corr_flag = 0;
 			rx = USART0_Receive();
- 85c:	80 93 17 02 	sts	0x0217, r24	; 0x800217 <rx>
- 860:	41 dc       	rcall	.-1918   	; 0xe4 <USART0_Transmit>
- 862:	8d e4       	ldi	r24, 0x4D	; 77
+ 8d6:	18 dc       	rcall	.-2000   	; 0x108 <USART0_Receive>
+ 8d8:	80 93 ff 02 	sts	0x02FF, r24	; 0x8002ff <rx>
 			USART0_Transmit(rx);
- 864:	91 e0       	ldi	r25, 0x01	; 1
- 866:	42 dc       	rcall	.-1916   	; 0xec <USART0_Transmit_String>
+ 8dc:	03 dc       	rcall	.-2042   	; 0xe4 <USART0_Transmit>
+ 8de:	81 e9       	ldi	r24, 0x91	; 145
 			USART0_Transmit_String("\r\n");
- 868:	80 91 17 02 	lds	r24, 0x0217	; 0x800217 <rx>
- 86c:	80 53       	subi	r24, 0x30	; 48
+ 8e0:	92 e0       	ldi	r25, 0x02	; 2
+ 8e2:	04 dc       	rcall	.-2040   	; 0xec <USART0_Transmit_String>
+ 8e4:	80 91 ff 02 	lds	r24, 0x02FF	; 0x8002ff <rx>
 			if((rx >= '0')&&(rx <= '9')){
- 86e:	8a 30       	cpi	r24, 0x0A	; 10
- 870:	c0 f4       	brcc	.+48     	; 0x8a2 <__LOCK_REGION_LENGTH__+0x4a2>
- 872:	f7 01       	movw	r30, r14
- 874:	81 83       	std	Z+1, r24	; 0x01
+ 8e8:	80 53       	subi	r24, 0x30	; 48
+ 8ea:	8a 30       	cpi	r24, 0x0A	; 10
+ 8ec:	90 f4       	brcc	.+36     	; 0x912 <__LOCK_REGION_LENGTH__+0x512>
+ 8ee:	f8 01       	movw	r30, r16
+ 8f0:	81 83       	std	Z+1, r24	; 0x01
 				get_number_1[1] = rx-48;
- 876:	90 81       	ld	r25, Z
- 878:	99 0f       	add	r25, r25
+ 8f2:	90 81       	ld	r25, Z
+ 8f4:	99 0f       	add	r25, r25
 				get_number_1[2] = get_number_1[0]*10 + get_number_1[1] - 1;
- 87a:	29 2f       	mov	r18, r25
- 87c:	22 0f       	add	r18, r18
- 87e:	22 0f       	add	r18, r18
- 880:	92 0f       	add	r25, r18
- 882:	89 0f       	add	r24, r25
- 884:	81 50       	subi	r24, 0x01	; 1
- 886:	82 83       	std	Z+2, r24	; 0x02
- 888:	89 ef       	ldi	r24, 0xF9	; 249
- 88a:	90 e0       	ldi	r25, 0x00	; 0
- 88c:	01 97       	sbiw	r24, 0x01	; 1
- 88e:	f1 f7       	brne	.-4      	; 0x88c <__LOCK_REGION_LENGTH__+0x48c>
- 890:	00 c0       	rjmp	.+0      	; 0x892 <__LOCK_REGION_LENGTH__+0x492>
- 892:	00 00       	nop
- 894:	87 e0       	ldi	r24, 0x07	; 7
- 896:	90 e0       	ldi	r25, 0x00	; 0
-				_delay_ms(1);
+ 8f6:	29 2f       	mov	r18, r25
+ 8f8:	22 0f       	add	r18, r18
+ 8fa:	22 0f       	add	r18, r18
+ 8fc:	92 0f       	add	r25, r18
+ 8fe:	89 0f       	add	r24, r25
+ 900:	81 50       	subi	r24, 0x01	; 1
+ 902:	82 83       	std	Z+2, r24	; 0x02
+ 904:	87 e0       	ldi	r24, 0x07	; 7
+				//_delay_ms(1);
 				state = 7;
- 898:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
- 89c:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- 8a0:	06 c0       	rjmp	.+12     	; 0x8ae <__LOCK_REGION_LENGTH__+0x4ae>
+ 906:	90 e0       	ldi	r25, 0x00	; 0
+ 908:	90 93 ce 02 	sts	0x02CE, r25	; 0x8002ce <state+0x1>
+ 90c:	80 93 cd 02 	sts	0x02CD, r24	; 0x8002cd <state>
+ 910:	06 c0       	rjmp	.+12     	; 0x91e <__LOCK_REGION_LENGTH__+0x51e>
 			}			
 		} // state 4 end
 		if(state == 7){ // state 5
- 8a2:	80 91 e5 01 	lds	r24, 0x01E5	; 0x8001e5 <state>
- 8a6:	90 91 e6 01 	lds	r25, 0x01E6	; 0x8001e6 <state+0x1>
- 8aa:	07 97       	sbiw	r24, 0x07	; 7
+ 912:	80 91 cd 02 	lds	r24, 0x02CD	; 0x8002cd <state>
+ 916:	90 91 ce 02 	lds	r25, 0x02CE	; 0x8002ce <state+0x1>
+ 91a:	07 97       	sbiw	r24, 0x07	; 7
+ 91c:	a9 f4       	brne	.+42     	; 0x948 <__LOCK_REGION_LENGTH__+0x548>
 			USART0_Transmit_String("Number? : "); // 카드가 무엇인지
- 8ac:	a9 f4       	brne	.+42     	; 0x8d8 <__LOCK_REGION_LENGTH__+0x4d8>
- 8ae:	8e e7       	ldi	r24, 0x7E	; 126
- 8b0:	91 e0       	ldi	r25, 0x01	; 1
- 8b2:	1c dc       	rcall	.-1992   	; 0xec <USART0_Transmit_String>
+ 91e:	8f ef       	ldi	r24, 0xFF	; 255
+ 920:	91 e0       	ldi	r25, 0x01	; 1
+ 922:	e4 db       	rcall	.-2104   	; 0xec <USART0_Transmit_String>
+ 924:	f1 db       	rcall	.-2078   	; 0x108 <USART0_Receive>
 			rx = USART0_Receive();
- 8b4:	29 dc       	rcall	.-1966   	; 0x108 <USART0_Receive>
- 8b6:	80 93 17 02 	sts	0x0217, r24	; 0x800217 <rx>
- 8ba:	14 dc       	rcall	.-2008   	; 0xe4 <USART0_Transmit>
+ 926:	80 93 ff 02 	sts	0x02FF, r24	; 0x8002ff <rx>
+ 92a:	dc db       	rcall	.-2120   	; 0xe4 <USART0_Transmit>
+ 92c:	80 91 ff 02 	lds	r24, 0x02FF	; 0x8002ff <rx>
 			USART0_Transmit(rx);
- 8bc:	80 91 17 02 	lds	r24, 0x0217	; 0x800217 <rx>
+ 930:	80 53       	subi	r24, 0x30	; 48
 			if((rx >= '0')&&(rx <= '9')){
- 8c0:	80 53       	subi	r24, 0x30	; 48
- 8c2:	8a 30       	cpi	r24, 0x0A	; 10
- 8c4:	48 f4       	brcc	.+18     	; 0x8d8 <__LOCK_REGION_LENGTH__+0x4d8>
- 8c6:	d8 01       	movw	r26, r16
- 8c8:	8c 93       	st	X, r24
+ 932:	8a 30       	cpi	r24, 0x0A	; 10
+ 934:	48 f4       	brcc	.+18     	; 0x948 <__LOCK_REGION_LENGTH__+0x548>
+ 936:	d7 01       	movw	r26, r14
+ 938:	8c 93       	st	X, r24
+ 93a:	88 e0       	ldi	r24, 0x08	; 8
 				get_number_2[0] = rx-48;
- 8ca:	88 e0       	ldi	r24, 0x08	; 8
- 8cc:	90 e0       	ldi	r25, 0x00	; 0
+ 93c:	90 e0       	ldi	r25, 0x00	; 0
+ 93e:	90 93 ce 02 	sts	0x02CE, r25	; 0x8002ce <state+0x1>
 				state = 8;
- 8ce:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
- 8d2:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- 8d6:	06 c0       	rjmp	.+12     	; 0x8e4 <__LOCK_REGION_LENGTH__+0x4e4>
- 8d8:	80 91 e5 01 	lds	r24, 0x01E5	; 0x8001e5 <state>
+ 942:	80 93 cd 02 	sts	0x02CD, r24	; 0x8002cd <state>
+ 946:	06 c0       	rjmp	.+12     	; 0x954 <__LOCK_REGION_LENGTH__+0x554>
+ 948:	80 91 cd 02 	lds	r24, 0x02CD	; 0x8002cd <state>
+ 94c:	90 91 ce 02 	lds	r25, 0x02CE	; 0x8002ce <state+0x1>
 			}
 		} // state 5 end
 		if(state == 8){ // state 8
- 8dc:	90 91 e6 01 	lds	r25, 0x01E6	; 0x8001e6 <state+0x1>
- 8e0:	08 97       	sbiw	r24, 0x08	; 8
- 8e2:	e9 f4       	brne	.+58     	; 0x91e <__LOCK_REGION_LENGTH__+0x51e>
- 8e4:	11 dc       	rcall	.-2014   	; 0x108 <USART0_Receive>
- 8e6:	80 93 17 02 	sts	0x0217, r24	; 0x800217 <rx>
+ 950:	08 97       	sbiw	r24, 0x08	; 8
+ 952:	e9 f4       	brne	.+58     	; 0x98e <__LOCK_REGION_LENGTH__+0x58e>
+ 954:	d9 db       	rcall	.-2126   	; 0x108 <USART0_Receive>
+ 956:	80 93 ff 02 	sts	0x02FF, r24	; 0x8002ff <rx>
 			rx = USART0_Receive();
- 8ea:	fc db       	rcall	.-2056   	; 0xe4 <USART0_Transmit>
- 8ec:	8d e4       	ldi	r24, 0x4D	; 77
- 8ee:	91 e0       	ldi	r25, 0x01	; 1
+ 95a:	c4 db       	rcall	.-2168   	; 0xe4 <USART0_Transmit>
+ 95c:	81 e9       	ldi	r24, 0x91	; 145
+ 95e:	92 e0       	ldi	r25, 0x02	; 2
+ 960:	c5 db       	rcall	.-2166   	; 0xec <USART0_Transmit_String>
 			USART0_Transmit(rx);
- 8f0:	fd db       	rcall	.-2054   	; 0xec <USART0_Transmit_String>
- 8f2:	80 91 17 02 	lds	r24, 0x0217	; 0x800217 <rx>
+ 962:	80 91 ff 02 	lds	r24, 0x02FF	; 0x8002ff <rx>
 			USART0_Transmit_String("\r\n");
- 8f6:	80 53       	subi	r24, 0x30	; 48
- 8f8:	8a 30       	cpi	r24, 0x0A	; 10
- 8fa:	88 f4       	brcc	.+34     	; 0x91e <__LOCK_REGION_LENGTH__+0x51e>
+ 966:	80 53       	subi	r24, 0x30	; 48
+ 968:	8a 30       	cpi	r24, 0x0A	; 10
+ 96a:	88 f4       	brcc	.+34     	; 0x98e <__LOCK_REGION_LENGTH__+0x58e>
 			if((rx >= '0')&&(rx <= '9')){
- 8fc:	f8 01       	movw	r30, r16
- 8fe:	81 83       	std	Z+1, r24	; 0x01
- 900:	90 81       	ld	r25, Z
- 902:	99 0f       	add	r25, r25
+ 96c:	f7 01       	movw	r30, r14
+ 96e:	81 83       	std	Z+1, r24	; 0x01
+ 970:	90 81       	ld	r25, Z
+ 972:	99 0f       	add	r25, r25
+ 974:	29 2f       	mov	r18, r25
 				get_number_2[1] = rx-48;
- 904:	29 2f       	mov	r18, r25
- 906:	22 0f       	add	r18, r18
+ 976:	22 0f       	add	r18, r18
+ 978:	22 0f       	add	r18, r18
 				get_number_2[2] = get_number_2[0]*10 + get_number_2[1];
- 908:	22 0f       	add	r18, r18
- 90a:	92 0f       	add	r25, r18
- 90c:	89 0f       	add	r24, r25
- 90e:	82 83       	std	Z+2, r24	; 0x02
- 910:	89 e0       	ldi	r24, 0x09	; 9
- 912:	90 e0       	ldi	r25, 0x00	; 0
- 914:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
+ 97a:	92 0f       	add	r25, r18
+ 97c:	89 0f       	add	r24, r25
+ 97e:	82 83       	std	Z+2, r24	; 0x02
+ 980:	89 e0       	ldi	r24, 0x09	; 9
+ 982:	90 e0       	ldi	r25, 0x00	; 0
+ 984:	90 93 ce 02 	sts	0x02CE, r25	; 0x8002ce <state+0x1>
+ 988:	80 93 cd 02 	sts	0x02CD, r24	; 0x8002cd <state>
 				state = 9;
- 918:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- 91c:	08 c0       	rjmp	.+16     	; 0x92e <__LOCK_REGION_LENGTH__+0x52e>
- 91e:	80 91 e5 01 	lds	r24, 0x01E5	; 0x8001e5 <state>
+ 98c:	08 c0       	rjmp	.+16     	; 0x99e <__LOCK_REGION_LENGTH__+0x59e>
+ 98e:	80 91 cd 02 	lds	r24, 0x02CD	; 0x8002cd <state>
+ 992:	90 91 ce 02 	lds	r25, 0x02CE	; 0x8002ce <state+0x1>
+ 996:	89 30       	cpi	r24, 0x09	; 9
 			}
 		} // state 8 end
 		if(state == 9){ // state 5
- 922:	90 91 e6 01 	lds	r25, 0x01E6	; 0x8001e6 <state+0x1>
- 926:	89 30       	cpi	r24, 0x09	; 9
- 928:	91 05       	cpc	r25, r1
- 92a:	09 f0       	breq	.+2      	; 0x92e <__LOCK_REGION_LENGTH__+0x52e>
- 92c:	67 c0       	rjmp	.+206    	; 0x9fc <__LOCK_REGION_LENGTH__+0x5fc>
- 92e:	d7 01       	movw	r26, r14
- 930:	12 96       	adiw	r26, 0x02	; 2
+ 998:	91 05       	cpc	r25, r1
+ 99a:	09 f0       	breq	.+2      	; 0x99e <__LOCK_REGION_LENGTH__+0x59e>
+ 99c:	61 c0       	rjmp	.+194    	; 0xa60 <__LOCK_REGION_LENGTH__+0x660>
+ 99e:	d8 01       	movw	r26, r16
+ 9a0:	12 96       	adiw	r26, 0x02	; 2
+ 9a2:	ec 91       	ld	r30, X
+ 9a4:	f0 e0       	ldi	r31, 0x00	; 0
+ 9a6:	ee 0f       	add	r30, r30
 			temp = p2_deck[(int)get_number_1[2]].number;
- 932:	ec 91       	ld	r30, X
- 934:	f0 e0       	ldi	r31, 0x00	; 0
- 936:	ee 0f       	add	r30, r30
- 938:	ff 1f       	adc	r31, r31
- 93a:	ee 0f       	add	r30, r30
- 93c:	ff 1f       	adc	r31, r31
- 93e:	e0 5e       	subi	r30, 0xE0	; 224
- 940:	fd 4f       	sbci	r31, 0xFD	; 253
- 942:	81 81       	ldd	r24, Z+1	; 0x01
- 944:	80 93 e0 01 	sts	0x01E0, r24	; 0x8001e0 <__data_end>
- 948:	89 e8       	ldi	r24, 0x89	; 137
- 94a:	91 e0       	ldi	r25, 0x01	; 1
-			USART0_Transmit_String("Target Number : ");
- 94c:	cf db       	rcall	.-2146   	; 0xec <USART0_Transmit_String>
- 94e:	60 91 e0 01 	lds	r22, 0x01E0	; 0x8001e0 <__data_end>
- 952:	80 e0       	ldi	r24, 0x00	; 0
-			USART_Transmit_number(0, temp);
- 954:	fe db       	rcall	.-2052   	; 0x152 <USART_Transmit_number>
- 956:	8d e4       	ldi	r24, 0x4D	; 77
- 958:	91 e0       	ldi	r25, 0x01	; 1
- 95a:	c8 db       	rcall	.-2160   	; 0xec <USART0_Transmit_String>
-			USART0_Transmit_String("\r\n");
- 95c:	f8 01       	movw	r30, r16
- 95e:	92 81       	ldd	r25, Z+2	; 0x02
- 960:	80 91 e0 01 	lds	r24, 0x01E0	; 0x8001e0 <__data_end>
+ 9a8:	ff 1f       	adc	r31, r31
+ 9aa:	ee 0f       	add	r30, r30
+ 9ac:	ff 1f       	adc	r31, r31
+ 9ae:	e8 5f       	subi	r30, 0xF8	; 248
+ 9b0:	fc 4f       	sbci	r31, 0xFC	; 252
+ 9b2:	81 81       	ldd	r24, Z+1	; 0x01
+ 9b4:	80 93 c8 02 	sts	0x02C8, r24	; 0x8002c8 <temp>
+ 9b8:	f7 01       	movw	r30, r14
+ 9ba:	92 81       	ldd	r25, Z+2	; 0x02
+ 9bc:	89 13       	cpse	r24, r25
+ 9be:	40 c0       	rjmp	.+128    	; 0xa40 <__LOCK_REGION_LENGTH__+0x640>
 			if(temp == get_number_2[2]){
- 964:	98 13       	cpse	r25, r24
- 966:	3d c0       	rjmp	.+122    	; 0x9e2 <__LOCK_REGION_LENGTH__+0x5e2>
- 968:	8a e9       	ldi	r24, 0x9A	; 154
- 96a:	91 e0       	ldi	r25, 0x01	; 1
- 96c:	bf db       	rcall	.-2178   	; 0xec <USART0_Transmit_String>
- 96e:	d7 01       	movw	r26, r14
+ 9c0:	8a e0       	ldi	r24, 0x0A	; 10
+ 9c2:	92 e0       	ldi	r25, 0x02	; 2
+ 9c4:	93 db       	rcall	.-2266   	; 0xec <USART0_Transmit_String>
+ 9c6:	d8 01       	movw	r26, r16
 				USART0_Transmit_String("Correct\r\n");
- 970:	12 96       	adiw	r26, 0x02	; 2
- 972:	cc 91       	ld	r28, X
- 974:	d0 e0       	ldi	r29, 0x00	; 0
- 976:	fe 01       	movw	r30, r28
+ 9c8:	12 96       	adiw	r26, 0x02	; 2
+ 9ca:	cc 91       	ld	r28, X
+ 9cc:	d0 e0       	ldi	r29, 0x00	; 0
+ 9ce:	fe 01       	movw	r30, r28
 				p2_deck[(int)get_number_1[2]].opened = 1;
- 978:	ee 0f       	add	r30, r30
- 97a:	ff 1f       	adc	r31, r31
- 97c:	ee 0f       	add	r30, r30
- 97e:	ff 1f       	adc	r31, r31
- 980:	e0 5e       	subi	r30, 0xE0	; 224
- 982:	fd 4f       	sbci	r31, 0xFD	; 253
- 984:	81 e0       	ldi	r24, 0x01	; 1
- 986:	83 83       	std	Z+3, r24	; 0x03
- 988:	91 81       	ldd	r25, Z+1	; 0x01
- 98a:	f2 01       	movw	r30, r4
- 98c:	cc 0f       	add	r28, r28
- 98e:	dd 1f       	adc	r29, r29
+ 9d0:	ee 0f       	add	r30, r30
+ 9d2:	ff 1f       	adc	r31, r31
+ 9d4:	ee 0f       	add	r30, r30
+ 9d6:	ff 1f       	adc	r31, r31
+ 9d8:	e8 5f       	subi	r30, 0xF8	; 248
+ 9da:	fc 4f       	sbci	r31, 0xFC	; 252
+ 9dc:	81 e0       	ldi	r24, 0x01	; 1
+ 9de:	83 83       	std	Z+3, r24	; 0x03
+ 9e0:	91 81       	ldd	r25, Z+1	; 0x01
+ 9e2:	f2 01       	movw	r30, r4
+ 9e4:	cc 0f       	add	r28, r28
+ 9e6:	dd 1f       	adc	r29, r29
 				for(int i=0;i<NUM_CARD;i++){
 					if(deck[i].number == p2_deck[(int)get_number_1[2]].number){
- 990:	cc 0f       	add	r28, r28
+ 9e8:	cc 0f       	add	r28, r28
+ 9ea:	dd 1f       	adc	r29, r29
 						if(deck[i].color == p2_deck[(int)get_number_1[2]].color){
- 992:	dd 1f       	adc	r29, r29
- 994:	c0 5e       	subi	r28, 0xE0	; 224
- 996:	dd 4f       	sbci	r29, 0xFD	; 253
- 998:	31 e0       	ldi	r19, 0x01	; 1
- 99a:	81 81       	ldd	r24, Z+1	; 0x01
- 99c:	89 13       	cpse	r24, r25
+ 9ec:	c8 5f       	subi	r28, 0xF8	; 248
+ 9ee:	dc 4f       	sbci	r29, 0xFC	; 252
+ 9f0:	31 e0       	ldi	r19, 0x01	; 1
+ 9f2:	81 81       	ldd	r24, Z+1	; 0x01
 							deck[i].opened = 1;
- 99e:	05 c0       	rjmp	.+10     	; 0x9aa <__LOCK_REGION_LENGTH__+0x5aa>
-			USART0_Transmit_String("\r\n");
+ 9f4:	89 13       	cpse	r24, r25
+			temp = p2_deck[(int)get_number_1[2]].number;
 			if(temp == get_number_2[2]){
 				USART0_Transmit_String("Correct\r\n");
 				p2_deck[(int)get_number_1[2]].opened = 1;
 				for(int i=0;i<NUM_CARD;i++){
 					if(deck[i].number == p2_deck[(int)get_number_1[2]].number){
- 9a0:	20 81       	ld	r18, Z
- 9a2:	88 81       	ld	r24, Y
- 9a4:	28 13       	cpse	r18, r24
+ 9f6:	05 c0       	rjmp	.+10     	; 0xa02 <__LOCK_REGION_LENGTH__+0x602>
+ 9f8:	20 81       	ld	r18, Z
+ 9fa:	88 81       	ld	r24, Y
 						if(deck[i].color == p2_deck[(int)get_number_1[2]].color){
- 9a6:	01 c0       	rjmp	.+2      	; 0x9aa <__LOCK_REGION_LENGTH__+0x5aa>
- 9a8:	33 83       	std	Z+3, r19	; 0x03
- 9aa:	34 96       	adiw	r30, 0x04	; 4
- 9ac:	ea 15       	cp	r30, r10
+ 9fc:	28 13       	cpse	r18, r24
+ 9fe:	01 c0       	rjmp	.+2      	; 0xa02 <__LOCK_REGION_LENGTH__+0x602>
+ a00:	33 83       	std	Z+3, r19	; 0x03
+ a02:	34 96       	adiw	r30, 0x04	; 4
 							deck[i].opened = 1;
- 9ae:	fb 05       	cpc	r31, r11
- 9b0:	a1 f7       	brne	.-24     	; 0x99a <__LOCK_REGION_LENGTH__+0x59a>
-			USART_Transmit_number(0, temp);
-			USART0_Transmit_String("\r\n");
+ a04:	ea 15       	cp	r30, r10
+ a06:	fb 05       	cpc	r31, r11
+		if(state == 9){ // state 5
+			temp = p2_deck[(int)get_number_1[2]].number;
 			if(temp == get_number_2[2]){
 				USART0_Transmit_String("Correct\r\n");
 				p2_deck[(int)get_number_1[2]].opened = 1;
 				for(int i=0;i<NUM_CARD;i++){
- 9b2:	7a dc       	rcall	.-1804   	; 0x2a8 <showP2toP1>
- 9b4:	80 91 e1 01 	lds	r24, 0x01E1	; 0x8001e1 <p2_opened_cnt>
-						if(deck[i].color == p2_deck[(int)get_number_1[2]].color){
+ a08:	a1 f7       	brne	.-24     	; 0x9f2 <__LOCK_REGION_LENGTH__+0x5f2>
+ a0a:	4e dc       	rcall	.-1892   	; 0x2a8 <showP2toP1>
+ a0c:	80 91 c9 02 	lds	r24, 0x02C9	; 0x8002c9 <p2_opened_cnt>
 							deck[i].opened = 1;
 						}
 					}
 				}		
 				showP2toP1();
- 9b8:	8f 5f       	subi	r24, 0xFF	; 255
 				p2_opened_cnt++;
- 9ba:	80 93 e1 01 	sts	0x01E1, r24	; 0x8001e1 <p2_opened_cnt>
- 9be:	90 91 e3 01 	lds	r25, 0x01E3	; 0x8001e3 <p2_card_cnt>
+ a10:	8f 5f       	subi	r24, 0xFF	; 255
+ a12:	80 93 c9 02 	sts	0x02C9, r24	; 0x8002c9 <p2_opened_cnt>
+ a16:	91 e0       	ldi	r25, 0x01	; 1
+ a18:	90 93 c7 02 	sts	0x02C7, r25	; 0x8002c7 <p1_corr_flag>
+				p1_corr_flag = 1;
 				if(p2_card_cnt == p2_opened_cnt) state = 30;
- 9c2:	89 13       	cpse	r24, r25
- 9c4:	07 c0       	rjmp	.+14     	; 0x9d4 <__LOCK_REGION_LENGTH__+0x5d4>
- 9c6:	8e e1       	ldi	r24, 0x1E	; 30
- 9c8:	90 e0       	ldi	r25, 0x00	; 0
- 9ca:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
- 9ce:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- 9d2:	5b c0       	rjmp	.+182    	; 0xa8a <__LOCK_REGION_LENGTH__+0x68a>
- 9d4:	85 e0       	ldi	r24, 0x05	; 5
- 9d6:	90 e0       	ldi	r25, 0x00	; 0
+ a1c:	90 91 cb 02 	lds	r25, 0x02CB	; 0x8002cb <p2_card_cnt>
+ a20:	89 13       	cpse	r24, r25
+ a22:	07 c0       	rjmp	.+14     	; 0xa32 <__LOCK_REGION_LENGTH__+0x632>
+ a24:	8e e1       	ldi	r24, 0x1E	; 30
+ a26:	90 e0       	ldi	r25, 0x00	; 0
+ a28:	90 93 ce 02 	sts	0x02CE, r25	; 0x8002ce <state+0x1>
+ a2c:	80 93 cd 02 	sts	0x02CD, r24	; 0x8002cd <state>
 				else state = 5;
- 9d8:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
- 9dc:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- 9e0:	54 c0       	rjmp	.+168    	; 0xa8a <__LOCK_REGION_LENGTH__+0x68a>
- 9e2:	84 ea       	ldi	r24, 0xA4	; 164
+ a30:	7e c0       	rjmp	.+252    	; 0xb2e <__LOCK_REGION_LENGTH__+0x72e>
+ a32:	85 e0       	ldi	r24, 0x05	; 5
+ a34:	90 e0       	ldi	r25, 0x00	; 0
+ a36:	90 93 ce 02 	sts	0x02CE, r25	; 0x8002ce <state+0x1>
+ a3a:	80 93 cd 02 	sts	0x02CD, r24	; 0x8002cd <state>
 			}
 			else{
 				USART0_Transmit_String("Wrong\r\n");
- 9e4:	91 e0       	ldi	r25, 0x01	; 1
- 9e6:	82 db       	rcall	.-2300   	; 0xec <USART0_Transmit_String>
- 9e8:	8c ea       	ldi	r24, 0xAC	; 172
+ a3e:	77 c0       	rjmp	.+238    	; 0xb2e <__LOCK_REGION_LENGTH__+0x72e>
+ a40:	84 e1       	ldi	r24, 0x14	; 20
+ a42:	92 e0       	ldi	r25, 0x02	; 2
+ a44:	53 db       	rcall	.-2394   	; 0xec <USART0_Transmit_String>
 				USART0_Transmit_String("Player 2's Turn\r\n");
- 9ea:	91 e0       	ldi	r25, 0x01	; 1
- 9ec:	7f db       	rcall	.-2306   	; 0xec <USART0_Transmit_String>
- 9ee:	84 e0       	ldi	r24, 0x04	; 4
+ a46:	8c e1       	ldi	r24, 0x1C	; 28
+ a48:	92 e0       	ldi	r25, 0x02	; 2
+ a4a:	50 db       	rcall	.-2400   	; 0xec <USART0_Transmit_String>
+ a4c:	8f ea       	ldi	r24, 0xAF	; 175
+				USART0_Transmit_String("-------------------------------------------\r\n");
+ a4e:	91 e0       	ldi	r25, 0x01	; 1
+ a50:	4d db       	rcall	.-2406   	; 0xec <USART0_Transmit_String>
+ a52:	84 e0       	ldi	r24, 0x04	; 4
 				state = 4;
- 9f0:	90 e0       	ldi	r25, 0x00	; 0
- 9f2:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
- 9f6:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- 9fa:	47 c0       	rjmp	.+142    	; 0xa8a <__LOCK_REGION_LENGTH__+0x68a>
- 9fc:	0a 97       	sbiw	r24, 0x0a	; 10
+ a54:	90 e0       	ldi	r25, 0x00	; 0
+ a56:	90 93 ce 02 	sts	0x02CE, r25	; 0x8002ce <state+0x1>
+ a5a:	80 93 cd 02 	sts	0x02CD, r24	; 0x8002cd <state>
 			}
 			
 		}
 		if(state == 10){ // state 10
- 9fe:	d9 f4       	brne	.+54     	; 0xa36 <__LOCK_REGION_LENGTH__+0x636>
- a00:	e9 ef       	ldi	r30, 0xF9	; 249
- a02:	f0 e0       	ldi	r31, 0x00	; 0
- a04:	31 97       	sbiw	r30, 0x01	; 1
- a06:	f1 f7       	brne	.-4      	; 0xa04 <__LOCK_REGION_LENGTH__+0x604>
- a08:	00 c0       	rjmp	.+0      	; 0xa0a <__LOCK_REGION_LENGTH__+0x60a>
- a0a:	00 00       	nop
- a0c:	87 e6       	ldi	r24, 0x67	; 103
-			_delay_ms(1);
-			USART1_Transmit_String("Choose Card to Open : "); // 몇 번째에 있는 카드 선택인지
- a0e:	91 e0       	ldi	r25, 0x01	; 1
- a10:	92 db       	rcall	.-2268   	; 0x136 <USART1_Transmit_String>
- a12:	aa dc       	rcall	.-1708   	; 0x368 <USART1_Receive>
- a14:	80 93 17 02 	sts	0x0217, r24	; 0x800217 <rx>
+ a5e:	67 c0       	rjmp	.+206    	; 0xb2e <__LOCK_REGION_LENGTH__+0x72e>
+ a60:	0a 97       	sbiw	r24, 0x0a	; 10
+			//_delay_ms(1);
+			if(p2_corr_flag == 0) USART1_Transmit_String("Choose Card to Open : ");
+ a62:	09 f0       	breq	.+2      	; 0xa66 <__LOCK_REGION_LENGTH__+0x666>
+ a64:	3b c0       	rjmp	.+118    	; 0xadc <__LOCK_REGION_LENGTH__+0x6dc>
+ a66:	80 91 c6 02 	lds	r24, 0x02C6	; 0x8002c6 <__data_end>
+ a6a:	81 11       	cpse	r24, r1
+ a6c:	04 c0       	rjmp	.+8      	; 0xa76 <__LOCK_REGION_LENGTH__+0x676>
+ a6e:	87 e6       	ldi	r24, 0x67	; 103
+ a70:	91 e0       	ldi	r25, 0x01	; 1
+ a72:	61 db       	rcall	.-2366   	; 0x136 <USART1_Transmit_String>
+			else if(p2_corr_flag == 1) USART1_Transmit_String("Choose Card to Open, Press P to Pass : "); // 몇 번째에 있는 카드 선택인지
+ a74:	05 c0       	rjmp	.+10     	; 0xa80 <__LOCK_REGION_LENGTH__+0x680>
+ a76:	81 30       	cpi	r24, 0x01	; 1
+ a78:	19 f4       	brne	.+6      	; 0xa80 <__LOCK_REGION_LENGTH__+0x680>
+ a7a:	8e e7       	ldi	r24, 0x7E	; 126
+ a7c:	91 e0       	ldi	r25, 0x01	; 1
 			rx = USART1_Receive();
- a18:	86 db       	rcall	.-2292   	; 0x126 <USART1_Transmit>
- a1a:	80 91 17 02 	lds	r24, 0x0217	; 0x800217 <rx>
+ a7e:	5b db       	rcall	.-2378   	; 0x136 <USART1_Transmit_String>
+ a80:	73 dc       	rcall	.-1818   	; 0x368 <USART1_Receive>
+ a82:	80 93 ff 02 	sts	0x02FF, r24	; 0x8002ff <rx>
 			USART1_Transmit(rx);
- a1e:	80 53       	subi	r24, 0x30	; 48
- a20:	8a 30       	cpi	r24, 0x0A	; 10
+ a86:	4f db       	rcall	.-2402   	; 0x126 <USART1_Transmit>
 			if((rx >= '0')&&(rx <= '9')){
- a22:	48 f4       	brcc	.+18     	; 0xa36 <__LOCK_REGION_LENGTH__+0x636>
- a24:	d7 01       	movw	r26, r14
- a26:	8c 93       	st	X, r24
- a28:	8b e0       	ldi	r24, 0x0B	; 11
- a2a:	90 e0       	ldi	r25, 0x00	; 0
+ a88:	90 91 ff 02 	lds	r25, 0x02FF	; 0x8002ff <rx>
+ a8c:	80 ed       	ldi	r24, 0xD0	; 208
+ a8e:	89 0f       	add	r24, r25
+ a90:	8a 30       	cpi	r24, 0x0A	; 10
+ a92:	68 f4       	brcc	.+26     	; 0xaae <__LOCK_REGION_LENGTH__+0x6ae>
 				get_number_1[0] = rx-48;
- a2c:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
+ a94:	f8 01       	movw	r30, r16
+ a96:	80 83       	st	Z, r24
 				state = 11;
- a30:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- a34:	06 c0       	rjmp	.+12     	; 0xa42 <__LOCK_REGION_LENGTH__+0x642>
- a36:	80 91 e5 01 	lds	r24, 0x01E5	; 0x8001e5 <state>
+ a98:	2b e0       	ldi	r18, 0x0B	; 11
+ a9a:	30 e0       	ldi	r19, 0x00	; 0
+ a9c:	30 93 ce 02 	sts	0x02CE, r19	; 0x8002ce <state+0x1>
+ aa0:	20 93 cd 02 	sts	0x02CD, r18	; 0x8002cd <state>
+			}
+			if(p2_corr_flag == 1 && rx == 'P'){
+ aa4:	80 91 c6 02 	lds	r24, 0x02C6	; 0x8002c6 <__data_end>
+ aa8:	81 30       	cpi	r24, 0x01	; 1
+ aaa:	f1 f4       	brne	.+60     	; 0xae8 <__LOCK_REGION_LENGTH__+0x6e8>
+ aac:	fe c0       	rjmp	.+508    	; 0xcaa <__LOCK_REGION_LENGTH__+0x8aa>
+ aae:	80 91 c6 02 	lds	r24, 0x02C6	; 0x8002c6 <__data_end>
+ ab2:	81 30       	cpi	r24, 0x01	; 1
+ ab4:	99 f4       	brne	.+38     	; 0xadc <__LOCK_REGION_LENGTH__+0x6dc>
+ ab6:	90 35       	cpi	r25, 0x50	; 80
+ ab8:	89 f4       	brne	.+34     	; 0xadc <__LOCK_REGION_LENGTH__+0x6dc>
+				USART1_Transmit_String("\r\n");
+ aba:	81 e9       	ldi	r24, 0x91	; 145
+ abc:	92 e0       	ldi	r25, 0x02	; 2
+ abe:	3b db       	rcall	.-2442   	; 0x136 <USART1_Transmit_String>
+ ac0:	86 ea       	ldi	r24, 0xA6	; 166
+				USART1_Transmit_String("Passed\r\n");
+ ac2:	91 e0       	ldi	r25, 0x01	; 1
+ ac4:	38 db       	rcall	.-2448   	; 0x136 <USART1_Transmit_String>
+ ac6:	8f ea       	ldi	r24, 0xAF	; 175
+				USART1_Transmit_String("-------------------------------------------\r\n");
+ ac8:	91 e0       	ldi	r25, 0x01	; 1
+ aca:	35 db       	rcall	.-2454   	; 0x136 <USART1_Transmit_String>
+ acc:	8e e2       	ldi	r24, 0x2E	; 46
+				USART0_Transmit_String("Player 2 Passed, It's your turn\r\n");
+ ace:	92 e0       	ldi	r25, 0x02	; 2
+ ad0:	0d db       	rcall	.-2534   	; 0xec <USART0_Transmit_String>
+ ad2:	d0 92 ce 02 	sts	0x02CE, r13	; 0x8002ce <state+0x1>
+				state = 3;
+ ad6:	c0 92 cd 02 	sts	0x02CD, r12	; 0x8002cd <state>
+ ada:	44 c0       	rjmp	.+136    	; 0xb64 <__LOCK_REGION_LENGTH__+0x764>
+ adc:	80 91 cd 02 	lds	r24, 0x02CD	; 0x8002cd <state>
 			}
 		} // state 10 end
 		if(state == 11){ // state 11
- a3a:	90 91 e6 01 	lds	r25, 0x01E6	; 0x8001e6 <state+0x1>
- a3e:	0b 97       	sbiw	r24, 0x0b	; 11
- a40:	21 f5       	brne	.+72     	; 0xa8a <__LOCK_REGION_LENGTH__+0x68a>
- a42:	92 dc       	rcall	.-1756   	; 0x368 <USART1_Receive>
- a44:	80 93 17 02 	sts	0x0217, r24	; 0x800217 <rx>
+ ae0:	90 91 ce 02 	lds	r25, 0x02CE	; 0x8002ce <state+0x1>
+ ae4:	0b 97       	sbiw	r24, 0x0b	; 11
+ ae6:	19 f5       	brne	.+70     	; 0xb2e <__LOCK_REGION_LENGTH__+0x72e>
+ ae8:	10 92 c6 02 	sts	0x02C6, r1	; 0x8002c6 <__data_end>
+			p2_corr_flag = 0;
+ aec:	3d dc       	rcall	.-1926   	; 0x368 <USART1_Receive>
+ aee:	80 93 ff 02 	sts	0x02FF, r24	; 0x8002ff <rx>
 			rx = USART1_Receive();
- a48:	6e db       	rcall	.-2340   	; 0x126 <USART1_Transmit>
- a4a:	8d e4       	ldi	r24, 0x4D	; 77
- a4c:	91 e0       	ldi	r25, 0x01	; 1
+ af2:	19 db       	rcall	.-2510   	; 0x126 <USART1_Transmit>
+ af4:	81 e9       	ldi	r24, 0x91	; 145
 			USART1_Transmit(rx);
- a4e:	73 db       	rcall	.-2330   	; 0x136 <USART1_Transmit_String>
- a50:	80 91 17 02 	lds	r24, 0x0217	; 0x800217 <rx>
+ af6:	92 e0       	ldi	r25, 0x02	; 2
+ af8:	1e db       	rcall	.-2500   	; 0x136 <USART1_Transmit_String>
 			USART1_Transmit_String("\r\n");
- a54:	80 53       	subi	r24, 0x30	; 48
- a56:	8a 30       	cpi	r24, 0x0A	; 10
- a58:	c0 f4       	brcc	.+48     	; 0xa8a <__LOCK_REGION_LENGTH__+0x68a>
+ afa:	80 91 ff 02 	lds	r24, 0x02FF	; 0x8002ff <rx>
+ afe:	80 53       	subi	r24, 0x30	; 48
 			if((rx >= '0')&&(rx <= '9')){
- a5a:	f7 01       	movw	r30, r14
- a5c:	81 83       	std	Z+1, r24	; 0x01
- a5e:	90 81       	ld	r25, Z
- a60:	99 0f       	add	r25, r25
+ b00:	8a 30       	cpi	r24, 0x0A	; 10
+ b02:	a8 f4       	brcc	.+42     	; 0xb2e <__LOCK_REGION_LENGTH__+0x72e>
+ b04:	d8 01       	movw	r26, r16
+ b06:	11 96       	adiw	r26, 0x01	; 1
+ b08:	8c 93       	st	X, r24
 				get_number_1[1] = rx-48;
- a62:	29 2f       	mov	r18, r25
+ b0a:	11 97       	sbiw	r26, 0x01	; 1
+ b0c:	9c 91       	ld	r25, X
+ b0e:	99 0f       	add	r25, r25
+ b10:	29 2f       	mov	r18, r25
 				get_number_1[2] = get_number_1[0]*10 + get_number_1[1] - 1;
- a64:	22 0f       	add	r18, r18
- a66:	22 0f       	add	r18, r18
- a68:	92 0f       	add	r25, r18
- a6a:	89 0f       	add	r24, r25
- a6c:	81 50       	subi	r24, 0x01	; 1
- a6e:	82 83       	std	Z+2, r24	; 0x02
- a70:	89 ef       	ldi	r24, 0xF9	; 249
- a72:	90 e0       	ldi	r25, 0x00	; 0
- a74:	01 97       	sbiw	r24, 0x01	; 1
- a76:	f1 f7       	brne	.-4      	; 0xa74 <__LOCK_REGION_LENGTH__+0x674>
- a78:	00 c0       	rjmp	.+0      	; 0xa7a <__LOCK_REGION_LENGTH__+0x67a>
- a7a:	00 00       	nop
- a7c:	8c e0       	ldi	r24, 0x0C	; 12
- a7e:	90 e0       	ldi	r25, 0x00	; 0
-				_delay_ms(1);
+ b12:	22 0f       	add	r18, r18
+ b14:	22 0f       	add	r18, r18
+ b16:	92 0f       	add	r25, r18
+ b18:	89 0f       	add	r24, r25
+ b1a:	81 50       	subi	r24, 0x01	; 1
+ b1c:	12 96       	adiw	r26, 0x02	; 2
+ b1e:	8c 93       	st	X, r24
+ b20:	8c e0       	ldi	r24, 0x0C	; 12
+ b22:	90 e0       	ldi	r25, 0x00	; 0
+ b24:	90 93 ce 02 	sts	0x02CE, r25	; 0x8002ce <state+0x1>
+				//_delay_ms(1);
 				state = 12;
- a80:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
- a84:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- a88:	06 c0       	rjmp	.+12     	; 0xa96 <__LOCK_REGION_LENGTH__+0x696>
- a8a:	80 91 e5 01 	lds	r24, 0x01E5	; 0x8001e5 <state>
+ b28:	80 93 cd 02 	sts	0x02CD, r24	; 0x8002cd <state>
+ b2c:	06 c0       	rjmp	.+12     	; 0xb3a <__LOCK_REGION_LENGTH__+0x73a>
+ b2e:	80 91 cd 02 	lds	r24, 0x02CD	; 0x8002cd <state>
+ b32:	90 91 ce 02 	lds	r25, 0x02CE	; 0x8002ce <state+0x1>
 			}
 		} // state 11 end
 		if(state == 12){ // state 12
- a8e:	90 91 e6 01 	lds	r25, 0x01E6	; 0x8001e6 <state+0x1>
- a92:	0c 97       	sbiw	r24, 0x0c	; 12
- a94:	99 f4       	brne	.+38     	; 0xabc <__LOCK_REGION_LENGTH__+0x6bc>
- a96:	8e e7       	ldi	r24, 0x7E	; 126
- a98:	91 e0       	ldi	r25, 0x01	; 1
+ b36:	0c 97       	sbiw	r24, 0x0c	; 12
+ b38:	a9 f4       	brne	.+42     	; 0xb64 <__LOCK_REGION_LENGTH__+0x764>
+ b3a:	8f ef       	ldi	r24, 0xFF	; 255
+ b3c:	91 e0       	ldi	r25, 0x01	; 1
+ b3e:	fb da       	rcall	.-2570   	; 0x136 <USART1_Transmit_String>
 			USART1_Transmit_String("Number? : "); // 카드가 무엇인지
- a9a:	4d db       	rcall	.-2406   	; 0x136 <USART1_Transmit_String>
- a9c:	65 dc       	rcall	.-1846   	; 0x368 <USART1_Receive>
- a9e:	80 93 17 02 	sts	0x0217, r24	; 0x800217 <rx>
+ b40:	13 dc       	rcall	.-2010   	; 0x368 <USART1_Receive>
+ b42:	80 93 ff 02 	sts	0x02FF, r24	; 0x8002ff <rx>
+ b46:	ef da       	rcall	.-2594   	; 0x126 <USART1_Transmit>
 			rx = USART1_Receive();
- aa2:	41 db       	rcall	.-2430   	; 0x126 <USART1_Transmit>
- aa4:	80 91 17 02 	lds	r24, 0x0217	; 0x800217 <rx>
- aa8:	80 53       	subi	r24, 0x30	; 48
+ b48:	80 91 ff 02 	lds	r24, 0x02FF	; 0x8002ff <rx>
+ b4c:	80 53       	subi	r24, 0x30	; 48
+ b4e:	8a 30       	cpi	r24, 0x0A	; 10
 			USART1_Transmit(rx);
- aaa:	8a 30       	cpi	r24, 0x0A	; 10
- aac:	38 f4       	brcc	.+14     	; 0xabc <__LOCK_REGION_LENGTH__+0x6bc>
+ b50:	48 f4       	brcc	.+18     	; 0xb64 <__LOCK_REGION_LENGTH__+0x764>
+ b52:	f7 01       	movw	r30, r14
 			if((rx >= '0')&&(rx <= '9')){
- aae:	d8 01       	movw	r26, r16
- ab0:	8c 93       	st	X, r24
- ab2:	30 92 e6 01 	sts	0x01E6, r3	; 0x8001e6 <state+0x1>
- ab6:	20 92 e5 01 	sts	0x01E5, r2	; 0x8001e5 <state>
+ b54:	80 83       	st	Z, r24
+ b56:	8d e0       	ldi	r24, 0x0D	; 13
+ b58:	90 e0       	ldi	r25, 0x00	; 0
+ b5a:	90 93 ce 02 	sts	0x02CE, r25	; 0x8002ce <state+0x1>
 				get_number_2[0] = rx-48;
- aba:	06 c0       	rjmp	.+12     	; 0xac8 <__LOCK_REGION_LENGTH__+0x6c8>
+ b5e:	80 93 cd 02 	sts	0x02CD, r24	; 0x8002cd <state>
 				state = 13;
- abc:	80 91 e5 01 	lds	r24, 0x01E5	; 0x8001e5 <state>
- ac0:	90 91 e6 01 	lds	r25, 0x01E6	; 0x8001e6 <state+0x1>
+ b62:	06 c0       	rjmp	.+12     	; 0xb70 <__LOCK_REGION_LENGTH__+0x770>
+ b64:	80 91 cd 02 	lds	r24, 0x02CD	; 0x8002cd <state>
+ b68:	90 91 ce 02 	lds	r25, 0x02CE	; 0x8002ce <state+0x1>
+ b6c:	0d 97       	sbiw	r24, 0x0d	; 13
 			}
 		} // state 12 end
 		if(state == 13){ // state 13
- ac4:	0d 97       	sbiw	r24, 0x0d	; 13
- ac6:	e9 f4       	brne	.+58     	; 0xb02 <__LOCK_REGION_LENGTH__+0x702>
- ac8:	4f dc       	rcall	.-1890   	; 0x368 <USART1_Receive>
- aca:	80 93 17 02 	sts	0x0217, r24	; 0x800217 <rx>
+ b6e:	f1 f4       	brne	.+60     	; 0xbac <__LOCK_REGION_LENGTH__+0x7ac>
+ b70:	fb db       	rcall	.-2058   	; 0x368 <USART1_Receive>
+ b72:	80 93 ff 02 	sts	0x02FF, r24	; 0x8002ff <rx>
+ b76:	d7 da       	rcall	.-2642   	; 0x126 <USART1_Transmit>
+ b78:	81 e9       	ldi	r24, 0x91	; 145
 			rx = USART1_Receive();
- ace:	2b db       	rcall	.-2474   	; 0x126 <USART1_Transmit>
- ad0:	8d e4       	ldi	r24, 0x4D	; 77
- ad2:	91 e0       	ldi	r25, 0x01	; 1
+ b7a:	92 e0       	ldi	r25, 0x02	; 2
+ b7c:	dc da       	rcall	.-2632   	; 0x136 <USART1_Transmit_String>
+ b7e:	80 91 ff 02 	lds	r24, 0x02FF	; 0x8002ff <rx>
 			USART1_Transmit(rx);
- ad4:	30 db       	rcall	.-2464   	; 0x136 <USART1_Transmit_String>
- ad6:	80 91 17 02 	lds	r24, 0x0217	; 0x800217 <rx>
+ b82:	80 53       	subi	r24, 0x30	; 48
+ b84:	8a 30       	cpi	r24, 0x0A	; 10
 			USART1_Transmit_String("\r\n");
- ada:	80 53       	subi	r24, 0x30	; 48
- adc:	8a 30       	cpi	r24, 0x0A	; 10
+ b86:	90 f4       	brcc	.+36     	; 0xbac <__LOCK_REGION_LENGTH__+0x7ac>
+ b88:	d7 01       	movw	r26, r14
+ b8a:	11 96       	adiw	r26, 0x01	; 1
+ b8c:	8c 93       	st	X, r24
 			if((rx >= '0')&&(rx <= '9')){
- ade:	88 f4       	brcc	.+34     	; 0xb02 <__LOCK_REGION_LENGTH__+0x702>
- ae0:	f8 01       	movw	r30, r16
- ae2:	81 83       	std	Z+1, r24	; 0x01
- ae4:	90 81       	ld	r25, Z
- ae6:	99 0f       	add	r25, r25
+ b8e:	11 97       	sbiw	r26, 0x01	; 1
+ b90:	9c 91       	ld	r25, X
+ b92:	99 0f       	add	r25, r25
+ b94:	29 2f       	mov	r18, r25
+ b96:	22 0f       	add	r18, r18
 				get_number_2[1] = rx-48;
- ae8:	29 2f       	mov	r18, r25
- aea:	22 0f       	add	r18, r18
+ b98:	22 0f       	add	r18, r18
+ b9a:	92 0f       	add	r25, r18
+ b9c:	89 0f       	add	r24, r25
+ b9e:	12 96       	adiw	r26, 0x02	; 2
 				get_number_2[2] = get_number_2[0]*10 + get_number_2[1];
- aec:	22 0f       	add	r18, r18
- aee:	92 0f       	add	r25, r18
- af0:	89 0f       	add	r24, r25
- af2:	82 83       	std	Z+2, r24	; 0x02
- af4:	8e e0       	ldi	r24, 0x0E	; 14
- af6:	90 e0       	ldi	r25, 0x00	; 0
- af8:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
+ ba0:	8c 93       	st	X, r24
+ ba2:	30 92 ce 02 	sts	0x02CE, r3	; 0x8002ce <state+0x1>
+ ba6:	20 92 cd 02 	sts	0x02CD, r2	; 0x8002cd <state>
+ baa:	08 c0       	rjmp	.+16     	; 0xbbc <__LOCK_REGION_LENGTH__+0x7bc>
+ bac:	80 91 cd 02 	lds	r24, 0x02CD	; 0x8002cd <state>
 				state = 14;
- afc:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- b00:	08 c0       	rjmp	.+16     	; 0xb12 <__LOCK_REGION_LENGTH__+0x712>
- b02:	80 91 e5 01 	lds	r24, 0x01E5	; 0x8001e5 <state>
- b06:	90 91 e6 01 	lds	r25, 0x01E6	; 0x8001e6 <state+0x1>
+ bb0:	90 91 ce 02 	lds	r25, 0x02CE	; 0x8002ce <state+0x1>
+ bb4:	8e 30       	cpi	r24, 0x0E	; 14
+ bb6:	91 05       	cpc	r25, r1
+ bb8:	09 f0       	breq	.+2      	; 0xbbc <__LOCK_REGION_LENGTH__+0x7bc>
 			}
 		} // state 13 end
-		if(state == 14){ // state 5
- b0a:	8e 30       	cpi	r24, 0x0E	; 14
- b0c:	91 05       	cpc	r25, r1
- b0e:	09 f0       	breq	.+2      	; 0xb12 <__LOCK_REGION_LENGTH__+0x712>
- b10:	63 c0       	rjmp	.+198    	; 0xbd8 <__LOCK_REGION_LENGTH__+0x7d8>
- b12:	d7 01       	movw	r26, r14
- b14:	12 96       	adiw	r26, 0x02	; 2
- b16:	ec 91       	ld	r30, X
- b18:	f0 e0       	ldi	r31, 0x00	; 0
+		if(state == 14){ // state 14
+ bba:	5f c0       	rjmp	.+190    	; 0xc7a <__LOCK_REGION_LENGTH__+0x87a>
+ bbc:	d8 01       	movw	r26, r16
+ bbe:	12 96       	adiw	r26, 0x02	; 2
+ bc0:	ec 91       	ld	r30, X
+ bc2:	f0 e0       	ldi	r31, 0x00	; 0
+ bc4:	ee 0f       	add	r30, r30
+ bc6:	ff 1f       	adc	r31, r31
+ bc8:	ee 0f       	add	r30, r30
 			temp = p1_deck[(int)get_number_1[2]].number;
- b1a:	ee 0f       	add	r30, r30
- b1c:	ff 1f       	adc	r31, r31
- b1e:	ee 0f       	add	r30, r30
- b20:	ff 1f       	adc	r31, r31
- b22:	e9 51       	subi	r30, 0x19	; 25
- b24:	fe 4f       	sbci	r31, 0xFE	; 254
- b26:	81 81       	ldd	r24, Z+1	; 0x01
- b28:	80 93 e0 01 	sts	0x01E0, r24	; 0x8001e0 <__data_end>
- b2c:	89 e8       	ldi	r24, 0x89	; 137
- b2e:	91 e0       	ldi	r25, 0x01	; 1
- b30:	02 db       	rcall	.-2556   	; 0x136 <USART1_Transmit_String>
-			USART1_Transmit_String("Target Number : ");
- b32:	60 91 e0 01 	lds	r22, 0x01E0	; 0x8001e0 <__data_end>
- b36:	81 e0       	ldi	r24, 0x01	; 1
- b38:	0c db       	rcall	.-2536   	; 0x152 <USART_Transmit_number>
-			USART_Transmit_number(1, temp);
- b3a:	8d e4       	ldi	r24, 0x4D	; 77
- b3c:	91 e0       	ldi	r25, 0x01	; 1
- b3e:	fb da       	rcall	.-2570   	; 0x136 <USART1_Transmit_String>
- b40:	f8 01       	movw	r30, r16
- b42:	92 81       	ldd	r25, Z+2	; 0x02
-			USART1_Transmit_String("\r\n");
- b44:	80 91 e0 01 	lds	r24, 0x01E0	; 0x8001e0 <__data_end>
- b48:	98 13       	cpse	r25, r24
- b4a:	3b c0       	rjmp	.+118    	; 0xbc2 <__LOCK_REGION_LENGTH__+0x7c2>
+ bca:	ff 1f       	adc	r31, r31
+ bcc:	e1 53       	subi	r30, 0x31	; 49
+ bce:	fd 4f       	sbci	r31, 0xFD	; 253
+ bd0:	81 81       	ldd	r24, Z+1	; 0x01
+ bd2:	80 93 c8 02 	sts	0x02C8, r24	; 0x8002c8 <temp>
+ bd6:	f7 01       	movw	r30, r14
+ bd8:	92 81       	ldd	r25, Z+2	; 0x02
+ bda:	89 13       	cpse	r24, r25
+ bdc:	40 c0       	rjmp	.+128    	; 0xc5e <__LOCK_REGION_LENGTH__+0x85e>
+ bde:	8a e0       	ldi	r24, 0x0A	; 10
+ be0:	92 e0       	ldi	r25, 0x02	; 2
 			if(temp == get_number_2[2]){
- b4c:	8a e9       	ldi	r24, 0x9A	; 154
- b4e:	91 e0       	ldi	r25, 0x01	; 1
- b50:	f2 da       	rcall	.-2588   	; 0x136 <USART1_Transmit_String>
- b52:	d7 01       	movw	r26, r14
+ be2:	a9 da       	rcall	.-2734   	; 0x136 <USART1_Transmit_String>
+ be4:	d8 01       	movw	r26, r16
+ be6:	12 96       	adiw	r26, 0x02	; 2
 				USART1_Transmit_String("Correct\r\n");
- b54:	12 96       	adiw	r26, 0x02	; 2
- b56:	cc 91       	ld	r28, X
- b58:	d0 e0       	ldi	r29, 0x00	; 0
- b5a:	fe 01       	movw	r30, r28
+ be8:	cc 91       	ld	r28, X
+ bea:	d0 e0       	ldi	r29, 0x00	; 0
+ bec:	fe 01       	movw	r30, r28
 				p1_deck[(int)get_number_1[2]].opened = 1;
- b5c:	ee 0f       	add	r30, r30
- b5e:	ff 1f       	adc	r31, r31
- b60:	ee 0f       	add	r30, r30
- b62:	ff 1f       	adc	r31, r31
- b64:	e9 51       	subi	r30, 0x19	; 25
- b66:	fe 4f       	sbci	r31, 0xFE	; 254
- b68:	81 e0       	ldi	r24, 0x01	; 1
- b6a:	83 83       	std	Z+3, r24	; 0x03
- b6c:	91 81       	ldd	r25, Z+1	; 0x01
- b6e:	f2 01       	movw	r30, r4
- b70:	cc 0f       	add	r28, r28
+ bee:	ee 0f       	add	r30, r30
+ bf0:	ff 1f       	adc	r31, r31
+ bf2:	ee 0f       	add	r30, r30
+ bf4:	ff 1f       	adc	r31, r31
+ bf6:	e1 53       	subi	r30, 0x31	; 49
+ bf8:	fd 4f       	sbci	r31, 0xFD	; 253
+ bfa:	81 e0       	ldi	r24, 0x01	; 1
+ bfc:	83 83       	std	Z+3, r24	; 0x03
+ bfe:	91 81       	ldd	r25, Z+1	; 0x01
+ c00:	f2 01       	movw	r30, r4
+ c02:	cc 0f       	add	r28, r28
 				for(int i=0;i<NUM_CARD;i++){
 					if(deck[i].number == p1_deck[(int)get_number_1[2]].number){
- b72:	dd 1f       	adc	r29, r29
- b74:	cc 0f       	add	r28, r28
+ c04:	dd 1f       	adc	r29, r29
+ c06:	cc 0f       	add	r28, r28
 						if(deck[i].color == p1_deck[(int)get_number_1[2]].color){
- b76:	dd 1f       	adc	r29, r29
- b78:	c9 51       	subi	r28, 0x19	; 25
- b7a:	de 4f       	sbci	r29, 0xFE	; 254
- b7c:	31 e0       	ldi	r19, 0x01	; 1
- b7e:	81 81       	ldd	r24, Z+1	; 0x01
- b80:	89 13       	cpse	r24, r25
+ c08:	dd 1f       	adc	r29, r29
+ c0a:	c1 53       	subi	r28, 0x31	; 49
+ c0c:	dd 4f       	sbci	r29, 0xFD	; 253
+ c0e:	31 e0       	ldi	r19, 0x01	; 1
+ c10:	81 81       	ldd	r24, Z+1	; 0x01
 							deck[i].opened = 1;
- b82:	05 c0       	rjmp	.+10     	; 0xb8e <__LOCK_REGION_LENGTH__+0x78e>
-			USART1_Transmit_String("\r\n");
+ c12:	89 13       	cpse	r24, r25
+			temp = p1_deck[(int)get_number_1[2]].number;
 			if(temp == get_number_2[2]){
 				USART1_Transmit_String("Correct\r\n");
 				p1_deck[(int)get_number_1[2]].opened = 1;
 				for(int i=0;i<NUM_CARD;i++){
 					if(deck[i].number == p1_deck[(int)get_number_1[2]].number){
- b84:	20 81       	ld	r18, Z
- b86:	88 81       	ld	r24, Y
- b88:	28 13       	cpse	r18, r24
+ c14:	05 c0       	rjmp	.+10     	; 0xc20 <__LOCK_REGION_LENGTH__+0x820>
+ c16:	20 81       	ld	r18, Z
+ c18:	88 81       	ld	r24, Y
 						if(deck[i].color == p1_deck[(int)get_number_1[2]].color){
- b8a:	01 c0       	rjmp	.+2      	; 0xb8e <__LOCK_REGION_LENGTH__+0x78e>
- b8c:	33 83       	std	Z+3, r19	; 0x03
- b8e:	34 96       	adiw	r30, 0x04	; 4
- b90:	ea 15       	cp	r30, r10
+ c1a:	28 13       	cpse	r18, r24
+ c1c:	01 c0       	rjmp	.+2      	; 0xc20 <__LOCK_REGION_LENGTH__+0x820>
+ c1e:	33 83       	std	Z+3, r19	; 0x03
+ c20:	34 96       	adiw	r30, 0x04	; 4
 							deck[i].opened = 1;
- b92:	fb 05       	cpc	r31, r11
- b94:	a1 f7       	brne	.-24     	; 0xb7e <__LOCK_REGION_LENGTH__+0x77e>
-			USART_Transmit_number(1, temp);
-			USART1_Transmit_String("\r\n");
+ c22:	ea 15       	cp	r30, r10
+ c24:	fb 05       	cpc	r31, r11
+		if(state == 14){ // state 14
+			temp = p1_deck[(int)get_number_1[2]].number;
 			if(temp == get_number_2[2]){
 				USART1_Transmit_String("Correct\r\n");
 				p1_deck[(int)get_number_1[2]].opened = 1;
 				for(int i=0;i<NUM_CARD;i++){
- b96:	b8 db       	rcall	.-2192   	; 0x308 <showP1toP2>
- b98:	80 91 e2 01 	lds	r24, 0x01E2	; 0x8001e2 <p1_opened_cnt>
+ c26:	a1 f7       	brne	.-24     	; 0xc10 <__LOCK_REGION_LENGTH__+0x810>
+ c28:	6f db       	rcall	.-2338   	; 0x308 <showP1toP2>
+ c2a:	80 91 ca 02 	lds	r24, 0x02CA	; 0x8002ca <p1_opened_cnt>
 						if(deck[i].color == p1_deck[(int)get_number_1[2]].color){
 							deck[i].opened = 1;
 						}
 					}
 				}
 				showP1toP2();
- b9c:	8f 5f       	subi	r24, 0xFF	; 255
- b9e:	80 93 e2 01 	sts	0x01E2, r24	; 0x8001e2 <p1_opened_cnt>
+ c2e:	8f 5f       	subi	r24, 0xFF	; 255
 				p1_opened_cnt++;
- ba2:	90 91 e4 01 	lds	r25, 0x01E4	; 0x8001e4 <p1_card_cnt>
- ba6:	89 13       	cpse	r24, r25
- ba8:	07 c0       	rjmp	.+14     	; 0xbb8 <__LOCK_REGION_LENGTH__+0x7b8>
-				if(p1_card_cnt == p1_opened_cnt) state = 30;
- baa:	8e e1       	ldi	r24, 0x1E	; 30
- bac:	90 e0       	ldi	r25, 0x00	; 0
- bae:	90 93 e6 01 	sts	0x01E6, r25	; 0x8001e6 <state+0x1>
- bb2:	80 93 e5 01 	sts	0x01E5, r24	; 0x8001e5 <state>
- bb6:	13 c0       	rjmp	.+38     	; 0xbde <__LOCK_REGION_LENGTH__+0x7de>
- bb8:	70 92 e6 01 	sts	0x01E6, r7	; 0x8001e6 <state+0x1>
- bbc:	60 92 e5 01 	sts	0x01E5, r6	; 0x8001e5 <state>
+ c30:	80 93 ca 02 	sts	0x02CA, r24	; 0x8002ca <p1_opened_cnt>
+ c34:	81 e0       	ldi	r24, 0x01	; 1
+ c36:	80 93 c6 02 	sts	0x02C6, r24	; 0x8002c6 <__data_end>
+				p2_corr_flag = 1;
+ c3a:	90 91 cb 02 	lds	r25, 0x02CB	; 0x8002cb <p2_card_cnt>
+ c3e:	80 91 c9 02 	lds	r24, 0x02C9	; 0x8002c9 <p2_opened_cnt>
+				if(p2_card_cnt == p2_opened_cnt) state = 31;
+ c42:	98 13       	cpse	r25, r24
+ c44:	07 c0       	rjmp	.+14     	; 0xc54 <__LOCK_REGION_LENGTH__+0x854>
+ c46:	8f e1       	ldi	r24, 0x1F	; 31
+ c48:	90 e0       	ldi	r25, 0x00	; 0
+ c4a:	90 93 ce 02 	sts	0x02CE, r25	; 0x8002ce <state+0x1>
+ c4e:	80 93 cd 02 	sts	0x02CD, r24	; 0x8002cd <state>
+ c52:	20 c0       	rjmp	.+64     	; 0xc94 <__LOCK_REGION_LENGTH__+0x894>
+ c54:	70 92 ce 02 	sts	0x02CE, r7	; 0x8002ce <state+0x1>
+ c58:	60 92 cd 02 	sts	0x02CD, r6	; 0x8002cd <state>
 				else state = 10;
- bc0:	47 cc       	rjmp	.-1906   	; 0x450 <__LOCK_REGION_LENGTH__+0x50>
- bc2:	84 ea       	ldi	r24, 0xA4	; 164
- bc4:	91 e0       	ldi	r25, 0x01	; 1
- bc6:	b7 da       	rcall	.-2706   	; 0x136 <USART1_Transmit_String>
- bc8:	8e eb       	ldi	r24, 0xBE	; 190
+ c5c:	12 cc       	rjmp	.-2012   	; 0x482 <__LOCK_REGION_LENGTH__+0x82>
+ c5e:	84 e1       	ldi	r24, 0x14	; 20
+ c60:	92 e0       	ldi	r25, 0x02	; 2
+ c62:	69 da       	rcall	.-2862   	; 0x136 <USART1_Transmit_String>
 			}
 			else{
 				USART1_Transmit_String("Wrong\r\n");
- bca:	91 e0       	ldi	r25, 0x01	; 1
- bcc:	b4 da       	rcall	.-2712   	; 0x136 <USART1_Transmit_String>
- bce:	d0 92 e6 01 	sts	0x01E6, r13	; 0x8001e6 <state+0x1>
+ c64:	80 e5       	ldi	r24, 0x50	; 80
+ c66:	92 e0       	ldi	r25, 0x02	; 2
+ c68:	66 da       	rcall	.-2868   	; 0x136 <USART1_Transmit_String>
+ c6a:	8f ea       	ldi	r24, 0xAF	; 175
 				USART1_Transmit_String("Player 1's Turn\r\n");
- bd2:	c0 92 e5 01 	sts	0x01E5, r12	; 0x8001e5 <state>
- bd6:	3c cc       	rjmp	.-1928   	; 0x450 <__LOCK_REGION_LENGTH__+0x50>
- bd8:	4e 97       	sbiw	r24, 0x1e	; 30
+ c6c:	91 e0       	ldi	r25, 0x01	; 1
+ c6e:	63 da       	rcall	.-2874   	; 0x136 <USART1_Transmit_String>
+ c70:	d0 92 ce 02 	sts	0x02CE, r13	; 0x8002ce <state+0x1>
+				USART1_Transmit_String("-------------------------------------------\r\n");
+ c74:	c0 92 cd 02 	sts	0x02CD, r12	; 0x8002cd <state>
+ c78:	04 cc       	rjmp	.-2040   	; 0x482 <__LOCK_REGION_LENGTH__+0x82>
+ c7a:	8e 31       	cpi	r24, 0x1E	; 30
 				state = 3;
- bda:	09 f0       	breq	.+2      	; 0xbde <__LOCK_REGION_LENGTH__+0x7de>
- bdc:	39 cc       	rjmp	.-1934   	; 0x450 <__LOCK_REGION_LENGTH__+0x50>
- bde:	80 ed       	ldi	r24, 0xD0	; 208
- be0:	91 e0       	ldi	r25, 0x01	; 1
- be2:	84 da       	rcall	.-2808   	; 0xec <USART0_Transmit_String>
+ c7c:	91 05       	cpc	r25, r1
+ c7e:	39 f4       	brne	.+14     	; 0xc8e <__LOCK_REGION_LENGTH__+0x88e>
+ c80:	82 e6       	ldi	r24, 0x62	; 98
+ c82:	92 e0       	ldi	r25, 0x02	; 2
+ c84:	33 da       	rcall	.-2970   	; 0xec <USART0_Transmit_String>
+			}
 			
 		}
-		
-		
-		
 		if(state == 30){
- be4:	80 ed       	ldi	r24, 0xD0	; 208
- be6:	91 e0       	ldi	r25, 0x01	; 1
- be8:	a6 da       	rcall	.-2740   	; 0x136 <USART1_Transmit_String>
-			USART0_Transmit_String("P1 Win\r\nP2 Lose");
- bea:	2a cc       	rjmp	.-1964   	; 0x440 <__LOCK_REGION_LENGTH__+0x40>
+ c86:	82 e6       	ldi	r24, 0x62	; 98
+ c88:	92 e0       	ldi	r25, 0x02	; 2
+ c8a:	55 da       	rcall	.-2902   	; 0x136 <USART1_Transmit_String>
+			USART0_Transmit_String("******* P1 Win *******\r\n******* P2 Lose *******\r\n");
+ c8c:	12 c0       	rjmp	.+36     	; 0xcb2 <__LOCK_REGION_LENGTH__+0x8b2>
+ c8e:	4f 97       	sbiw	r24, 0x1f	; 31
+ c90:	09 f0       	breq	.+2      	; 0xc94 <__LOCK_REGION_LENGTH__+0x894>
+ c92:	f7 cb       	rjmp	.-2066   	; 0x482 <__LOCK_REGION_LENGTH__+0x82>
+			USART1_Transmit_String("******* P1 Win *******\r\n******* P2 Lose *******\r\n");
+ c94:	84 e9       	ldi	r24, 0x94	; 148
+ c96:	92 e0       	ldi	r25, 0x02	; 2
+ c98:	29 da       	rcall	.-2990   	; 0xec <USART0_Transmit_String>
+ c9a:	84 e9       	ldi	r24, 0x94	; 148
+			break;
+ c9c:	92 e0       	ldi	r25, 0x02	; 2
+		}
+		if(state == 31){
+ c9e:	4b da       	rcall	.-2922   	; 0x136 <USART1_Transmit_String>
+ ca0:	08 c0       	rjmp	.+16     	; 0xcb2 <__LOCK_REGION_LENGTH__+0x8b2>
+ ca2:	90 35       	cpi	r25, 0x50	; 80
+			USART0_Transmit_String("******* P2 Win *******\r\n******* P2 Lose *******\r\n");
+ ca4:	09 f0       	breq	.+2      	; 0xca8 <__LOCK_REGION_LENGTH__+0x8a8>
+ ca6:	15 ce       	rjmp	.-982    	; 0x8d2 <__LOCK_REGION_LENGTH__+0x4d2>
+ ca8:	fb cd       	rjmp	.-1034   	; 0x8a0 <__LOCK_REGION_LENGTH__+0x4a0>
+ caa:	90 35       	cpi	r25, 0x50	; 80
+			USART1_Transmit_String("******* P2 Win *******\r\n******* P2 Lose *******\r\n");
+ cac:	09 f0       	breq	.+2      	; 0xcb0 <__LOCK_REGION_LENGTH__+0x8b0>
+ cae:	1c cf       	rjmp	.-456    	; 0xae8 <__LOCK_REGION_LENGTH__+0x6e8>
+ cb0:	04 cf       	rjmp	.-504    	; 0xaba <__LOCK_REGION_LENGTH__+0x6ba>
+ cb2:	80 e0       	ldi	r24, 0x00	; 0
+ cb4:	90 e0       	ldi	r25, 0x00	; 0
+			USART0_Transmit(rx);
+			if((rx >= '0')&&(rx <= '9')){
+				get_number_1[0] = rx-48;
+				state = 6;	
+			}
+			if(p1_corr_flag == 1 && rx == 'P'){
+ cb6:	df 91       	pop	r29
+ cb8:	cf 91       	pop	r28
+ cba:	1f 91       	pop	r17
+ cbc:	0f 91       	pop	r16
+			USART1_Transmit(rx);
+			if((rx >= '0')&&(rx <= '9')){
+				get_number_1[0] = rx-48;
+				state = 11;
+			}
+			if(p2_corr_flag == 1 && rx == 'P'){
+ cbe:	ff 90       	pop	r15
+ cc0:	ef 90       	pop	r14
+ cc2:	df 90       	pop	r13
+ cc4:	cf 90       	pop	r12
+			USART0_Transmit_String("******* P2 Win *******\r\n******* P2 Lose *******\r\n");
+			USART1_Transmit_String("******* P2 Win *******\r\n******* P2 Lose *******\r\n");
+			break;
+		}
+    } // while end
+} // main end
+ cc6:	bf 90       	pop	r11
+ cc8:	af 90       	pop	r10
+ cca:	9f 90       	pop	r9
+ ccc:	8f 90       	pop	r8
+ cce:	7f 90       	pop	r7
+ cd0:	6f 90       	pop	r6
+ cd2:	5f 90       	pop	r5
+ cd4:	4f 90       	pop	r4
+ cd6:	3f 90       	pop	r3
+ cd8:	2f 90       	pop	r2
+ cda:	08 95       	ret
 
-00000bec <_exit>:
- bec:	f8 94       	cli
+00000cdc <_exit>:
+ cdc:	f8 94       	cli
 
-00000bee <__stop_program>:
- bee:	ff cf       	rjmp	.-2      	; 0xbee <__stop_program>
+00000cde <__stop_program>:
+ cde:	ff cf       	rjmp	.-2      	; 0xcde <__stop_program>
