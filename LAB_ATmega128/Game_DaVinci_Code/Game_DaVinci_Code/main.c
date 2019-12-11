@@ -21,7 +21,9 @@ void USART1_Transmit_String(char *str);
 char USART1_Receive(void);
 void Timer_Init(void);
 void USART_Transmit_number(char USART_NUM,char num);
+void showP1toP1(void);
 void showP1toP2(void);
+void showP2toP2(void);
 void showP2toP1(void);
 
 int state = 0;
@@ -109,28 +111,28 @@ int main(void)
 				}
 			}
 			temp = 0;
-			USART0_Transmit_String("P1 Deck : "); // display P1 deck to P1
 			for(int i=0; i<NUM_CARD; i++){
 				if(deck[i].owner == 1){
 					p1_deck[temp] = deck[i];
-					USART_Transmit_number(0, p1_deck[temp].color);
-					USART_Transmit_number(0, p1_deck[temp].number); 
-					USART0_Transmit_String("   ");
+					//USART_Transmit_number(0, p1_deck[temp].color);
+					//USART_Transmit_number(0, p1_deck[temp].number); 
+					//USART0_Transmit_String("   ");
 					temp++;
 				}
 			}
+			showP1toP1();
 			USART0_Transmit_String("\r\n");
 			temp = 0;
-			USART1_Transmit_String("P2 Deck : "); // display P2 deck to P2
 			for(int i=0; i<NUM_CARD; i++){
 				if(deck[i].owner == 2){
 					p2_deck[temp] = deck[i];
-					USART_Transmit_number(1, p2_deck[temp].color);
-					USART_Transmit_number(1, p2_deck[temp].number); 
-					USART1_Transmit_String("   ");
+					//USART_Transmit_number(1, p2_deck[temp].color);
+					//USART_Transmit_number(1, p2_deck[temp].number); 
+					//USART1_Transmit_String("   ");
 					temp++;
 				}
 			}
+			showP2toP2();
 			USART1_Transmit_String("\r\n");
 			showP2toP1();
 			showP1toP2();
@@ -178,17 +180,13 @@ int main(void)
 			}
 			else USART0_Transmit_String("There is no card on field\r\n");
 			temp = 0;
-			USART0_Transmit_String("P1 Deck : ");
 			for(int i=0; i<NUM_CARD; i++){
 				if(deck[i].owner == 1){
 					p1_deck[temp] = deck[i];
-					USART_Transmit_number(0, p1_deck[temp].color);
-					USART_Transmit_number(0, p1_deck[temp].number);
-					USART0_Transmit_String("   ");
 					temp++;
 				}
 			}
-			USART0_Transmit_String("\r\n");
+			showP1toP1();
 			showP2toP1();
 			state = 5;
 		}
@@ -216,17 +214,13 @@ int main(void)
 			}
 			else USART1_Transmit_String("There is no card on field\r\n");
 			temp = 0;
-			USART1_Transmit_String("P2 Deck : ");
 			for(int i=0; i<NUM_CARD; i++){
 				if(deck[i].owner == 2){
 					p2_deck[temp] = deck[i];
-					USART_Transmit_number(1, p2_deck[temp].color);
-					USART_Transmit_number(1, p2_deck[temp].number);
-					USART1_Transmit_String("   ");
 					temp++;
 				}
 			}
-			USART1_Transmit_String("\r\n");
+			showP2toP2();
 			showP1toP2();
 			state = 10;
 		}
@@ -244,7 +238,7 @@ int main(void)
 			if(p1_corr_flag == 1 && rx == 'P'){
 				USART0_Transmit_String("\r\n");
 				USART0_Transmit_String("Passed\r\n");
-				USART1_Transmit_String("Player 1 Passed, It's your turn\r\n");
+				USART1_Transmit_String("Player 1 passed, It's your turn\r\n");
 				state = 16;
 			}
 		} // state 3 end
@@ -296,15 +290,18 @@ int main(void)
 						}
 					}
 				}		
-				showP2toP1();
 				p1_corr_flag = 1;
 				temp = 0;
 				for(int i=0;i<NUM_CARD/2;i++) if(p2_deck[i].opened == 1) temp++;
 				if(p2_card_cnt == temp) state = 30;
-				else state = 5;
+				else{
+					state = 5;
+					showP2toP1();
+				}
 			}
 			else{
 				USART0_Transmit_String("Wrong\r\n");
+				USART1_Transmit_String("Player 1 get wrong card, It's your turn\r\n");
 				state = 16;
 			}
 			
@@ -323,7 +320,7 @@ int main(void)
 			if(p2_corr_flag == 1 && rx == 'P'){
 				USART1_Transmit_String("\r\n");
 				USART1_Transmit_String("Passed\r\n");
-				USART0_Transmit_String("Player 2 Passed, It's your turn\r\n");
+				USART0_Transmit_String("Player 2 passed, It's your turn\r\n");
 				state = 15;
 			}
 			p2_corr_flag = 0;
@@ -362,7 +359,7 @@ int main(void)
 			temp = p1_deck[(int)get_number_1[2]].number;
 			if(temp == get_number_2[2]){
 				USART1_Transmit_String("Correct\r\n");
-				USART0_Transmit_String("Player 1 get your ");
+				USART0_Transmit_String("Player 2 get your ");
 				if(p1_deck[(int)get_number_1[2]].color == 0) USART0_Transmit_String("Black ");
 				else USART0_Transmit_String("White ");
 				USART_Transmit_number(0,p1_deck[(int)get_number_1[2]].number);
@@ -375,16 +372,18 @@ int main(void)
 						}
 					}
 				}
-				showP1toP2();
 				p2_corr_flag = 1;
 				temp = 0;
 				for(int i=0;i<NUM_CARD/2;i++) if(p1_deck[i].opened == 1) temp++;
 				if(p1_card_cnt == temp) state = 31;
-				else state = 10;
+				else{
+					showP1toP2();
+					state = 10;
+				}
 			}
 			else{
 				USART1_Transmit_String("Wrong\r\n");
-				USART1_Transmit_String("Player 1's Turn\r\n");
+				USART0_Transmit_String("Player 2 get wrong card, It's your turn\r\n");
 				state = 15;
 			}
 			
@@ -408,44 +407,44 @@ int main(void)
 /*******************************************************************/
 void USART_Transmit_number(char USART_NUM,char num){
 	if(num == 0){
-		if(USART_NUM == 0) USART0_Transmit('0');
-		else if(USART_NUM == 1) USART1_Transmit('0');
+		if(USART_NUM == 0) USART0_Transmit_String("00");
+		else if(USART_NUM == 1) USART1_Transmit_String("00");
 	}
 	else if(num == 1){
-		if(USART_NUM == 0) USART0_Transmit('1');
-		else if(USART_NUM == 1) USART1_Transmit('1');
+		if(USART_NUM == 0) USART0_Transmit_String("01");
+		else if(USART_NUM == 1) USART1_Transmit_String("01");
 	}
 	else if(num == 2){
-		if(USART_NUM == 0) USART0_Transmit('2');
-		else if(USART_NUM == 1) USART1_Transmit('2');
+		if(USART_NUM == 0) USART0_Transmit_String("02");
+		else if(USART_NUM == 1) USART1_Transmit_String("02");
 	}
 	else if(num == 3){
-		if(USART_NUM == 0) USART0_Transmit('3');
-		else if(USART_NUM == 1) USART1_Transmit('3');
+		if(USART_NUM == 0) USART0_Transmit_String("03");
+		else if(USART_NUM == 1) USART1_Transmit_String("03");
 	}
 	else if(num == 4){
-		if(USART_NUM == 0) USART0_Transmit('4');
-		else if(USART_NUM == 1) USART1_Transmit('4');
+		if(USART_NUM == 0) USART0_Transmit_String("04");
+		else if(USART_NUM == 1) USART1_Transmit_String("04");
 	}
 	else if(num == 5){
-		if(USART_NUM == 0) USART0_Transmit('5');
-		else if(USART_NUM == 1) USART1_Transmit('5');
+		if(USART_NUM == 0) USART0_Transmit_String("05");
+		else if(USART_NUM == 1) USART1_Transmit_String("05");
 	}
 	else if(num == 6){
-		if(USART_NUM == 0) USART0_Transmit('6');
-		else if(USART_NUM == 1) USART1_Transmit('6');
+		if(USART_NUM == 0) USART0_Transmit_String("06");
+		else if(USART_NUM == 1) USART1_Transmit_String("06");
 	}
 	else if(num == 7){
-		if(USART_NUM == 0) USART0_Transmit('7');
-		else if(USART_NUM == 1) USART1_Transmit('7');
+		if(USART_NUM == 0) USART0_Transmit_String("07");
+		else if(USART_NUM == 1) USART1_Transmit_String("07");
 	}
 	else if(num == 8){
-		if(USART_NUM == 0) USART0_Transmit('8');
-		else if(USART_NUM == 1) USART1_Transmit('8');
+		if(USART_NUM == 0) USART0_Transmit_String("08");
+		else if(USART_NUM == 1) USART1_Transmit_String("08");
 	}
 	else if(num == 9){
-		if(USART_NUM == 0) USART0_Transmit('9');
-		else if(USART_NUM == 1) USART1_Transmit('9');
+		if(USART_NUM == 0) USART0_Transmit_String("09");
+		else if(USART_NUM == 1) USART1_Transmit_String("09");
 	}
 	else if(num == 10){
 		if(USART_NUM == 0) USART0_Transmit_String("10");
@@ -461,29 +460,129 @@ void USART_Transmit_number(char USART_NUM,char num){
 	}
 }
 
-void showP2toP1 (void){
-	USART0_Transmit_String("P2 Deck : "); // display P2 deck to P1
-	for(int jj=0; jj<p2_card_cnt; jj++){
-		if(p2_deck[jj].opened == 0) USART0_Transmit_String("XX");
-		else{
-			USART_Transmit_number(0, p2_deck[jj].color);
-			USART_Transmit_number(0, p2_deck[jj].number);
-		}
+void showP1toP1 (void){
+	USART0_Transmit_String("P1 Deck :\r\n");
+	for(int jj=0; jj<p1_card_cnt;jj++){
 		USART0_Transmit_String("   ");
+		USART_Transmit_number(0,(char)(jj+1));
+		USART0_Transmit_String(" ");
 	}
+	USART0_Transmit_String("\r\n");
+	for(int jj=0; jj<p1_card_cnt;jj++) USART0_Transmit_String("|----|");
+	USART0_Transmit_String("\r\n");
+	for(int jj=0; jj<p1_card_cnt;jj++){
+		USART0_Transmit_String("|  ");
+		if(p1_deck[jj].color == 0) USART0_Transmit_String("B |");
+		else USART0_Transmit_String("W |");
+	}
+	USART0_Transmit_String("\r\n");
+	for(int jj=0; jj<p1_card_cnt;jj++){
+		USART0_Transmit_String("| ");
+		USART_Transmit_number(0,p1_deck[jj].number);
+		USART0_Transmit_String(" |");
+	}
+	USART0_Transmit_String("\r\n");
+	for(int jj=0; jj<p1_card_cnt;jj++){
+		USART0_Transmit_String("|  ");
+		if(p1_deck[jj].opened == 0) USART0_Transmit_String("O |");
+		else USART0_Transmit_String("X |");
+	}
+	USART0_Transmit_String("\r\n");
+	for(int jj=0; jj<p1_card_cnt;jj++) USART0_Transmit_String("|----|");
+	USART0_Transmit_String("\r\n");
+}
+
+void showP2toP2 (void){
+	USART1_Transmit_String("P2 Deck :\r\n");
+	for(int jj=0; jj<p2_card_cnt;jj++){
+		USART1_Transmit_String("   ");
+		USART_Transmit_number(1,(char)(jj+1));
+		USART1_Transmit_String(" ");
+	}
+	USART1_Transmit_String("\r\n");
+	for(int jj=0; jj<p2_card_cnt;jj++) USART1_Transmit_String("|----|");
+	USART1_Transmit_String("\r\n");
+	for(int jj=0; jj<p2_card_cnt;jj++){
+		USART1_Transmit_String("|  ");
+		if(p2_deck[jj].color == 0) USART1_Transmit_String("B |");
+		else USART1_Transmit_String("W |");
+	}
+	USART1_Transmit_String("\r\n");
+	for(int jj=0; jj<p2_card_cnt;jj++){
+		USART1_Transmit_String("| ");
+		USART_Transmit_number(1,p2_deck[jj].number);
+		USART1_Transmit_String(" |");
+	}
+	USART1_Transmit_String("\r\n");
+	for(int jj=0; jj<p2_card_cnt;jj++){
+		USART1_Transmit_String("|  ");
+		if(p2_deck[jj].opened == 0) USART1_Transmit_String("O |");
+		else USART1_Transmit_String("X |");
+	}
+	USART1_Transmit_String("\r\n");
+	for(int jj=0; jj<p2_card_cnt;jj++) USART1_Transmit_String("|----|");
+	USART1_Transmit_String("\r\n");
+}
+
+void showP2toP1 (void){
+	USART0_Transmit_String("P2 Deck : \r\n"); // display P2 deck to P1
+	for(int jj=0; jj<p2_card_cnt;jj++){
+		USART0_Transmit_String("   ");
+		USART_Transmit_number(0,(char)(jj+1));
+		USART0_Transmit_String(" ");
+	}
+	USART0_Transmit_String("\r\n");
+	for(int jj=0; jj<p2_card_cnt;jj++) USART0_Transmit_String("|----|");
+	USART0_Transmit_String("\r\n");
+	for(int jj=0; jj<p2_card_cnt;jj++){
+		USART0_Transmit_String("|  ");
+		if(p2_deck[jj].opened == 0) USART0_Transmit_String("X |");
+		else{
+			if(p2_deck[jj].color == 0) USART0_Transmit_String("B |");
+			else USART0_Transmit_String("W |");
+		}
+	}
+	USART0_Transmit_String("\r\n");
+	for(int jj=0; jj<p2_card_cnt;jj++){
+		USART0_Transmit_String("| ");
+		if(p2_deck[jj].opened == 0) USART0_Transmit_String("XX");
+		else USART_Transmit_number(0,p2_deck[jj].number);
+		USART0_Transmit_String(" |");
+		
+	}
+	USART0_Transmit_String("\r\n");
+	for(int jj=0; jj<p2_card_cnt;jj++) USART0_Transmit_String("|----|");
 	USART0_Transmit_String("\r\n");
 }
 
 void showP1toP2 (void){
-	USART1_Transmit_String("P1 Deck : "); // display P1 deck to P2
-	for(int jj=0; jj<p1_card_cnt; jj++){
-		if(p1_deck[jj].opened == 0) USART1_Transmit_String("XX");
-		else{
-			USART_Transmit_number(1, p1_deck[jj].color);
-			USART_Transmit_number(1, p1_deck[jj].number);
-		}
+	USART1_Transmit_String("P1 Deck : \r\n"); // display P2 deck to P1
+	for(int jj=0; jj<p1_card_cnt;jj++){
 		USART1_Transmit_String("   ");
+		USART_Transmit_number(1,(char)(jj+1));
+		USART1_Transmit_String(" ");
 	}
+	USART1_Transmit_String("\r\n");
+	for(int jj=0; jj<p1_card_cnt;jj++) USART1_Transmit_String("|----|");
+	USART1_Transmit_String("\r\n");
+	for(int jj=0; jj<p1_card_cnt;jj++){
+		USART1_Transmit_String("|  ");
+		if(p1_deck[jj].opened == 0) USART1_Transmit_String("X |");
+		else{
+			if(p1_deck[jj].color == 0) USART1_Transmit_String("B |");
+			else USART1_Transmit_String("W |");
+		}
+	}
+	USART1_Transmit_String("\r\n");
+	for(int jj=0; jj<p1_card_cnt;jj++){
+		USART1_Transmit_String("| ");
+		if(p1_deck[jj].opened == 0) USART1_Transmit_String("XX");
+		else USART_Transmit_number(1,p1_deck[jj].number);
+		USART1_Transmit_String(" |");
+		
+	}
+	USART1_Transmit_String("\r\n");
+	for(int jj=0; jj<p1_card_cnt;jj++) USART1_Transmit_String("|----|");
 	USART1_Transmit_String("\r\n");
 }
 
