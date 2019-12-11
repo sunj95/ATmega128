@@ -235,7 +235,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1318
+.text           0x00000000     0x1338
  *(.vectors)
  .vectors       0x00000000       0x8c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega128/avr51/crtatmega128.o
                 0x00000000                __vector_default
@@ -373,20 +373,20 @@ END GROUP
  .text.USART1_Receive
                 0x000007f6       0x10 main.o
                 0x000007f6                USART1_Receive
- .text.main     0x00000806      0xac0 main.o
+ .text.main     0x00000806      0xae0 main.o
                 0x00000806                main
  .text.libgcc.div
-                0x000012c6       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_divmodhi4.o)
-                0x000012c6                _div
-                0x000012c6                __divmodhi4
+                0x000012e6       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_divmodhi4.o)
+                0x000012e6                _div
+                0x000012e6                __divmodhi4
  .text.libgcc.div
-                0x000012ec       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodhi4.o)
-                0x000012ec                __udivmodhi4
-                0x00001314                . = ALIGN (0x2)
+                0x0000130c       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodhi4.o)
+                0x0000130c                __udivmodhi4
+                0x00001334                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001314        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
-                0x00001314                _exit
-                0x00001314                exit
+ .fini9         0x00001334        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
+                0x00001334                _exit
+                0x00001334                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -405,11 +405,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001314        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
+ .fini0         0x00001334        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001318                _etext = .
+                0x00001338                _etext = .
 
-.data           0x00800100      0x32a load address 0x00001318
+.data           0x00800100      0x37c load address 0x00001338
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -417,52 +417,53 @@ END GROUP
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x00800100      0x32a main.o
-                                0x332 (size before relaxing)
+                0x00800100      0x37b main.o
+                                0x3b1 (size before relaxing)
  *(.gnu.linkonce.r*)
-                0x0080042a                . = ALIGN (0x2)
-                0x0080042a                _edata = .
-                0x0080042a                PROVIDE (__data_end, .)
+                0x0080047c                . = ALIGN (0x2)
+ *fill*         0x0080047b        0x1 
+                0x0080047c                _edata = .
+                0x0080047c                PROVIDE (__data_end, .)
 
-.bss            0x0080042a       0xd0
-                0x0080042a                PROVIDE (__bss_start, .)
+.bss            0x0080047c       0xd0
+                0x0080047c                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.p2_corr_flag
-                0x0080042a        0x1 main.o
-                0x0080042a                p2_corr_flag
+                0x0080047c        0x1 main.o
+                0x0080047c                p2_corr_flag
  .bss.p1_corr_flag
-                0x0080042b        0x1 main.o
-                0x0080042b                p1_corr_flag
- .bss.temp      0x0080042c        0x1 main.o
-                0x0080042c                temp
+                0x0080047d        0x1 main.o
+                0x0080047d                p1_corr_flag
+ .bss.temp      0x0080047e        0x1 main.o
+                0x0080047e                temp
  .bss.p2_card_cnt
-                0x0080042d        0x1 main.o
-                0x0080042d                p2_card_cnt
+                0x0080047f        0x1 main.o
+                0x0080047f                p2_card_cnt
  .bss.p1_card_cnt
-                0x0080042e        0x1 main.o
-                0x0080042e                p1_card_cnt
- .bss.state     0x0080042f        0x2 main.o
-                0x0080042f                state
+                0x00800480        0x1 main.o
+                0x00800480                p1_card_cnt
+ .bss.state     0x00800481        0x2 main.o
+                0x00800481                state
  *(COMMON)
- COMMON         0x00800431       0xc9 main.o
-                0x00800431                p1_deck
-                0x00800461                rx
-                0x00800462                get_number_1
-                0x00800465                get_number_2
-                0x00800468                rx_1
-                0x00800469                random_value
-                0x0080046a                p2_deck
-                0x0080049a                deck
-                0x008004fa                PROVIDE (__bss_end, .)
-                0x00001318                __data_load_start = LOADADDR (.data)
-                0x00001642                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800483       0xc9 main.o
+                0x00800483                p1_deck
+                0x008004b3                rx
+                0x008004b4                get_number_1
+                0x008004b7                get_number_2
+                0x008004ba                rx_1
+                0x008004bb                random_value
+                0x008004bc                p2_deck
+                0x008004ec                deck
+                0x0080054c                PROVIDE (__bss_end, .)
+                0x00001338                __data_load_start = LOADADDR (.data)
+                0x000016b4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008004fa        0x0
+.noinit         0x0080054c        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008004fa                _end = .
+                0x0080054c                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -535,20 +536,20 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x22c5
+.debug_info     0x00000000     0x2335
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x780 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega128/avr51/crtatmega128.o
- .debug_info    0x00000780     0x1b45 main.o
+ .debug_info    0x00000780     0x1bb5 main.o
 
 .debug_abbrev   0x00000000      0x8b3
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x718 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega128/avr51/crtatmega128.o
  .debug_abbrev  0x00000718      0x19b main.o
 
-.debug_line     0x00000000     0x1151
+.debug_line     0x00000000     0x1169
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x169 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega128/avr51/crtatmega128.o
- .debug_line    0x00000169      0xfe8 main.o
+ .debug_line    0x00000169     0x1000 main.o
 
 .debug_frame    0x00000000      0x1c4
  *(.debug_frame)

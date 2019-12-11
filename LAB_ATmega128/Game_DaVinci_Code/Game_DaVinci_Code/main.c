@@ -82,16 +82,16 @@ int main(void)
     while (1) 
     {
 		if(state == 0){ // state 0 : checking player 1 connected
-			USART0_Transmit_String("Press Y to Start\r\n");
+			USART0_Transmit_String("Press 0 to start\r\n");
 			USART1_Transmit_String("Waiting for Player 1\r\n");
 			rx = USART0_Receive();
-			if(rx == 'Y') state = 1;
+			if(rx == '0') state = 1;
 		} // state 0 end
 		if(state == 1){ // state 1 : checking player 1 connected
 			USART0_Transmit_String("Waiting for Player 2\r\n");
-			USART1_Transmit_String("Press Y to Start\r\n");
+			USART1_Transmit_String("Press 0 to start\r\n");
 			rx = USART1_Receive();
-			if(rx == 'Y') state = 2;
+			if(rx == '0') state = 2;
 			USART0_Transmit_String("-------------------------------------------\r\n");
 			USART1_Transmit_String("-------------------------------------------\r\n");
 		} // state 1 end
@@ -139,22 +139,22 @@ int main(void)
 			state = 15;
 		} // state 2 end
 		if(state == 15){
-			USART0_Transmit_String("-------------------------------------------\r\n");
-			USART1_Transmit_String("-------------------------------------------\r\n");
-			USART0_Transmit_String("Press P to Start Your Turn\r\n");
-			USART1_Transmit_String("Player 1's Turn\r\n");
+			USART0_Transmit_String("--------------------------------------------------------------------\r\n");
+			USART1_Transmit_String("--------------------------------------------------------------------\r\n");
+			USART0_Transmit_String("Press 0 to start your turn\r\n");
+			USART1_Transmit_String("Player 1's turn\r\n");
 			rx = USART0_Receive();
-			if(rx == 'P') state = 3;
+			if(rx == '0') state = 3;
 			p1_corr_flag = 0;
 			p2_corr_flag = 0;
 		}
 		if(state == 16){
-			USART0_Transmit_String("-------------------------------------------\r\n");
-			USART1_Transmit_String("-------------------------------------------\r\n");
-			USART1_Transmit_String("Press P to Start Your Turn\r\n");
-			USART0_Transmit_String("Player 2's Turn\r\n");
+			USART0_Transmit_String("--------------------------------------------------------------------\r\n");
+			USART1_Transmit_String("--------------------------------------------------------------------\r\n");
+			USART1_Transmit_String("Press 0 to start your turn\r\n");
+			USART0_Transmit_String("Player 2's turn\r\n");
 			rx = USART1_Receive();
-			if(rx == 'P') state = 4;
+			if(rx == '0') state = 4;
 			p1_corr_flag = 0;
 			p2_corr_flag = 0;
 		}
@@ -226,8 +226,8 @@ int main(void)
 		}
 		if(state == 5){ // state 5 
 			//_delay_ms(1);
-			if(p1_corr_flag == 0) USART0_Transmit_String("Choose Card to Open : ");
-			else if(p1_corr_flag == 1) USART0_Transmit_String("Choose Card to Open, Press P to Pass : "); // 몇 번째에 있는 카드 선택인지
+			if(p1_corr_flag == 0) USART0_Transmit_String("Choose card to open : ");
+			else if(p1_corr_flag == 1) USART0_Transmit_String("Choose card to open, Press p to pass : "); // 몇 번째에 있는 카드 선택인지
 			USART1_Transmit_String("Player 1 is checking your card\r\n");
 			rx = USART0_Receive();
 			USART0_Transmit(rx);
@@ -235,7 +235,7 @@ int main(void)
 				get_number_1[0] = rx-48;
 				state = 6;	
 			}
-			if(p1_corr_flag == 1 && rx == 'P'){
+			if(p1_corr_flag == 1 && rx == 'p'){
 				USART0_Transmit_String("\r\n");
 				USART0_Transmit_String("Passed\r\n");
 				USART1_Transmit_String("Player 1 passed, It's your turn\r\n");
@@ -308,8 +308,8 @@ int main(void)
 		}
 		if(state == 10){ // state 10
 			//_delay_ms(1);
-			if(p2_corr_flag == 0) USART1_Transmit_String("Choose Card to Open : ");
-			else if(p2_corr_flag == 1) USART1_Transmit_String("Choose Card to Open, Press P to Pass : "); // 몇 번째에 있는 카드 선택인지
+			if(p2_corr_flag == 0) USART1_Transmit_String("Choose card to open : ");
+			else if(p2_corr_flag == 1) USART1_Transmit_String("Choose card to open, Press p to pass : "); // 몇 번째에 있는 카드 선택인지
 			USART0_Transmit_String("Player 2 is checking your card\r\n");
 			rx = USART1_Receive();
 			USART1_Transmit(rx);
@@ -317,7 +317,7 @@ int main(void)
 				get_number_1[0] = rx-48;
 				state = 11;
 			}
-			if(p2_corr_flag == 1 && rx == 'P'){
+			if(p2_corr_flag == 1 && rx == 'p'){
 				USART1_Transmit_String("\r\n");
 				USART1_Transmit_String("Passed\r\n");
 				USART0_Transmit_String("Player 2 passed, It's your turn\r\n");
@@ -389,13 +389,17 @@ int main(void)
 			
 		}
 		if(state == 30){
-			USART0_Transmit_String("******* P1 Win *******\r\n******* P2 Lose *******\r\n");
-			USART1_Transmit_String("******* P1 Win *******\r\n******* P2 Lose *******\r\n");
+			USART0_Transmit_String("--------------------------------------------------------------------\r\n");
+			USART1_Transmit_String("--------------------------------------------------------------------\r\n");
+			USART0_Transmit_String("************** P1 Win **************\r\n************** P2 Lose **************\r\n");
+			USART1_Transmit_String("************** P1 Win **************\r\n************** P2 Lose **************\r\n");
 			break;
 		}
 		if(state == 31){
-			USART0_Transmit_String("******* P2 Win *******\r\n******* P1 Lose *******\r\n");
-			USART1_Transmit_String("******* P2 Win *******\r\n******* P1 Lose *******\r\n");
+			USART0_Transmit_String("--------------------------------------------------------------------\r\n");
+			USART1_Transmit_String("--------------------------------------------------------------------\r\n");
+			USART0_Transmit_String("************** P2 Win **************\r\n************** P1 Lose **************\r\n");
+			USART1_Transmit_String("************** P2 Win **************\r\n************** P1 Lose **************\r\n");
 			break;
 		}
     } // while end
