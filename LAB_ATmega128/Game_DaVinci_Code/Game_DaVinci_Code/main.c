@@ -87,13 +87,13 @@ int main(void)
 			rx = USART0_Receive();
 			if(rx == '0') state = 1;
 		} // state 0 end
-		if(state == 1){ // state 1 : checking player 1 connected
+		if(state == 1){ // state 1 : checking player 2 connected
 			USART0_Transmit_String("Waiting for Player 2\r\n");
 			USART1_Transmit_String("Press 0 to start\r\n");
 			rx = USART1_Receive();
 			if(rx == '0') state = 2;
-			USART0_Transmit_String("-------------------------------------------\r\n");
-			USART1_Transmit_String("-------------------------------------------\r\n");
+			USART0_Transmit_String("--------------------------------------------------------------------\r\n");
+			USART1_Transmit_String("--------------------------------------------------------------------\r\n");
 		} // state 1 end
 		if(state == 2){ // state 2 : give card to players
 			while(p1_card_cnt < 4){	// give Player 1 Cards
@@ -114,9 +114,6 @@ int main(void)
 			for(int i=0; i<NUM_CARD; i++){
 				if(deck[i].owner == 1){
 					p1_deck[temp] = deck[i];
-					//USART_Transmit_number(0, p1_deck[temp].color);
-					//USART_Transmit_number(0, p1_deck[temp].number); 
-					//USART0_Transmit_String("   ");
 					temp++;
 				}
 			}
@@ -126,9 +123,6 @@ int main(void)
 			for(int i=0; i<NUM_CARD; i++){
 				if(deck[i].owner == 2){
 					p2_deck[temp] = deck[i];
-					//USART_Transmit_number(1, p2_deck[temp].color);
-					//USART_Transmit_number(1, p2_deck[temp].number); 
-					//USART1_Transmit_String("   ");
 					temp++;
 				}
 			}
@@ -136,29 +130,19 @@ int main(void)
 			USART1_Transmit_String("\r\n");
 			showP2toP1();
 			showP1toP2();
-			state = 15;
+			state = 10;
 		} // state 2 end
-		if(state == 15){
+		if(state == 10){
 			USART0_Transmit_String("--------------------------------------------------------------------\r\n");
 			USART1_Transmit_String("--------------------------------------------------------------------\r\n");
 			USART0_Transmit_String("Press 0 to start your turn\r\n");
 			USART1_Transmit_String("Player 1's turn\r\n");
 			rx = USART0_Receive();
-			if(rx == '0') state = 3;
+			if(rx == '0') state = 11;
 			p1_corr_flag = 0;
 			p2_corr_flag = 0;
 		}
-		if(state == 16){
-			USART0_Transmit_String("--------------------------------------------------------------------\r\n");
-			USART1_Transmit_String("--------------------------------------------------------------------\r\n");
-			USART1_Transmit_String("Press 0 to start your turn\r\n");
-			USART0_Transmit_String("Player 2's turn\r\n");
-			rx = USART1_Receive();
-			if(rx == '0') state = 4;
-			p1_corr_flag = 0;
-			p2_corr_flag = 0;
-		}
-		if(state == 3){ // state : give 1 card to player 1
+		if(state == 11){ // state : give 1 card to player 1
 			temp = 0;
 			for(int i=0;i<NUM_CARD;i++){
 				if(deck[i].owner == 0) temp++;
@@ -188,10 +172,109 @@ int main(void)
 			}
 			showP1toP1();
 			showP2toP1();
-			state = 5;
+			state = 12;
+		}
+		if(state == 12){ // state 5
+			//_delay_ms(1);
+			if(p1_corr_flag == 0) USART0_Transmit_String("Choose card to open : ");
+			else if(p1_corr_flag == 1) USART0_Transmit_String("Choose card to open, Press p to pass : "); // 몇 번째에 있는 카드 선택인지
+			USART1_Transmit_String("Player 1 is checking your card...\r\n");
+			rx = USART0_Receive();
+			USART0_Transmit(rx);
+			if((rx >= '0')&&(rx <= '9')){
+				get_number_1[0] = rx-48;
+				state = 13;
+			}
+			if(p1_corr_flag == 1 && rx == 'p'){
+				USART0_Transmit_String("\r\n");
+				USART0_Transmit_String("Passed\r\n");
+				USART1_Transmit_String("Player 1 passed, It's your turn\r\n");
+				state = 20;
+			}
+		} // state 3 end
+		if(state == 13){ // state 4
+			p1_corr_flag = 0;
+			rx = USART0_Receive();
+			USART0_Transmit(rx);
+			USART0_Transmit_String("\r\n");
+			if((rx >= '0')&&(rx <= '9')){
+				get_number_1[1] = rx-48;
+				get_number_1[2] = get_number_1[0]*10 + get_number_1[1] - 1;
+				//_delay_ms(1);
+				state = 14;
+			}
+		} // state 4 end
+		if(state == 14){ // state 5
+			USART0_Transmit_String("Number? : "); // 카드가 무엇인지
+			rx = USART0_Receive();
+			USART0_Transmit(rx);
+			if((rx >= '0')&&(rx <= '9')){
+				get_number_2[0] = rx-48;
+				state = 15;
+			}
+		} // state 5 end
+		if(state == 15){ // state 15
+			rx = USART0_Receive();
+			USART0_Transmit(rx);
+			USART0_Transmit_String("\r\n");
+			if((rx >= '0')&&(rx <= '9')){
+				get_number_2[1] = rx-48;
+				get_number_2[2] = get_number_2[0]*10 + get_number_2[1];
+				state = 16;
+			}
+		} // state 15 end
+		if(state == 16){ // state 16
+			temp = p2_deck[(int)get_number_1[2]].number;
+			if(temp == get_number_2[2]){
+				USART0_Transmit_String("Correct\r\n");
+				USART1_Transmit_String("Player 1 get your ");
+				if(p2_deck[(int)get_number_1[2]].color == 0) USART1_Transmit_String("Black ");
+				else USART1_Transmit_String("White ");
+				USART_Transmit_number(1,p2_deck[(int)get_number_1[2]].number);
+				USART1_Transmit_String("\r\n");
+				p2_deck[(int)get_number_1[2]].opened = 1;
+				for(int i=0;i<NUM_CARD;i++){
+					if(deck[i].number == p2_deck[(int)get_number_1[2]].number){
+						if(deck[i].color == p2_deck[(int)get_number_1[2]].color){
+							deck[i].opened = 1;
+						}
+					}
+				}
+				p1_corr_flag = 1;
+				temp = 0;
+				for(int i=0;i<NUM_CARD/2;i++) if(p2_deck[i].opened == 1) temp++;
+				if(p2_card_cnt == temp) state = 17; // win
+				else{
+					state = 12;
+					showP1toP1();
+					showP2toP1();
+				}
+			}
+			else{
+				USART0_Transmit_String("Wrong\r\n");
+				USART1_Transmit_String("Player 1 get wrong card, It's your turn\r\n");
+				state = 20;
+			}
+		}
+		if(state == 17){
+			USART0_Transmit_String("--------------------------------------------------------------------\r\n");
+			USART1_Transmit_String("--------------------------------------------------------------------\r\n");
+			USART0_Transmit_String("************** P1 Win **************\r\n************** P2 Lose **************\r\n");
+			USART1_Transmit_String("************** P1 Win **************\r\n************** P2 Lose **************\r\n");
+			break;
+		}
+		if(state == 20){
+			USART0_Transmit_String("--------------------------------------------------------------------\r\n");
+			USART1_Transmit_String("--------------------------------------------------------------------\r\n");
+			USART1_Transmit_String("Press 0 to start your turn\r\n");
+			USART0_Transmit_String("Player 2's turn\r\n");
+			rx = USART1_Receive();
+			if(rx == '0') state = 21;
+			p1_corr_flag = 0;
+			p2_corr_flag = 0;
 		}
 		
-		if(state == 4){ // state : give 1 card to player 2
+		if(state == 21){ // state : give 1 card to player 2
 			temp = 0;
 			for(int i=0;i<NUM_CARD;i++){
 				if(deck[i].owner == 0) temp++;
@@ -222,110 +305,28 @@ int main(void)
 			}
 			showP2toP2();
 			showP1toP2();
-			state = 10;
+			state = 22;
 		}
-		if(state == 5){ // state 5 
-			//_delay_ms(1);
-			if(p1_corr_flag == 0) USART0_Transmit_String("Choose card to open : ");
-			else if(p1_corr_flag == 1) USART0_Transmit_String("Choose card to open, Press p to pass : "); // 몇 번째에 있는 카드 선택인지
-			USART1_Transmit_String("Player 1 is checking your card\r\n");
-			rx = USART0_Receive();
-			USART0_Transmit(rx);
-			if((rx >= '0')&&(rx <= '9')){
-				get_number_1[0] = rx-48;
-				state = 6;	
-			}
-			if(p1_corr_flag == 1 && rx == 'p'){
-				USART0_Transmit_String("\r\n");
-				USART0_Transmit_String("Passed\r\n");
-				USART1_Transmit_String("Player 1 passed, It's your turn\r\n");
-				state = 16;
-			}
-		} // state 3 end
-		if(state == 6){ // state 4
-			p1_corr_flag = 0;
-			rx = USART0_Receive();
-			USART0_Transmit(rx);
-			USART0_Transmit_String("\r\n");
-			if((rx >= '0')&&(rx <= '9')){
-				get_number_1[1] = rx-48;
-				get_number_1[2] = get_number_1[0]*10 + get_number_1[1] - 1;
-				//_delay_ms(1);
-				state = 7;
-			}			
-		} // state 4 end
-		if(state == 7){ // state 5
-			USART0_Transmit_String("Number? : "); // 카드가 무엇인지
-			rx = USART0_Receive();
-			USART0_Transmit(rx);
-			if((rx >= '0')&&(rx <= '9')){
-				get_number_2[0] = rx-48;
-				state = 8;
-			}
-		} // state 5 end
-		if(state == 8){ // state 8
-			rx = USART0_Receive();
-			USART0_Transmit(rx);
-			USART0_Transmit_String("\r\n");
-			if((rx >= '0')&&(rx <= '9')){
-				get_number_2[1] = rx-48;
-				get_number_2[2] = get_number_2[0]*10 + get_number_2[1];
-				state = 9;
-			}
-		} // state 8 end
-		if(state == 9){ // state 5
-			temp = p2_deck[(int)get_number_1[2]].number;
-			if(temp == get_number_2[2]){
-				USART0_Transmit_String("Correct\r\n");
-				USART1_Transmit_String("Player 1 get your ");
-				if(p2_deck[(int)get_number_1[2]].color == 0) USART1_Transmit_String("Black ");
-				else USART1_Transmit_String("White ");
-				USART_Transmit_number(1,p2_deck[(int)get_number_1[2]].number);
-				USART1_Transmit_String("\r\n");
-				p2_deck[(int)get_number_1[2]].opened = 1;
-				for(int i=0;i<NUM_CARD;i++){
-					if(deck[i].number == p2_deck[(int)get_number_1[2]].number){
-						if(deck[i].color == p2_deck[(int)get_number_1[2]].color){
-							deck[i].opened = 1;
-						}
-					}
-				}		
-				p1_corr_flag = 1;
-				temp = 0;
-				for(int i=0;i<NUM_CARD/2;i++) if(p2_deck[i].opened == 1) temp++;
-				if(p2_card_cnt == temp) state = 30;
-				else{
-					state = 5;
-					showP2toP1();
-				}
-			}
-			else{
-				USART0_Transmit_String("Wrong\r\n");
-				USART1_Transmit_String("Player 1 get wrong card, It's your turn\r\n");
-				state = 16;
-			}
-			
-		}
-		if(state == 10){ // state 10
+		if(state == 22){ // state 22
 			//_delay_ms(1);
 			if(p2_corr_flag == 0) USART1_Transmit_String("Choose card to open : ");
 			else if(p2_corr_flag == 1) USART1_Transmit_String("Choose card to open, Press p to pass : "); // 몇 번째에 있는 카드 선택인지
-			USART0_Transmit_String("Player 2 is checking your card\r\n");
+			USART0_Transmit_String("Player 2 is checking your card...\r\n");
 			rx = USART1_Receive();
 			USART1_Transmit(rx);
 			if((rx >= '0')&&(rx <= '9')){
 				get_number_1[0] = rx-48;
-				state = 11;
+				state = 23;
 			}
 			if(p2_corr_flag == 1 && rx == 'p'){
 				USART1_Transmit_String("\r\n");
 				USART1_Transmit_String("Passed\r\n");
 				USART0_Transmit_String("Player 2 passed, It's your turn\r\n");
-				state = 15;
+				state = 10;
 			}
 			p2_corr_flag = 0;
-		} // state 10 end
-		if(state == 11){ // state 11
+		} // state 22 end
+		if(state == 23){ // state 23
 			rx = USART1_Receive();
 			USART1_Transmit(rx);
 			USART1_Transmit_String("\r\n");
@@ -333,29 +334,29 @@ int main(void)
 				get_number_1[1] = rx-48;
 				get_number_1[2] = get_number_1[0]*10 + get_number_1[1] - 1;
 				//_delay_ms(1);
-				state = 12;
+				state = 24;
 			}
-		} // state 11 end
-		if(state == 12){ // state 12
+		} // state 23 end
+		if(state == 24){ // state 24
 			USART1_Transmit_String("Number? : "); // 카드가 무엇인지
 			rx = USART1_Receive();
 			USART1_Transmit(rx);
 			if((rx >= '0')&&(rx <= '9')){
 				get_number_2[0] = rx-48;
-				state = 13;
+				state = 25;
 			}
-		} // state 12 end
-		if(state == 13){ // state 13
+		} // state 24 end
+		if(state == 25){ // state 25
 			rx = USART1_Receive();
 			USART1_Transmit(rx);
 			USART1_Transmit_String("\r\n");
 			if((rx >= '0')&&(rx <= '9')){
 				get_number_2[1] = rx-48;
 				get_number_2[2] = get_number_2[0]*10 + get_number_2[1];
-				state = 14;
+				state = 26;
 			}
-		} // state 13 end
-		if(state == 14){ // state 14
+		} // state 25 end
+		if(state == 26){ // state 14
 			temp = p1_deck[(int)get_number_1[2]].number;
 			if(temp == get_number_2[2]){
 				USART1_Transmit_String("Correct\r\n");
@@ -375,27 +376,21 @@ int main(void)
 				p2_corr_flag = 1;
 				temp = 0;
 				for(int i=0;i<NUM_CARD/2;i++) if(p1_deck[i].opened == 1) temp++;
-				if(p1_card_cnt == temp) state = 31;
+				if(p1_card_cnt == temp) state = 27;
 				else{
+					showP2toP2();
 					showP1toP2();
-					state = 10;
+					state = 22;
 				}
 			}
 			else{
 				USART1_Transmit_String("Wrong\r\n");
 				USART0_Transmit_String("Player 2 get wrong card, It's your turn\r\n");
-				state = 15;
+				state = 10;
 			}
 			
 		}
-		if(state == 30){
-			USART0_Transmit_String("--------------------------------------------------------------------\r\n");
-			USART1_Transmit_String("--------------------------------------------------------------------\r\n");
-			USART0_Transmit_String("************** P1 Win **************\r\n************** P2 Lose **************\r\n");
-			USART1_Transmit_String("************** P1 Win **************\r\n************** P2 Lose **************\r\n");
-			break;
-		}
-		if(state == 31){
+		if(state == 27){
 			USART0_Transmit_String("--------------------------------------------------------------------\r\n");
 			USART1_Transmit_String("--------------------------------------------------------------------\r\n");
 			USART0_Transmit_String("************** P2 Win **************\r\n************** P1 Lose **************\r\n");
@@ -540,11 +535,9 @@ void showP2toP1 (void){
 	USART0_Transmit_String("\r\n");
 	for(int jj=0; jj<p2_card_cnt;jj++){
 		USART0_Transmit_String("|  ");
-		if(p2_deck[jj].opened == 0) USART0_Transmit_String("X |");
-		else{
-			if(p2_deck[jj].color == 0) USART0_Transmit_String("B |");
-			else USART0_Transmit_String("W |");
-		}
+		if(p2_deck[jj].color == 0) USART0_Transmit_String("B |");
+		else USART0_Transmit_String("W |");
+		
 	}
 	USART0_Transmit_String("\r\n");
 	for(int jj=0; jj<p2_card_cnt;jj++){
@@ -571,11 +564,8 @@ void showP1toP2 (void){
 	USART1_Transmit_String("\r\n");
 	for(int jj=0; jj<p1_card_cnt;jj++){
 		USART1_Transmit_String("|  ");
-		if(p1_deck[jj].opened == 0) USART1_Transmit_String("X |");
-		else{
-			if(p1_deck[jj].color == 0) USART1_Transmit_String("B |");
-			else USART1_Transmit_String("W |");
-		}
+		if(p1_deck[jj].color == 0) USART1_Transmit_String("B |");
+		else USART1_Transmit_String("W |");
 	}
 	USART1_Transmit_String("\r\n");
 	for(int jj=0; jj<p1_card_cnt;jj++){
